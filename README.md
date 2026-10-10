@@ -101,3 +101,6 @@ Value Proposition
 - For departments: Detect conflicts early and avoid repeated excavation of the same road.
 - For contractors: Build a credible, evidence-based record of completed work and responsible maintenance.
 - For government: Reduce waste, improve service delivery, identify problem areas early, and rebuild public trust.
+
+
+(NOTE:we have concised the idea to a smaller version similar to a map of a college for the sake of implementation)
