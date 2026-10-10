@@ -104,3 +104,4 @@ Value Proposition
 
 
 (NOTE:we have concised the idea to a smaller version similar to a map of a college for the sake of implementation)
+Video Link: https://drive.google.com/file/d/15U5drtmsO6a72Q06kETajitvSHGttUxb/view?usp=sharing
