@@ -1572,8 +1572,9 @@ function dCardHTML(p){
 
 const ST_ORDER={ongoing:0,review:1,planned:2,completed:3};
 function dFiltered(){
+  if (!state.user) return [];
   const q=state.dq.trim().toLowerCase();
-  return state.projects.filter(p=>p.dept===state.user.dept&&state.df[p.status]&&(!q||p.title.toLowerCase().includes(q)||p.code.toLowerCase().includes(q)||(cOf(p.cid)&&cOf(p.cid).name.toLowerCase().includes(q))))
+  return state.projects.filter(p=>p && p.dept===state.user.dept&&state.df[p.status]&&(!q||p.title.toLowerCase().includes(q)||p.code.toLowerCase().includes(q)||(cOf(p.cid)&&cOf(p.cid).name.toLowerCase().includes(q))))
     .sort((a,b)=>ST_ORDER[a.status]-ST_ORDER[b.status]||a.start.localeCompare(b.start));
 }
 function dProjectsHTML(){
@@ -1965,7 +1966,7 @@ $('#tab-con').addEventListener('click',async e=>{
   toast(`${a.name} approved as ${nc.id}. They can now log in and be assigned to works.`);
 });
 function renderDeptBadge(){
-  const n=state.user?AC.apps.filter(a=>a.status==='pending').length:0;
+  const n=(state.user && AC.apps) ? AC.apps.filter(a=>a.status==='pending').length : 0;
   const t=$('#deptTabs [data-t="con"]');if(t)t.textContent='Verify contractor'+(n?` (${n})`:'');
 }
 
