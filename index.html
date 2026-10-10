@@ -2259,7 +2259,7 @@ async function restore(){
   }catch(e){
     showGateTab('public');
     const err=$('#g-err');
-    err.textContent='Cannot reach the WorkWatch database server. Start it with "python3 server.py" and open http://localhost:8000 in your browser (the page must be opened from the server, not as a file).';
+    err.textContent='Cannot reach the WorkWatch database server. Start it with "python3 server.py" and open https://qbic-1mrs.onrender.com in your browser (the page must be opened from the server, not as a file).';
     err.hidden=false;$('#g-btn').disabled=true;return;
   }
   restore();
