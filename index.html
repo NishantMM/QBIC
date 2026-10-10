@@ -931,10 +931,21 @@ svg.addEventListener('click',e=>{
   if(state.mode==='dept'&&state.user&&state.dTab==='plan')setLoc(toMap(e));
 });
 function visibleProjects(){
-  if(state.mode==='public')return state.projects.filter(p=>p && p.dept && (((p.status==='ongoing'||p.status==='planned'||p.status==='completed')&&state.filters[p.status])||p.code===state.selected)&&(!state.filters.dept||p.dept===state.filters.dept));
-  if(state.mode==='dept'&&state.user){
-    const dp=state.dept,ids=(state.dTab==='plan'&&dp.result)?new Set(dp.result.conflicts.map(c=>c.p.code)):new Set();
-    return state.projects.filter(p=>p && p.dept && (p.dept===(state.user && state.user.dept)||ids.has(p.code)));
+  if (!state || !Array.isArray(state.projects)) return [];
+  if (state.mode === 'public') {
+    return state.projects.filter(p => 
+      p && p.dept && 
+      (((p.status === 'ongoing' || p.status === 'planned' || p.status === 'completed') && state.filters[p.status]) || p.code === state.selected) && 
+      (!state.filters.dept || p.dept === state.filters.dept)
+    );
+  }
+  if (state.mode === 'dept' && state.user) {
+    const dp = state.dept || {};
+    const ids = (dp.result && Array.isArray(dp.result.conflicts)) 
+      ? new Set(dp.result.conflicts.map(c => c.p ? c.p.code : null).filter(Boolean)) 
+      : new Set();
+    const userDept = state.user ? state.user.dept : null;
+    return state.projects.filter(p => p && p.dept && (p.dept === userDept || ids.has(p.code)));
   }
   return state.projects.filter(Boolean);
 }
@@ -2255,6 +2266,17 @@ async function restore(){
   restore();
 })();
 })();
+
+  // At the bottom of your script block:
+try {
+  if (typeof renderApp === 'function') {
+    renderApp();
+  } else if (typeof render === 'function') {
+    render();
+  }
+} catch (err) {
+  console.error("Initial render caught error:", err);
+}
 </script>
 </body>
 </html>
