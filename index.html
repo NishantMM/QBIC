@@ -1589,8 +1589,21 @@ function dFiltered(){
     .sort((a,b)=>ST_ORDER[a.status]-ST_ORDER[b.status]||a.start.localeCompare(b.start));
 }
 function dProjectsHTML(){
-  const l=dFiltered();
-  return l.length?l.map(dCardHTML).join(''):'<div class="note info">No projects match your search and filters.</div>';
+  const list = typeof dFiltered === 'function' ? dFiltered() : [];
+  if(!list || !list.length) return '<p class="muted small">No projects match the search or filter.</p>';
+  return list.map(p => {
+    if(!p) return '';
+    const deptName = p.dept || 'Unknown';
+    const c = (typeof cOf === 'function' && p.cid) ? cOf(p.cid) : null;
+    return `<div class="card pcard" data-code="${esc(p.code||'')}">
+      <div class="row" style="justify-content:space-between">
+        <span class="code">${esc(p.code||'')}</span>
+        <span class="badge ${esc(p.status||'')}">${esc(p.status||'')}</span>
+      </div>
+      <strong>${esc(p.title||'')}</strong>
+      <div class="muted small">${esc(deptName)} · Contractor: ${c ? esc(c.name) : 'Unassigned'}</div>
+    </div>`;
+  }).join('');
 }
 function dToolbarHTML(mine){
   const n=s=>mine.filter(p=>p.status===s).length;
