@@ -594,10 +594,9 @@ h4.manage{font-size:17px;margin:24px 0 8px;letter-spacing:-.01em}
 'use strict';
 /* =====================================================================
    WorkWatch · IIITDM Kancheepuram  (v3)
-   1 data · 2 helpers · 3 scoring (WCRS) · 4 map · 5 public view
-   6 contractors (portfolios + dashboard) · 7 department (dashboard + plan)
-   8 modes · 9 init
    ===================================================================== */
+const API_BASE = 'https://qbic-1mrs.onrender.com';
+
 const $=s=>document.querySelector(s);
 const $$=s=>Array.from(document.querySelectorAll(s));
 const NS='http://www.w3.org/2000/svg';
@@ -619,7 +618,6 @@ const DEPT_ACCOUNTS=[
  {dept:'Hostel Office',pass:'hostel@26',officer:'Mr. V. Ramesh',role:'Warden (Hostel Works)',phone:'+91 90000 10104',email:'hostels@campus-demo.example'}
 ];
 const CON_PASS={C01:'murugan@26',C02:'kaveri@26',C03:'bright@26',C04:'aqua@26',C05:'fiber@26'};
-/* records = earlier verified projects (money in ₹ lakh, time in days) */
 const CONTRACTORS=[
  {id:'C01',name:'Sri Murugan Constructions',speciality:'Roads, paving & civil works',licence:'Class I Civil Contractor (PWD-registered)',est:1998,staff:85,completed:142,defectDays:4,certs:['ISO 9001:2015','Safety-trained site crew'],office:{phone:'+91 90000 20101',email:'office@srimurugan-demo.example'},
   records:[{t:'Internal roads and paving, engineering college campus',y:2025,planned:120,actual:126,excused:0,budget:310,adj:0,cost:318,insp:88,safety:90,transp:85},
@@ -644,9 +642,8 @@ const CONTRACTORS=[
 ];
 const mkC=(n,r,p,e)=>({name:n,role:r,phone:p,email:e});
 const CT_PRIYA=mkC('Er. S. Priya','Assistant Engineer (Civil)','+91 90000 10101','civil.ae@campus-demo.example');
-const SEED=[]; /* demo data is seeded into the database by server.py */
 
-/* Campus geometry: metres on a simplified schematic (not surveyed) */
+/* Campus geometry */
 const BLD=[
  {name:'Administrative Block',label:'Admin Block',x:130,y:150,w:100,h:65},
  {name:'Academic Complex',label:'Academic Complex',x:250,y:140,w:100,h:75},
@@ -704,13 +701,15 @@ const state={mode:'public',filters:{ongoing:true,planned:true,review:true,comple
   projects:[],conSel:null,conTab:'portfolio',cuser:null,cdTab:'queries',editingQ:null,
   user:null,dTab:'dash',dept:{loc:null,window:3,result:null,merged:null,just:''},
   draft:{code:null,q:'',topic:'',touched:false,fb:'',stars:0}};
+
 /* ---- server API + database persistence ---- */
 let BOOTED=false;
 const API={token:null,
   async req(method,url,body){
     const h={'Content-Type':'application/json'};if(API.token)h.Authorization='Bearer '+API.token;
     let r;
-    try{r=await fetch(url,{method:method,headers:h,body:body==null?undefined:JSON.stringify(body)});}
+    const fullUrl = url.startsWith('http') ? url : (API_BASE + url);
+    try{r=await fetch(fullUrl,{method:method,headers:h,body:body==null?undefined:JSON.stringify(body)});}
     catch(e){const er=new Error('Cannot reach the WorkWatch server.');er.offline=true;throw er;}
     let j=null;try{j=await r.json();}catch(e){}
     if(!r.ok){const er=new Error((j&&j.error)||('Server error ('+r.status+')'));er.status=r.status;throw er;}
@@ -1259,7 +1258,6 @@ function renderConTabs(){
   $('#conPortfolio').hidden=state.conTab!=='portfolio';$('#conDash').hidden=state.conTab!=='dash';
   if(state.conTab==='portfolio')renderContractors();else renderConDash();
 }
-/* --- public portfolios + WCRS --- */
 function compBars(w){
   return Object.keys(WEIGHTS).map(k=>{
     const v=w.comps[k];
@@ -1553,7 +1551,6 @@ $('#deptTabs').addEventListener('click',e=>{
   state.dTab=b.dataset.t;renderDept();renderLayer();
 });
 
-/* --- department dashboard --- */
 function dCardHTML(p){
     const c=cOf(p.cid),r=releasedTotal(p),pct=p.sanction?Math.min(100,r/p.sanction*100):0;
     return `<div class="card pcard" data-code="${esc(p.code)}"><div class="row" style="justify-content:space-between"><span class="code">${esc(p.code)}</span><span class="badge ${p.status}">${LABEL[p.status]}</span></div>
@@ -1899,7 +1896,6 @@ function refreshConLists(){
   const gc=$('#g-democreds');
   if(gc)gc.innerHTML='<strong>Contractors</strong><br>'+base.map(c=>`${esc(c.name)}: <code>${esc(CON_PASS[c.id])}</code>`).join('<br>')+'<br><strong>Departments</strong><br>'+DEPT_ACCOUNTS.map(a=>`${esc(a.dept)}: <code>${esc(a.pass)}</code>`).join('<br>');
 }
-/* department review queue */
 function renderConVerify(skip){
   if(!skip)refreshApps().then(()=>{if(state.user&&state.mode==='dept'&&state.dTab==='con')renderConVerify(true);renderDeptBadge();});
   const mineDept=state.user.dept;
@@ -2060,13 +2056,7 @@ function showGateTab(r){
   gRole=r;
   $$('#gTabs button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.r===r));
   $('#g-public').hidden=r!=='public';$('#g-contractor').hidden=r!=='contractor';$('#g-dept').hidden=r!=='dept';
-  $('#g-demo').hidden=r==='public';$('#g-err').hidden=true;$('#g-ok').hidden=true;
-  updateGateBtn();
-}
-let gcMode='login';
-function setGcMode(m){
-  gcMode=m;
-  $$('#gcTabs button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.m===m));
+  $('#g-demo').hidden=r==='public';$('#g-err').hidden=true;$('#g-ok').hidden=true;   updateGateBtn(); } let gcMode='login'; function setGcMode(m){   gcMode=m;   $$('#gcTabs button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.m===m));
   $('#gc-login').hidden=m!=='login';$('#gc-signup').hidden=m!=='signup';
   $('#g-err').hidden=true;
   if(m==='signup')$('#g-ok').hidden=true;
@@ -2213,8 +2203,7 @@ function startSession(role,id,token){
   try{sessionStorage.setItem(SESS,JSON.stringify({role:role,id:id,token:token||API.token}));}catch(e){}
   $('#search').value='';
   $('#gate').hidden=true;
-  $('#whoTxt').textContent=label;$('#whoBar').hidden=false;
-  $$('#modeSeg button').forEach(b=>{b.hidden=ROLE_MODES[role].indexOf(b.dataset.mode)<0;});
+  $('#whoTxt').textContent=label;$('#whoBar').hidden=false;   $$('#modeSeg button').forEach(b=>{b.hidden=ROLE_MODES[role].indexOf(b.dataset.mode)<0;});
   $('#modeSeg').hidden=ROLE_MODES[role].length<2;
   $('#conTabs').hidden=role==='public';
   setMode({public:'public',contractor:'contractors',dept:'dept'}[role]);
@@ -2259,7 +2248,7 @@ async function restore(){
   }catch(e){
     showGateTab('public');
     const err=$('#g-err');
-    err.textContent='Cannot reach the WorkWatch database server. Start it with "python3 server.py" and open https://qbic-1mrs.onrender.com in your browser (the page must be opened from the server, not as a file).';
+    err.textContent='Cannot reach the WorkWatch database server. Make sure your Render backend is awake.';
     err.hidden=false;$('#g-btn').disabled=true;return;
   }
   restore();
