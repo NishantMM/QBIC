@@ -2203,6 +2203,7 @@ async function gateLogin(){
   const btn=$('#g-btn');btn.disabled=true;
   try{
     const r=await API.post('/api/login',body);
+    if(!r||!r.token||!r.role)throw new Error('Unexpected reply from the server.');
     API.token=r.token;
     err.hidden=true;$('#g-ok').hidden=true;
     $('#g-cpass').value='';$('#g-dpass').value='';
@@ -2262,18 +2263,25 @@ async function restore(){
   showGateTab('public');
 }
 (async function boot(){
-  try{
-    const r=await API.get('/api/bootstrap');
-    adopt(r.projects,r.revs);
-    (r.contractors||[]).forEach(c=>{if(!cOf(c.id))CONTRACTORS.push(c);});
-    refreshConLists();BOOTED=true;
-  }catch(e){
-    showGateTab('public');
-    const err=$('#g-err');
-    err.textContent='Cannot reach the WorkWatch database server. Make sure your Render backend is awake.';
-    err.hidden=false;$('#g-btn').disabled=true;return;
+  showGateTab('public');
+  const err=$('#g-err');
+  $('#g-btn').disabled=true;
+  err.className='note info';
+  err.textContent='Connecting to the server… the free plan can take up to a minute to wake up.';
+  err.hidden=false;
+  for(let i=0;i<14;i++){
+    try{
+      const r=await API.get('/api/bootstrap');
+      adopt(r.projects,r.revs);
+      (r.contractors||[]).forEach(c=>{if(!cOf(c.id))CONTRACTORS.push(c);});
+      refreshConLists();BOOTED=true;
+      err.hidden=true;err.className='note bad';
+      $('#g-btn').disabled=false;
+      restore();return;
+    }catch(e){await new Promise(r=>setTimeout(r,5000));}
   }
-  restore();
+  err.className='note bad';
+  err.textContent='Cannot reach the WorkWatch server. Please refresh in a minute.';
 })();
 })();
 
