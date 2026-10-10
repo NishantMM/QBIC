@@ -1,0 +1,2270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>WorkWatch – IIITDM Kancheepuram Campus Works</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#f8fafc;--surface:#ffffff;--text:#1b2430;--muted:#5d6b7c;--border:#dde2e8;--track:#e6eaef;
+  --accent:#0369a1;--accent-soft:#e0f2fe;--pbtn:#0f172a;--ink:#0f172a;--amber:#d97706;--mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;--ongoing:#d6362f;--planned:#e8890c;--completed:#2a9d5b;--review:#7b4fd6;
+  --warn-bg:#fff4e0;--warn-text:#7a4a00;--ok-bg:#e6f6ec;--ok-text:#17603a;--bad-bg:#fdeceb;--bad-text:#8f1f1a;
+  --land:#e4e8df;--campus:#f1f4ec;--ground:#cfe6c3;--track-line:#ffffff;--bld:#d9dde3;--bld-edge:#aeb6c1;
+  --road:#ffffff;--road-edge:#c2c9d1;--roadtext:#6b7684;--areatext:#3f4e5e;--bound:#8a96a4;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#10151c;--surface:#171e27;--text:#e6ebf1;--muted:#98a5b5;--border:#2a3441;--track:#27303c;
+    --accent:#6c93ff;--accent-soft:#1f2c4d;--pbtn:#4a74f0;--ink:#e6ebf1;--amber:#f0a032;--ongoing:#ef5b53;--planned:#f0a032;--completed:#43bd7a;--review:#a58bf0;
+    --warn-bg:#3a2d12;--warn-text:#f3cf8a;--ok-bg:#16301f;--ok-text:#9be0b7;--bad-bg:#3a1b19;--bad-text:#f4a9a4;
+    --land:#141a21;--campus:#1b232c;--ground:#23402b;--track-line:#3b5a44;--bld:#2e3845;--bld-edge:#455264;
+    --road:#2c3540;--road-edge:#3a4552;--roadtext:#9aa7b6;--areatext:#b4bfcc;--bound:#5c6978;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#10151c;--surface:#171e27;--text:#e6ebf1;--muted:#98a5b5;--border:#2a3441;--track:#27303c;
+  --accent:#6c93ff;--accent-soft:#1f2c4d;--pbtn:#4a74f0;--ink:#e6ebf1;--amber:#f0a032;--ongoing:#ef5b53;--planned:#f0a032;--completed:#43bd7a;--review:#a58bf0;
+  --warn-bg:#3a2d12;--warn-text:#f3cf8a;--ok-bg:#16301f;--ok-text:#9be0b7;--bad-bg:#3a1b19;--bad-text:#f4a9a4;
+  --land:#141a21;--campus:#1b232c;--ground:#23402b;--track-line:#3b5a44;--bld:#2e3845;--bld-edge:#455264;
+  --road:#2c3540;--road-edge:#3a4552;--roadtext:#9aa7b6;--areatext:#b4bfcc;--bound:#5c6978;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font:14px/1.45 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);display:flex;flex-direction:column;overflow:hidden}
+button,input,select,textarea{font:inherit;color:inherit}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 16px;background:var(--surface);border-bottom:1px solid var(--border);flex:none;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.logo{width:36px;height:36px;border-radius:10px;background:#0f172a;color:#fff;display:grid;place-items:center;font-size:18px;flex:none}
+.brand h1{margin:0;font-size:17px;line-height:1.1}
+.brand small{display:block;color:var(--muted);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.seg{display:inline-flex;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--bg);flex:none;max-width:100%}
+.seg button{border:0;background:transparent;padding:7px 14px;cursor:pointer;color:var(--muted);font-weight:600}
+.seg button[aria-pressed="true"]{background:var(--pbtn);color:#fff}
+main{flex:1;min-height:0;display:grid;grid-template-columns:440px minmax(0,1fr);grid-template-rows:minmax(0,1fr)}
+aside{overflow:auto;padding:14px 16px 24px;background:var(--surface);border-right:1px solid var(--border)}
+#mapwrap{position:relative;min-height:0;background:var(--land)}
+#map{width:100%;height:100%;display:block;touch-action:none;cursor:grab;user-select:none}
+#map:active{cursor:grabbing}
+.land{fill:var(--land)}.campus{fill:var(--campus)}.ground{fill:var(--ground);stroke:var(--bld-edge);stroke-width:.8}
+.track{fill:none;stroke:var(--track-line);stroke-width:2}
+.bound{fill:none;stroke:var(--bound);stroke-width:1.2;stroke-dasharray:6 4}
+.bld{fill:var(--bld);stroke:var(--bld-edge);stroke-width:.8}
+.casing{stroke:var(--road-edge);fill:none;stroke-linecap:butt;stroke-linejoin:round}
+.roadfill{stroke:var(--road);fill:none;stroke-linecap:butt;stroke-linejoin:round}
+.rlabel{fill:var(--roadtext);font-size:7.5px;font-weight:600;text-anchor:middle;pointer-events:none;letter-spacing:.3px}
+.blabel{fill:var(--areatext);font-size:8px;font-weight:700;text-anchor:middle;pointer-events:none}
+.glabel{fill:var(--areatext);font-size:8px;font-weight:700;pointer-events:none}
+.gate{fill:var(--areatext)}
+.mk{cursor:pointer;outline:none}
+.mk .shape{stroke:var(--surface);stroke-width:2.2;vector-effect:non-scaling-stroke}
+.s-ongoing .shape{fill:var(--ongoing)}.s-planned .shape{fill:var(--planned)}.s-completed .shape{fill:var(--completed)}.s-review .shape{fill:var(--review)}
+.mk .tick{fill:#fff;font-weight:700;text-anchor:middle;pointer-events:none}
+.pulse{fill:var(--ongoing);opacity:.4;transform-box:fill-box;transform-origin:center;animation:pulse 1.9s ease-out infinite;pointer-events:none}
+@keyframes pulse{0%{transform:scale(1);opacity:.5}100%{transform:scale(2.4);opacity:0}}
+@media (prefers-reduced-motion: reduce){.pulse{animation:none}}
+.mk:focus-visible .shape{stroke:var(--accent);stroke-width:4}
+.ring-closure{fill:none;stroke:var(--ongoing);stroke-dasharray:6 5;stroke-width:2.2;vector-effect:non-scaling-stroke;pointer-events:none}
+.ring-done{fill:none;stroke:var(--completed);stroke-width:3;vector-effect:non-scaling-stroke;pointer-events:none}
+.item.pc.hl{border-color:var(--completed);box-shadow:0 0 0 2px var(--completed)}
+.hl-head{color:var(--completed)}
+.ring-sel{fill:none;stroke:var(--accent);stroke-width:3;vector-effect:non-scaling-stroke;pointer-events:none}
+.ring-conf{fill:none;stroke:var(--ongoing);stroke-width:3;vector-effect:non-scaling-stroke;pointer-events:none}
+.ring-con{fill:none;stroke:var(--accent);stroke-width:3;vector-effect:non-scaling-stroke;pointer-events:none}
+.numbub{fill:var(--ongoing);stroke:#fff;stroke-width:1.5;vector-effect:non-scaling-stroke}
+.numtxt{fill:#fff;font-weight:700;text-anchor:middle;pointer-events:none}
+.halo{fill:var(--accent);fill-opacity:.07;stroke:var(--accent);stroke-dasharray:10 7;stroke-width:2;vector-effect:non-scaling-stroke;pointer-events:none}
+.radius{fill:var(--accent);fill-opacity:.1;stroke:var(--accent);stroke-dasharray:9 6;stroke-width:2;vector-effect:non-scaling-stroke;pointer-events:none}
+.siteshape{fill:var(--accent);stroke:#fff;stroke-width:2;vector-effect:non-scaling-stroke;pointer-events:none}
+.sitelabel{fill:var(--accent);font-weight:700;pointer-events:none;text-anchor:middle}
+.dim{opacity:.28}
+.mapctl{position:absolute;top:12px;right:12px;display:flex;flex-direction:column;gap:6px}
+.mapctl button{width:36px;height:36px;border-radius:9px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-size:18px;line-height:1;box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.legend{position:absolute;left:12px;bottom:12px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 12px;display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;max-width:calc(100% - 24px);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.dot{width:11px;height:11px;border-radius:50%;display:inline-block;flex:none}
+.dot.ongoing{background:var(--ongoing)}.dot.planned{background:var(--planned);border-radius:2px;transform:rotate(45deg) scale(.85)}.dot.completed{background:var(--completed)}.dot.review{background:var(--review)}
+.dot.closure{border:2px dashed var(--ongoing);background:transparent}
+#hint{position:absolute;left:12px;top:12px;background:var(--accent);color:#fff;padding:8px 12px;border-radius:10px;font-weight:600;font-size:13px;max-width:calc(100% - 76px);box-shadow:0 2px 6px rgba(0,0,0,.2)}
+h2{font-size:16px;margin:0 0 4px}
+h3{margin:0 0 4px;font-size:16px;line-height:1.25}
+h4{margin:14px 0 6px;font-size:14px}
+.muted{color:var(--muted)}
+.small{font-size:12px}
+p{margin:0 0 8px}
+a{color:var(--accent)}
+.searchbox{position:relative}
+.searchbox input{width:100%;padding:11px 12px;border:1px solid var(--border);border-radius:10px;background:var(--bg)}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:0}
+#sugg{position:absolute;left:0;right:0;top:calc(100% + 4px);background:var(--surface);border:1px solid var(--border);border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,.18);z-index:20;overflow:hidden}
+#sugg button{display:flex;width:100%;gap:10px;align-items:baseline;padding:9px 12px;border:0;background:transparent;text-align:left;cursor:pointer}
+#sugg button:hover,#sugg button:focus{background:var(--accent-soft)}
+#sugg .tag{font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;min-width:52px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.chip{border:1px solid var(--border);background:var(--bg);border-radius:999px;padding:5px 11px;cursor:pointer;font-size:13px;display:inline-flex;align-items:center;gap:6px}
+.chip[aria-pressed="false"]{opacity:.45}
+.chip.try{color:var(--accent);border-color:var(--accent);background:var(--accent-soft)}
+.row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+label{display:block;font-weight:600;font-size:13px;margin:10px 0 0}
+label input,label select,label textarea{display:block;width:100%;margin-top:4px;padding:9px 10px;border:1px solid var(--border);border-radius:9px;background:var(--bg);font-weight:400}
+label textarea{min-height:58px;resize:vertical}
+.fld{display:block;width:100%;margin-top:4px;padding:8px 10px;border:1px solid var(--border);border-radius:9px;background:var(--bg);font-weight:400}
+textarea.fld{min-height:56px;resize:vertical}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.btn{border:1px solid var(--border);background:var(--bg);border-radius:9px;padding:8px 12px;cursor:pointer;font-weight:600}
+.btn.primary{background:var(--pbtn);border-color:var(--pbtn);color:#fff}
+.btn.good{background:var(--completed);border-color:var(--completed);color:#fff}
+.btn.bad{background:var(--bad-bg);border-color:var(--ongoing);color:var(--bad-text)}
+.btn.block{display:block;width:100%;margin-top:12px;padding:11px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.small{padding:5px 9px;font-size:12px}
+.link{border:0;background:none;color:var(--accent);cursor:pointer;padding:0;font-weight:600;text-align:left}
+.card{border:1px solid var(--border);border-radius:12px;padding:12px;margin:12px 0;background:var(--bg)}
+.code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;color:var(--muted)}
+.badge{font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;color:#fff;white-space:nowrap}
+.badge.ongoing{background:var(--ongoing)}.badge.planned{background:var(--planned)}.badge.completed{background:var(--completed)}.badge.review{background:var(--review)}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:1px 7px;border-radius:999px;background:var(--accent-soft);color:var(--accent);margin-right:4px}
+dl{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:10px 0}
+dt{color:var(--muted)}dd{margin:0;font-weight:600}
+.note{border-radius:9px;padding:8px 10px;margin:8px 0;font-size:13px}
+.note.warn{background:var(--warn-bg);color:var(--warn-text)}
+.note.ok{background:var(--ok-bg);color:var(--ok-text)}
+.note.bad{background:var(--bad-bg);color:var(--bad-text)}
+.note.info{background:var(--accent-soft);color:var(--text)}
+.contact{border:1px solid var(--accent);background:var(--accent-soft);border-radius:10px;padding:10px 12px;margin:10px 0}
+.contact div{margin-top:2px}
+.stages{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px}
+.stg .bar{display:block;height:8px;border-radius:4px;background:var(--track)}
+.stg.done .bar{background:var(--completed)}
+.stg.cur .bar{background:repeating-linear-gradient(45deg,var(--planned),var(--planned) 6px,#f6c26b 6px,#f6c26b 12px)}
+.stg .nm{font-size:11px;color:var(--muted)}
+.list{margin-top:6px}
+.item{display:flex;gap:10px;width:100%;text-align:left;border:0;border-bottom:1px solid var(--border);background:transparent;padding:10px 2px;cursor:pointer;align-items:flex-start}
+.item:hover{background:var(--accent-soft)}
+.item .t{font-weight:600}
+.item .s{font-size:12px;color:var(--muted)}
+.item .dot{margin-top:5px}
+.locbox{border:1px dashed var(--border);border-radius:9px;padding:9px 10px;margin-top:10px;color:var(--muted)}
+.locbox.set{border-style:solid;border-color:var(--accent);color:var(--text);background:var(--accent-soft)}
+.winlabel{font-weight:600;font-size:13px;margin:12px 0 4px}
+.conf{border:1px solid var(--border);border-radius:10px;padding:10px;margin:8px 0;background:var(--bg)}
+.conf .h{display:flex;gap:8px;align-items:flex-start}
+.num{background:var(--ongoing);color:#fff;border-radius:50%;width:20px;height:20px;display:grid;place-items:center;font-size:12px;font-weight:700;flex:none;margin-top:1px}
+.tl{margin:10px 0}
+.tl-row{margin:6px 0}
+.tl-label{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tl-track{position:relative;height:10px;background:var(--track);border-radius:5px}
+.tl-bar{position:absolute;top:0;bottom:0;border-radius:5px}
+.tl-bar.new{background:var(--accent)}.tl-bar.ongoing{background:var(--ongoing)}.tl-bar.planned{background:var(--planned)}.tl-bar.completed{background:var(--completed)}.tl-bar.review{background:var(--review)}
+.tl-axis{display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:10px 0}
+.stat{background:var(--bg);border:1px solid var(--border);border-radius:9px;padding:7px 4px;text-align:center}
+.stat b{display:block;font-size:16px}
+.stat span{font-size:11px;color:var(--muted)}
+.userbar{display:flex;justify-content:space-between;align-items:center;gap:8px;background:var(--accent-soft);border-radius:10px;padding:8px 12px;margin-bottom:12px}
+details.demo{margin-top:14px;font-size:13px;border:1px dashed var(--border);border-radius:9px;padding:8px 10px}
+details.demo summary,details.fold summary{cursor:pointer;font-weight:600}
+details.fold{margin-top:8px;font-size:13px}
+details.demo code{font-family:ui-monospace,Menlo,Consolas,monospace;background:var(--bg);padding:1px 5px;border-radius:5px}
+.pastw{border-bottom:1px solid var(--border);padding:6px 0}
+.meter{height:8px;background:var(--track);border-radius:4px;overflow:hidden;margin:4px 0}
+.meter>i{display:block;height:100%;background:var(--accent)}
+.meter.good>i{background:var(--completed)}.meter.mid>i{background:var(--planned)}.meter.low>i{background:var(--ongoing)}
+.score{display:flex;align-items:center;gap:14px;border:1px solid var(--border);border-radius:12px;padding:12px;margin:10px 0;background:var(--bg)}
+.score .big{font-size:38px;font-weight:800;line-height:1}
+.score .big small{font-size:14px;font-weight:600;color:var(--muted)}
+.band{display:inline-block;font-weight:700;font-size:12px;padding:2px 9px;border-radius:999px;color:#fff}
+.band.good{background:var(--completed)}.band.mid{background:var(--planned)}.band.low{background:var(--ongoing)}.band.na{background:var(--muted)}
+.comp{margin:8px 0}
+.comp .top{display:flex;justify-content:space-between;font-size:13px;gap:8px}
+.tblwrap{overflow-x:auto;margin:6px 0}
+table.tbl{border-collapse:collapse;width:100%;font-size:11.5px}
+table.tbl th,table.tbl td{border-bottom:1px solid var(--border);padding:5px 4px;text-align:right;white-space:nowrap}
+table.tbl th:first-child,table.tbl td:first-child{text-align:left;white-space:normal;min-width:120px}
+table.tbl th{color:var(--muted);font-weight:600}
+.faqbox{border:1px solid var(--border);border-radius:12px;padding:12px;margin:12px 0;background:var(--bg)}
+.qitem{border-bottom:1px solid var(--border);padding:8px 0}
+.qitem summary{cursor:pointer;font-weight:600}
+.qitem .ans{margin:6px 0;padding:8px 10px;background:var(--ok-bg);color:var(--ok-text);border-radius:8px;font-size:13px}
+.sim{background:var(--warn-bg);color:var(--warn-text);border-radius:8px;padding:6px 9px;margin-top:6px;font-size:12.5px}
+.stars{display:flex;gap:2px}
+.star{border:0;background:none;font-size:26px;cursor:pointer;color:var(--planned);padding:0 2px;line-height:1}
+.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:10px 0}
+.tile{border:1px solid var(--border);border-radius:10px;padding:8px 10px;background:var(--bg)}
+.tile b{display:block;font-size:18px}
+.tile span{font-size:12px;color:var(--muted)}
+.logline{font-size:12.5px;padding:4px 0;border-bottom:1px dashed var(--border)}
+.foot{margin-top:18px;font-size:12px;color:var(--muted)}
+.vrow{display:flex;gap:8px;align-items:flex-start;margin-top:12px}
+.vrow input[type=checkbox]{width:18px;height:18px;margin-top:2px;flex:none}
+.vrow label{margin:0;font-weight:600;font-size:13px}
+.vsec{margin-top:16px;font-weight:700;font-size:14px}
+#gate{position:fixed;inset:0;z-index:100;background:var(--bg);display:flex;padding:16px;overflow:auto}
+.gatebox{margin:auto;width:100%;max-width:440px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px 20px;box-shadow:0 10px 30px rgba(0,0,0,.15)}
+.gatebox .logo{margin-bottom:8px}
+.gatebox h1{margin:0 0 4px;font-size:22px}
+.gatebox .seg{display:flex;margin:14px 0 4px}
+.gatebox .seg button{flex:1}
+#whoBar{display:flex;align-items:center;gap:8px;min-width:0}
+#whoBar #whoTxt{max-width:220px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(20px);background:#1b2430;color:#fff;padding:10px 16px;border-radius:10px;opacity:0;pointer-events:none;transition:.25s;z-index:50;max-width:90vw;text-align:center}
+#toast.show{opacity:1;transform:translateX(-50%)}
+[hidden]{display:none!important}
+
+/* ===== v4 · dashboard look + layout modes (m-dash / m-split / m-nomap) ===== */
+@media (min-width:821px){
+  header{display:grid;grid-template-columns:1fr auto 1fr;padding:12px 32px}
+  .hright{justify-self:end;grid-column:3}
+}
+.hright{display:flex;align-items:center;gap:10px;min-width:0}
+.brand h1{font-size:19px;letter-spacing:-.02em;font-weight:700}
+.brand h1 span{color:var(--amber)}
+.brand small{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+#modeSeg{border:0;background:transparent;gap:4px}
+#modeSeg button{border-radius:9px;padding:7px 14px;font-weight:500}
+#modeSeg button:not([aria-pressed="true"]):hover{background:var(--track)}
+.card{border-radius:14px}
+.btn{border-radius:10px}
+main aside{grid-column:1;grid-row:1}
+main #mapwrap{grid-column:2;grid-row:1}
+#pubHero,#backDash,#mapCap{display:none}
+
+/* dashboard layout: hero + stats on the left, small dark map + conflict watch on the right */
+main.m-dash{grid-template-columns:minmax(0,1fr) 500px;grid-template-rows:auto minmax(0,1fr)}
+main.m-dash aside{grid-row:1/3;background:transparent;border-right:0;padding:32px 28px 48px 32px}
+main.m-dash #pubHero{display:block}
+main.m-dash #mapwrap{grid-row:1;align-self:start;height:360px;margin:32px 32px 0 0;border-radius:18px;overflow:hidden;border:1px solid #1e293b;box-shadow:0 12px 32px rgba(15,23,42,.28);
+  --land:#0b1220;--campus:#111b30;--ground:#14352a;--track-line:#2f5a46;--bld:#1d2940;--bld-edge:#34476b;--road:#25324a;--road-edge:#1a2438;--roadtext:#8ea0bd;--areatext:#a9b8d1;--bound:#4b5d7d;--surface:#17223b;--border:#243049;--text:#e2e8f0}
+main.m-dash #mapCap{display:flex;position:absolute;left:14px;right:14px;top:12px;justify-content:space-between;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#94a3b8;pointer-events:none}
+main.m-dash .legend,main.m-dash .mapctl{display:none}
+
+/* split layout = the original public view (list + details left, big map right) */
+main.m-split #backDash{display:inline-flex;margin-bottom:10px}
+/* no-map layout for contractors / department */
+main.m-nomap{grid-template-columns:minmax(0,1fr)}
+main.m-nomap #mapwrap{display:none}
+main.m-nomap aside{border-right:0;background:var(--bg);padding:24px 32px 40px}
+main.m-nomap #panel>section,main.m-nomap #panel>.foot{max-width:980px;margin-left:auto;margin-right:auto}
+main.m-nomap .tiles{grid-template-columns:repeat(4,1fr)}
+@keyframes mapPop{from{opacity:.35;transform:scale(.97)}to{opacity:1;transform:none}}
+#mapwrap.pop{animation:mapPop .38s ease}
+@media (prefers-reduced-motion: reduce){#mapwrap.pop{animation:none}}
+
+/* hero */
+.eyebrow{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--warn-text);background:var(--warn-bg);border:1px solid var(--planned);border-radius:6px;padding:5px 10px}
+.hero h1{font-size:clamp(30px,3.9vw,52px);line-height:1.05;letter-spacing:-.03em;margin:18px 0 14px;font-weight:700;color:var(--ink)}
+.hero .lead{font-size:16px;line-height:1.55;color:var(--muted);max-width:620px;margin:0}
+.hero .cta{display:flex;gap:10px;margin:20px 0 22px;flex-wrap:wrap}
+.hero .cta .btn{padding:10px 16px}
+.hero .cta .btn:not(.primary){background:transparent;border-color:transparent}
+.hstats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:34px}
+.hstat{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px}
+.hstat b{display:block;font-size:26px;letter-spacing:-.02em;line-height:1.15}
+.hstat span{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+#projSec{scroll-margin-top:12px;font-size:22px;letter-spacing:-.02em}
+
+/* project cards */
+.item.pc{display:block;border:1px solid var(--border);border-radius:14px;background:var(--surface);padding:14px;margin:0 0 10px;transition:border-color .15s,box-shadow .15s}
+.item.pc:hover{background:var(--surface);border-color:var(--accent);box-shadow:0 4px 14px rgba(15,23,42,.08)}
+main.m-split .item.pc{background:var(--bg)}
+main.m-split .item.pc:hover{background:var(--bg)}
+.pc-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px}
+.item.pc .t{display:block;font-size:15px;line-height:1.3;letter-spacing:-.01em}
+.item.pc .s{display:block;margin-top:2px}
+.pc-bar{display:block;height:6px;border-radius:3px;background:var(--track);margin:12px 0 6px;overflow:hidden}
+.pc-bar i{display:block;height:100%;border-radius:3px}
+.pc-bar i.ongoing{background:var(--ongoing)}.pc-bar i.review{background:var(--review)}.pc-bar i.completed{background:var(--completed)}.pc-bar i.planned{background:var(--planned)}
+.pc-foot{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--muted)}
+.pc-closure{display:inline-block;margin-top:8px;font-size:11px;font-weight:600;padding:1px 8px;border-radius:999px;background:var(--bad-bg);color:var(--bad-text)}
+main.m-dash #list,main.m-dash #doneList{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px}
+main.m-dash .item.pc{margin:0}
+
+
+/* ===== v5 · department insights, contractor profile ===== */
+:root{--pg-blue:linear-gradient(135deg,#eef4ff,#dbe8fd);--pg-grey:linear-gradient(135deg,#f7f8fa,#e8ecf1);--pg-warm:linear-gradient(135deg,#f4faf0,#e2f0da);--pg-edge:rgba(15,23,42,.06)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--pg-blue:linear-gradient(135deg,#1b2a4a,#16213a);--pg-grey:linear-gradient(135deg,#1d2530,#171d26);--pg-warm:linear-gradient(135deg,#1b2e22,#16251c);--pg-edge:rgba(255,255,255,.07)}}
+:root[data-theme="dark"]{--pg-blue:linear-gradient(135deg,#1b2a4a,#16213a);--pg-grey:linear-gradient(135deg,#1d2530,#171d26);--pg-warm:linear-gradient(135deg,#1b2e22,#16251c);--pg-edge:rgba(255,255,255,.07)}
+main[data-mode="public"] .lg-hide{display:none}
+.panel{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:16px 18px}
+.panel h3{font-size:16px;letter-spacing:-.01em;margin:0 0 12px}
+.dgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px;margin:14px 0}
+.dgrid .wide{grid-column:1/-1}
+.esc,.cfl{border-radius:12px;padding:12px 14px;margin-bottom:10px}
+.esc:last-child,.cfl:last-child{margin-bottom:0}
+.esc{background:var(--bad-bg);border:1px solid rgba(214,54,47,.3);color:var(--bad-text)}
+.cfl{background:var(--warn-bg);border:1px solid rgba(232,137,12,.35);color:var(--warn-text)}
+.esc b,.cfl b{display:block;font-size:15px;font-weight:600;margin-bottom:2px}
+.esc span,.cfl span{font-size:13px}
+.cfl .muted{color:inherit;opacity:.8}
+.bvs-row{margin:0 0 14px}
+.bvs-l{font-size:13px;margin-bottom:4px;color:var(--muted)}
+.bvs-row.me .bvs-l{color:var(--text);font-weight:700}
+.bvs-b{display:flex;align-items:center;gap:10px;margin:3px 0}
+.bvs-b .trk{flex:1;min-width:0}
+.bvs-b i{display:block;height:16px;border-radius:5px;min-width:3px}
+.bvs-b i.b{background:#0284c7}.bvs-b i.s{background:#d97706}
+.bvs-b span{font-size:12px;color:var(--muted);white-space:nowrap;min-width:64px;text-align:right}
+.bvs-leg{display:flex;gap:18px;font-size:13px;margin-top:6px}
+.bvs-leg i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.dtool{margin:8px 0 4px}
+.dtool .searchbox{margin-bottom:2px}
+h4.manage{font-size:17px;margin:24px 0 8px;letter-spacing:-.01em}
+#cApp{container-type:inline-size}
+.pg{border-radius:20px;padding:20px;margin:14px 0;border:1px solid var(--pg-edge)}
+.pg h3{font-size:19px;margin:0 0 16px;letter-spacing:-.01em}
+.pg-blue{background:var(--pg-blue)}.pg-grey{background:var(--pg-grey)}.pg-warm{background:var(--pg-warm)}
+.pgrid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px}
+.pf{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:12px 16px;box-shadow:0 4px 14px rgba(15,23,42,.06);min-width:0}
+.pf>span{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:2px}
+.pf>b{display:block;font-size:15px;font-weight:700;overflow-wrap:anywhere}
+.pf.kpi>b{font-size:28px;letter-spacing:-.02em;line-height:1.2}
+.s3{grid-column:span 3}.s5{grid-column:span 5}.s6{grid-column:span 6}.s7{grid-column:span 7}.s12{grid-column:span 12}
+.pchips{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.pchips em{font-style:normal;font-size:12.5px;font-weight:600;padding:3px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+.mp{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:12px 16px;margin-top:10px}
+.mp b{display:block;font-size:15px;margin-top:4px}
+@container (max-width:640px){
+  .pgrid .pf{grid-column:span 6}
+  .pgrid .pf.long{grid-column:span 12}
+}
+
+
+.fbsum{margin:6px 0 4px}.fbsum .big{font-size:20px;font-weight:700;color:var(--planned)}
+.fbk{border-top:1px solid var(--border);padding:10px 0}
+.fbk .meta{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:2px}
+.fbk .st{color:var(--planned);letter-spacing:1px;font-size:14px}
+.fbk img,.fbimg img{display:block;margin-top:6px;max-width:100%;max-height:140px;border-radius:10px;border:1px solid var(--border);object-fit:cover}
+.fbk img{cursor:zoom-in}.fbk img.zoomed{max-height:none;cursor:zoom-out;object-fit:contain}
+.fbimg{margin-top:8px}
+@media (max-width:820px){
+  main,main.m-split{grid-template-columns:1fr;grid-template-rows:42% 58%}
+  main #mapwrap{grid-column:1;grid-row:1;order:-1}
+  main aside{grid-column:1;grid-row:2;border-right:0;border-top:1px solid var(--border)}
+  main.m-dash{grid-template-columns:1fr;grid-template-rows:230px minmax(0,1fr)}
+  main.m-dash #mapwrap{grid-column:1;grid-row:1;height:auto;align-self:stretch;margin:10px 12px 0}
+  main.m-dash aside{grid-column:1;grid-row:2;border-top:0;padding:16px 14px 28px}
+  main.m-nomap{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr)}
+  main.m-nomap aside{grid-column:1;grid-row:1;border-top:0;padding:16px 14px 28px}
+  main.m-nomap .tiles{grid-template-columns:repeat(2,1fr)}
+  .hstats{grid-template-columns:repeat(3,1fr)}
+  .hstat b{font-size:22px}
+  header{padding:10px 14px}
+  .brand small{display:none}
+  .seg button{padding:7px 10px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <div class="logo" aria-hidden="true">🚧</div>
+    <div><h1>Work<span>Watch</span></h1><small>IIITDM Kancheepuram · Campus works transparency</small></div>
+  </div>
+  <div class="seg" id="modeSeg" role="group" aria-label="Choose mode">
+    <button data-mode="public" aria-pressed="true">Public</button>
+    <button data-mode="contractors" aria-pressed="false">Contractors</button>
+    <button data-mode="dept" aria-pressed="false">Department 🔒</button>
+  </div>
+  <div class="hright"><button class="btn small" id="mapToggle" hidden aria-pressed="false">🗺 Show map</button><div id="whoBar" hidden><span id="whoTxt" class="muted"></span><button class="btn small" id="gateOut">Log out</button></div></div>
+</header>
+
+<div id="gate" role="dialog" aria-modal="true" aria-label="Log in to WorkWatch">
+  <div class="gatebox">
+    <div class="logo" aria-hidden="true">🚧</div>
+    <h1>WorkWatch</h1>
+    <p class="muted">IIITDM Kancheepuram campus works. Log in to continue.</p>
+    <div class="seg" id="gTabs" role="group" aria-label="Log in as">
+      <button data-r="public" aria-pressed="true">Public</button>
+      <button data-r="contractor" aria-pressed="false">Contractor</button>
+      <button data-r="dept" aria-pressed="false">Department</button>
+    </div>
+    <div id="g-public">
+      <label for="g-email">Gmail address<input id="g-email" type="email" autocomplete="email" placeholder="yourname@gmail.com"></label>
+      <p class="muted small" style="margin-top:6px">Residents, students and visitors sign in with a Gmail address (@gmail.com only).</p>
+    </div>
+    <div id="g-contractor" hidden>
+      <div class="seg" id="gcTabs" role="group" aria-label="Contractor account" style="margin:10px 0 0">
+        <button data-m="login" aria-pressed="true">Log in</button>
+        <button data-m="signup" aria-pressed="false">Create account</button>
+      </div>
+      <div id="gc-login">
+        <label for="g-con">Contractor<select id="g-con"></select></label>
+        <label for="g-cpass">Passcode<input id="g-cpass" type="password" autocomplete="off" placeholder="Enter passcode"></label>
+        <details class="demo"><summary>Applied recently? Check your application status</summary>
+          <label for="g-appid">Application ID<input id="g-appid" type="text" placeholder="e.g. APP-001"></label>
+          <button class="btn small" id="g-appchk" style="margin-top:8px">Check status</button>
+          <div id="g-appres"></div>
+        </details>
+      </div>
+      <div id="gc-signup" hidden></div>
+    </div>
+    <div id="g-dept" hidden>
+      <label for="g-dsel">Department<select id="g-dsel"></select></label>
+      <label for="g-dpass">Passcode<input id="g-dpass" type="password" autocomplete="off" placeholder="Enter passcode"></label>
+    </div>
+    <div id="g-err" class="note bad" hidden></div>
+    <div id="g-ok" class="note ok" hidden></div>
+    <button class="btn primary block" id="g-btn">Log in</button>
+    <details class="demo" id="g-demo" hidden><summary>Demo credentials (hackathon only)</summary>
+      <div id="g-democreds" style="margin-top:6px"></div>
+      <p class="muted" style="margin-top:6px">A real deployment would verify logins on a server (Google Sign-In for the public, institute SSO for staff).</p>
+    </details>
+  </div>
+</div>
+
+<main class="m-dash" data-mode="public">
+  <aside id="panel">
+    <!-- ================= PUBLIC ================= -->
+    <section id="pub">
+      <button class="btn small" id="backDash">← All projects</button>
+      <div class="hero" id="pubHero">
+        <span class="eyebrow">Campus works transparency platform</span>
+        <h1>Know what's being built, when it ends, and who's accountable.</h1>
+        <p class="lead">One common view where departments, contractors and the campus community follow every road, drainage, pipeline and cabling work, so the same stretch is never dug up twice, disruptions never come as a surprise, and no question goes unanswered.</p>
+        <div class="cta"><button class="btn primary" id="heroBrowse">Browse projects</button><button class="btn" id="heroCon">Contractor scores</button></div>
+        <div class="hstats" id="hstats"></div>
+      </div>
+      <h2 id="projSec">What's being built on campus?</h2>
+      <p class="muted">Search a building, road or project ID. Each project shows who is responsible, who to contact, and answers to common questions.</p>
+      <div class="searchbox">
+        <input id="search" type="search" placeholder="Try “Academic Complex” or “WW-26-001”" autocomplete="off" aria-label="Search place, road or project ID">
+        <div id="sugg" hidden></div>
+      </div>
+      <div class="chips" id="tryChips"><span class="muted" style="align-self:center">Try:</span></div>
+      <div class="chips" id="statusChips" aria-label="Filter by status">
+        <button class="chip" data-st="ongoing" aria-pressed="true"><span class="dot ongoing"></span>Ongoing</button>
+        <button class="chip" data-st="planned" aria-pressed="true"><span class="dot planned"></span>Planned</button>
+        <button class="chip" data-st="completed" aria-pressed="false"><span class="dot completed"></span>Completed</button>
+      </div>
+      <label for="deptFilter" style="margin-top:0">Department
+        <select id="deptFilter"><option value="">All departments</option></select>
+      </label>
+      <div id="cardBox"></div>
+      <div class="row" style="justify-content:space-between;margin-top:14px">
+        <strong id="listHead"></strong>
+        <button class="link" id="clearArea" hidden>Clear area ✕</button>
+      </div>
+      <div class="list" id="list"></div>
+      <div class="row" style="justify-content:space-between;margin-top:26px"><strong id="doneHead"></strong></div>
+      <p class="muted small" style="margin:2px 0 8px">Open a finished project to read what residents said and add your own rating and photo.</p>
+      <div class="list" id="doneList"></div>
+    </section>
+
+    <!-- ================= CONTRACTORS ================= -->
+    <section id="con" hidden>
+      <div class="seg" id="conTabs" role="group" aria-label="Contractor area">
+        <button data-t="portfolio" aria-pressed="true">Portfolios &amp; scores</button>
+        <button data-t="dash" aria-pressed="false">Contractor dashboard 🔒</button>
+      </div>
+
+      <div id="conPortfolio">
+        <h2 style="margin-top:12px">Contractor portfolios</h2>
+        <p class="muted">Open to everyone, no login needed. Each contractor has a Reliability Score (WCRS) built from verified projects.</p>
+        <div id="conBody"></div>
+      </div>
+
+      <div id="conDash" hidden>
+        <div id="cLogin">
+          <h2 style="margin-top:12px">🔒 Contractor login</h2>
+          <p class="muted">Contractors can answer public questions, update progress, report delays and submit finished work for verification.</p>
+          <label for="cl-con">Contractor<select id="cl-con"></select></label>
+          <label for="cl-pass">Passcode<input id="cl-pass" type="password" autocomplete="off" placeholder="Enter passcode"></label>
+          <div id="cl-err" class="note bad" hidden></div>
+          <button class="btn primary block" id="cl-btn">Log in</button>
+          <details class="demo"><summary>Demo credentials (hackathon only)</summary>
+            <div id="cDemoCreds" style="margin-top:6px"></div>
+            <p class="muted" style="margin-top:6px">A real deployment would verify logins on a server.</p>
+          </details>
+        </div>
+        <div id="cApp" hidden>
+          <div class="userbar" style="margin-top:12px">
+            <div><strong id="cu-name"></strong><br><span class="muted" id="cu-sub"></span></div>
+            <button class="btn small" id="cLogout">Log out</button>
+          </div>
+          <div id="cProfile"></div>
+          <h4 class="manage">Manage your work</h4>
+          <div class="seg" id="cdTabs" role="group" aria-label="Dashboard sections">
+            <button data-t="queries" aria-pressed="true">Queries</button>
+            <button data-t="projects" aria-pressed="false">My projects</button>
+            <button data-t="history" aria-pressed="false">History</button>
+            <button data-t="feedback" aria-pressed="false">Feedback</button>
+          </div>
+          <div id="cd-body"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= DEPARTMENT ================= -->
+    <section id="dept" hidden>
+      <div id="deptLogin">
+        <h2>🔒 Department access</h2>
+        <p class="muted">Only authorised officers can plan works, approve contractors' work and release funds. The public and contractors can view everything else without logging in.</p>
+        <label for="lg-dept">Department<select id="lg-dept"></select></label>
+        <label for="lg-pass">Passcode<input id="lg-pass" type="password" autocomplete="off" placeholder="Enter passcode"></label>
+        <div id="lg-err" class="note bad" hidden></div>
+        <button class="btn primary block" id="lg-btn">Log in</button>
+        <details class="demo"><summary>Demo credentials (hackathon only)</summary>
+          <div id="demoCreds" style="margin-top:6px"></div>
+          <p class="muted" style="margin-top:6px">In a real deployment this would use the institute's own login (SSO/OTP) checked on a server.</p>
+        </details>
+      </div>
+
+      <div id="deptApp" hidden>
+        <div class="userbar">
+          <div><strong id="ub-dept"></strong><br><span class="muted" id="ub-off"></span></div>
+          <button class="btn small" id="logoutBtn">Log out</button>
+        </div>
+        <div class="seg" id="deptTabs" role="group" aria-label="Department tools">
+          <button data-t="dash" aria-pressed="true">Dashboard</button>
+          <button data-t="plan" aria-pressed="false">Plan new work</button>
+          <button data-t="con" aria-pressed="false">Verify contractor</button>
+        </div>
+
+        <div id="tab-dash"></div>
+        <div id="tab-con" hidden></div>
+
+        <div id="tab-plan" hidden>
+          <p class="muted" style="margin-top:10px">Click the map to place the work, set dates, and check for nearby clashes before digging.</p>
+          <button class="btn small" id="demoBtn">Load demo example</button>
+          <label for="f-title">Project title
+            <input id="f-title" type="text" placeholder="e.g. Central Road Resurfacing" maxlength="90">
+          </label>
+          <label for="f-purpose">Purpose (shown to the public)
+            <textarea id="f-purpose" maxlength="240" placeholder="Why is this work being done?"></textarea>
+          </label>
+          <label for="f-con">Assign contractor (portfolio and score become public with the project)
+            <select id="f-con"></select>
+          </label>
+          <div class="two">
+            <label for="f-budget">Sanctioned budget (₹ lakh)<input id="f-budget" type="number" min="0" step="0.1" placeholder="e.g. 80"></label>
+            <span></span>
+          </div>
+          <div class="two">
+            <label for="f-start">Start date<input id="f-start" type="date"></label>
+            <label for="f-end">End date<input id="f-end" type="date"></label>
+          </div>
+          <div class="locbox" id="locText">📍 Click the map to choose the project location</div>
+          <div class="winlabel">Look for clashes within</div>
+          <div class="seg" id="winSeg" role="group" aria-label="Conflict window">
+            <button data-w="3" aria-pressed="true">3 months</button>
+            <button data-w="6" aria-pressed="false">6 months</button>
+            <button data-w="12" aria-pressed="false">12 months</button>
+          </div>
+          <button class="btn primary block" id="checkBtn">Check conflicts</button>
+          <div id="result"></div>
+        </div>
+      </div>
+    </section>
+
+    <p class="foot">All projects, contractors, scores and contact details are fictional demo data. The campus map is a simplified schematic, not to scale. <button class="link" id="resetBtn">Reset demo data</button></p>
+  </aside>
+
+  <section id="mapwrap">
+    <svg id="map" role="application" aria-label="Schematic map of IIITDM Kancheepuram campus with works">
+      <g id="base"></g>
+      <g id="layer"></g>
+    </svg>
+    <div id="mapCap"><span>Live campus map</span><span>Click a marker ↗</span></div>
+    <div id="hint" hidden>Click the map to place your project</div>
+    <div class="mapctl">
+      <button id="zin" aria-label="Zoom in">+</button>
+      <button id="zout" aria-label="Zoom out">−</button>
+      <button id="zreset" aria-label="Reset view" title="Reset view">⌂</button>
+    </div>
+    <div class="legend">
+      <span><i class="dot ongoing"></i>Ongoing</span>
+      <span><i class="dot planned"></i>Planned</span>
+      <span class="lg-hide"><i class="dot review"></i>Under verification</span>
+      <span class="lg-hide"><i class="dot completed"></i>Completed</span>
+      <span><i class="dot closure"></i>Road closed</span>
+    </div>
+  </section>
+</main>
+<div id="toast" role="status"></div>
+
+<script>
+(function(){
+'use strict';
+/* =====================================================================
+   WorkWatch · IIITDM Kancheepuram  (v3)
+   1 data · 2 helpers · 3 scoring (WCRS) · 4 map · 5 public view
+   6 contractors (portfolios + dashboard) · 7 department (dashboard + plan)
+   8 modes · 9 init
+   ===================================================================== */
+const $=s=>document.querySelector(s);
+const $$=s=>Array.from(document.querySelectorAll(s));
+const NS='http://www.w3.org/2000/svg';
+const DAY=864e5;
+const TODAY_ISO='2026-10-10';
+const TODAY=new Date(TODAY_ISO+'T00:00:00Z');
+const RADIUS=60; // metres: how close counts as "the same spot"
+const STAGES=['Survey','Excavation','Construction','Restoration'];
+const LABEL={ongoing:'Ongoing',planned:'Planned',review:'Under verification',completed:'Completed'};
+const STORE='ww_iiitdm_v3';
+const TOPICS=['Noise & dust','Traffic & access','Safety','Timeline & delays','Quality of work','Cost & budget','Other'];
+const EVENT_TYPES=['Flood / heavy rain','Cyclone','Earthquake','Landslide','Government-ordered suspension','Other'];
+
+/* ---------------- 1. DATA (all fictional) ---------------- */
+const DEPT_ACCOUNTS=[
+ {dept:'Engineering Unit – Civil',pass:'civil@26',officer:'Er. S. Priya',role:'Assistant Engineer (Civil)',phone:'+91 90000 10101',email:'civil.ae@campus-demo.example'},
+ {dept:'Engineering Unit – Electrical',pass:'elec@26',officer:'Er. M. Arun',role:'Assistant Engineer (Electrical)',phone:'+91 90000 10102',email:'electrical.ae@campus-demo.example'},
+ {dept:'IT & Network Services',pass:'it@26',officer:'Ms. K. Divya',role:'Network Administrator',phone:'+91 90000 10103',email:'network@campus-demo.example'},
+ {dept:'Hostel Office',pass:'hostel@26',officer:'Mr. V. Ramesh',role:'Warden (Hostel Works)',phone:'+91 90000 10104',email:'hostels@campus-demo.example'}
+];
+const CON_PASS={C01:'murugan@26',C02:'kaveri@26',C03:'bright@26',C04:'aqua@26',C05:'fiber@26'};
+/* records = earlier verified projects (money in ₹ lakh, time in days) */
+const CONTRACTORS=[
+ {id:'C01',name:'Sri Murugan Constructions',speciality:'Roads, paving & civil works',licence:'Class I Civil Contractor (PWD-registered)',est:1998,staff:85,completed:142,defectDays:4,certs:['ISO 9001:2015','Safety-trained site crew'],office:{phone:'+91 90000 20101',email:'office@srimurugan-demo.example'},
+  records:[{t:'Internal roads and paving, engineering college campus',y:2025,planned:120,actual:126,excused:0,budget:310,adj:0,cost:318,insp:88,safety:90,transp:85},
+           {t:'Drainage and kerb works, municipal school',y:2024,planned:60,actual:58,excused:0,budget:70,adj:0,cost:69,insp:84,safety:88,transp:90},
+           {t:'Parking resurfacing, district hospital',y:2023,planned:45,actual:52,excused:5,budget:140,adj:0,cost:150,insp:79,safety:85,transp:80}]},
+ {id:'C02',name:'Kaveri Builders',speciality:'Buildings, hostels & structural works',licence:'Class I Civil Contractor (PWD-registered)',est:2004,staff:120,completed:96,defectDays:6,certs:['ISO 9001:2015','Green building experience'],office:{phone:'+91 90000 20102',email:'projects@kaveribuilders-demo.example'},
+  records:[{t:'Student hostel block (G+4)',y:2025,planned:300,actual:340,excused:20,budget:980,adj:30,cost:1045,insp:82,safety:78,transp:75},
+           {t:'Dining hall and kitchen, residential school',y:2024,planned:150,actual:171,excused:0,budget:220,adj:0,cost:238,insp:74,safety:80,transp:70},
+           {t:'Lecture hall extension, arts college',y:2022,planned:200,actual:205,excused:0,budget:450,adj:0,cost:452,insp:86,safety:84,transp:82}]},
+ {id:'C03',name:'BrightWay Electricals',speciality:'Electrical, cabling & lighting',licence:'Class A Electrical Contractor',est:2010,staff:54,completed:118,defectDays:3,certs:['Licensed electrical supervisor on every site'],office:{phone:'+91 90000 20103',email:'hello@brightway-demo.example'},
+  records:[{t:'Underground LT cabling, university campus',y:2025,planned:70,actual:68,excused:0,budget:190,adj:0,cost:190,insp:92,safety:95,transp:90},
+           {t:'LED street lighting, township',y:2024,planned:90,actual:92,excused:0,budget:110,adj:0,cost:108,insp:90,safety:92,transp:88},
+           {t:'Substation upgrade, polytechnic',y:2023,planned:120,actual:130,excused:8,budget:260,adj:0,cost:268,insp:88,safety:94,transp:85}]},
+ {id:'C04',name:'Aqua Infra Works',speciality:'Water supply, drainage & sewerage',licence:'Class II Civil Contractor (Water Works)',est:2012,staff:62,completed:74,defectDays:5,certs:['ISO 45001 (occupational safety)'],office:{phone:'+91 90000 20104',email:'contact@aquainfra-demo.example'},
+  records:[{t:'Storm water network, residential layout',y:2025,planned:150,actual:176,excused:15,budget:280,adj:12,cost:300,insp:80,safety:82,transp:78},
+           {t:'Sewage line replacement, hospital',y:2024,planned:80,actual:79,excused:0,budget:130,adj:0,cost:131,insp:85,safety:88,transp:84},
+           {t:'Overhead tank and pipeline, school',y:2022,planned:100,actual:118,excused:0,budget:90,adj:0,cost:101,insp:76,safety:79,transp:72}]},
+ {id:'C05',name:'FiberLink Networks',speciality:'Structured cabling & fibre optic',licence:'Registered telecom infrastructure provider',est:2015,staff:28,completed:63,defectDays:2,certs:['Certified fibre splicing technicians'],office:{phone:'+91 90000 20105',email:'support@fiberlink-demo.example'},
+  records:[{t:'Campus fibre backbone, engineering institute',y:2025,planned:60,actual:58,excused:0,budget:80,adj:0,cost:79,insp:94,safety:93,transp:96},
+           {t:'Wi-Fi cabling, 3 hostel blocks',y:2024,planned:45,actual:45,excused:0,budget:60,adj:0,cost:61,insp:91,safety:92,transp:90},
+           {t:'Data centre structured cabling',y:2023,planned:30,actual:34,excused:0,budget:50,adj:0,cost:50,insp:90,safety:90,transp:92}]}
+];
+const mkC=(n,r,p,e)=>({name:n,role:r,phone:p,email:e});
+const CT_PRIYA=mkC('Er. S. Priya','Assistant Engineer (Civil)','+91 90000 10101','civil.ae@campus-demo.example');
+const SEED=[]; /* demo data is seeded into the database by server.py */
+
+/* Campus geometry: metres on a simplified schematic (not surveyed) */
+const BLD=[
+ {name:'Administrative Block',label:'Admin Block',x:130,y:150,w:100,h:65},
+ {name:'Academic Complex',label:'Academic Complex',x:250,y:140,w:100,h:75},
+ {name:'Lecture Hall Complex',label:'Lecture Halls',x:370,y:150,w:80,h:65},
+ {name:'Laboratory Block',label:'Labs',x:458,y:140,w:48,h:75},
+ {name:'Library',label:'Library',x:200,y:42,w:100,h:55},
+ {name:'Auditorium',label:'Auditorium',x:360,y:45,w:90,h:50},
+ {name:'Hostel A',label:'Hostel A',x:220,y:262,w:90,h:55},
+ {name:'Hostel B',label:'Hostel B',x:360,y:262,w:90,h:55},
+ {name:'Hostel C (Combined)',label:'Hostel C',x:220,y:332,w:90,h:55},
+ {name:'Mess & Cafeteria',label:'Mess',x:360,y:332,w:90,h:55},
+ {name:'Medical Aid Centre',label:'Medical',x:108,y:300,w:50,h:42},
+ {name:'Guest House',label:'Guest House',x:108,y:355,w:60,h:38},
+ {name:'Staff Quarters',label:'Staff Quarters',x:550,y:48,w:100,h:62}
+];
+const GATES=[
+ {name:'Gate A (Main Gate)',short:'Gate A (Main)',x:180,y:450,lx:196,ly:446,v:false},
+ {name:'Gate B',short:'Gate B',x:520,y:450,lx:536,ly:446,v:false},
+ {name:'Gate C',short:'Gate C',x:30,y:240,lx:36,ly:233,v:true}
+];
+const SPORTS=[{name:'Sports Ground (Football & Cricket)',x:600,y:350},{name:'Courts',x:600,y:170}];
+const ROADS=[
+ {name:'Main Avenue',pts:[[180,478],[180,240]],w:12,lx:180,ly:340,rot:-90,sx:180,sy:340},
+ {name:'Central Road',pts:[[30,240],[640,240]],w:10,lx:100,ly:240,rot:0,sx:300,sy:240},
+ {name:'North Road',pts:[[60,110],[640,110]],w:9,lx:330,ly:110,rot:0,sx:330,sy:110},
+ {name:'East Road',pts:[[520,110],[520,478]],w:10,lx:520,ly:300,rot:-90,sx:520,sy:300},
+ {name:'West Road',pts:[[90,110],[90,415]],w:8,lx:90,ly:180,rot:-90,sx:90,sy:260},
+ {name:'South Road',pts:[[90,415],[520,415]],w:8,lx:420,ly:415,rot:0,sx:300,sy:415},
+ {name:'Hostel Lane',pts:[[335,240],[335,415]],w:7,lx:335,ly:380,rot:-90,sx:335,sy:330}
+];
+const OUTER={name:'Vandalur–Kelambakkam Road',pts:[[-300,478],[1000,478]],w:18,lx:360,ly:478};
+const PLACES=BLD.map(b=>({name:b.name,x:b.x+b.w/2,y:b.y+b.h/2})).concat(GATES.map(g=>({name:g.name,x:g.x,y:g.y})),SPORTS);
+const TRY_PLACES=['Academic Complex','Hostel B','Gate A (Main Gate)','Library'];
+
+/* ---------------- 2. HELPERS ---------------- */
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const D=s=>new Date(s+'T00:00:00Z');
+const fmt=dt=>new Date(dt).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'});
+const iso=dt=>new Date(dt).toISOString().slice(0,10);
+const addMonths=(date,m)=>{const x=new Date(date);x.setUTCMonth(x.getUTCMonth()+m);return x;};
+const daysBetween=(a,b)=>Math.round((D(b)-D(a))/DAY);
+const cOf=id=>CONTRACTORS.find(c=>c.id===id);
+const clamp=v=>Math.max(0,Math.min(100,v));
+const isNum=v=>typeof v==='number'&&isFinite(v);
+const money=l=>l>=100?`₹${(l/100).toFixed(2)} Cr`:`₹${+(+l).toFixed(1)} L`;
+const clone=o=>JSON.parse(JSON.stringify(o));
+function S(tag,attrs,parent){const e=document.createElementNS(NS,tag);for(const k in (attrs||{}))e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
+let toastT;
+function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),3800);}
+function log(p,t,by,kind){p.history=p.history||[];p.history.push({d:TODAY_ISO,t,by,kind:kind||''});}
+const releasedTotal=p=>(p.released||[]).reduce((s,r)=>s+r.amt,0);
+const excusedDays=p=>(p.delayClaims||[]).filter(c=>c.status==='approved').reduce((s,c)=>s+(c.okDays||0),0);
+
+const state={mode:'public',filters:{ongoing:true,planned:true,review:true,completed:false,dept:''},selected:null,area:null,mapOpen:false,dq:'',df:{ongoing:true,planned:true,review:true,completed:true},
+  projects:[],conSel:null,conTab:'portfolio',cuser:null,cdTab:'queries',editingQ:null,
+  user:null,dTab:'dash',dept:{loc:null,window:3,result:null,merged:null,just:''},
+  draft:{code:null,q:'',topic:'',touched:false,fb:'',stars:0}};
+/* ---- server API + database persistence ---- */
+let BOOTED=false;
+const API={token:null,
+  async req(method,url,body){
+    const h={'Content-Type':'application/json'};if(API.token)h.Authorization='Bearer '+API.token;
+    let r;
+    try{r=await fetch(url,{method:method,headers:h,body:body==null?undefined:JSON.stringify(body)});}
+    catch(e){const er=new Error('Cannot reach the WorkWatch server.');er.offline=true;throw er;}
+    let j=null;try{j=await r.json();}catch(e){}
+    if(!r.ok){const er=new Error((j&&j.error)||('Server error ('+r.status+')'));er.status=r.status;throw er;}
+    return j;
+  },
+  get(u){return API.req('GET',u);},
+  post(u,b){return API.req('POST',u,b||{});}
+};
+let SNAP={},REV={},pendingSave=0,saveChain=Promise.resolve();
+function adopt(projects,revs){state.projects=projects;SNAP={};projects.forEach(p=>{SNAP[p.code]=JSON.stringify(p);});REV=Object.assign({},revs||{});}
+function sessionExpired(){toast('Your session expired. Please log in again.');endSession();}
+function persist(){
+  if(!API.token)return;
+  const changes=[];
+  state.projects.forEach(p=>{
+    const cur=JSON.stringify(p),old=SNAP[p.code];
+    if(cur===old)return;
+    if(!old)changes.push({code:p.code,isNew:true,project:p});
+    else{
+      const o=JSON.parse(old),fields={};
+      Object.keys(p).forEach(k=>{if(JSON.stringify(p[k])!==JSON.stringify(o[k]))fields[k]=p[k];});
+      changes.push({code:p.code,fields:fields});
+    }
+    SNAP[p.code]=cur;
+  });
+  if(!changes.length)return;
+  pendingSave++;
+  saveChain=saveChain.then(()=>API.post('/api/projects/save',{changes:changes})).then(res=>{
+    Object.assign(REV,res.revs||{});
+    if(res.rejected&&res.rejected.length){
+      toast('Not saved: '+res.rejected[0].reason);
+      res.rejected.forEach(x=>{delete SNAP[x.code];});
+      pendingSave--;return pullProjects(true).then(ch=>{pendingSave++;if(ch)rerender();});
+    }
+  }).catch(e=>{
+    if(e.status===401)sessionExpired();
+    else toast(e.offline?'Cannot reach the server. Your last change may not be saved.':e.message);
+  }).then(()=>{pendingSave=Math.max(0,pendingSave-1);});
+}
+async function pullProjects(force){
+  if(!API.token||(pendingSave&&!force))return false;
+  let r;
+  try{r=await API.get('/api/projects');}catch(e){if(e.status===401)sessionExpired();return false;}
+  if(pendingSave&&!force)return false;
+  const ks=Object.keys(r.revs);
+  if(!force&&ks.length===Object.keys(REV).length&&ks.every(k=>REV[k]===r.revs[k]))return false;
+  adopt(r.projects,r.revs);return true;
+}
+function rerender(){
+  if(state.mode==='public')renderPublic();
+  else if(state.mode==='contractors'){renderConTabs();renderLayer();}
+  else{renderDept();renderLayer();}
+}
+setInterval(async()=>{
+  if(!API.token||document.hidden)return;
+  const a=document.activeElement;if(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName))return;
+  if(await pullProjects())rerender();
+},15000);
+function flagged(key,id){try{return (JSON.parse(localStorage.getItem(key)||'[]')).includes(id);}catch(e){return false;}}
+function setFlag(key,id){try{const a=JSON.parse(localStorage.getItem(key)||'[]');if(!a.includes(id))a.push(id);localStorage.setItem(key,JSON.stringify(a));}catch(e){}}
+state.projects=[];
+
+/* ---------------- 3. WCRS: Contractor Reliability Score ---------------- */
+const WEIGHTS={time:25,budget:20,quality:35,safety:10,transp:10};
+const COMP_LABEL={time:'Time performance',budget:'Budget performance',quality:'Construction quality',safety:'Safety & compliance',transp:'Transparency & reporting'};
+function recScores(r){
+  const s={time:null,budget:null,quality:null,safety:null,transp:null};
+  if(r.planned>0&&isNum(r.actual)){
+    const excess=Math.max(0,r.actual-(r.planned+(r.excused||0)));
+    s.time=clamp(100*(1-excess/(0.25*r.planned)));
+  }
+  if(r.budget>0&&isNum(r.cost)){
+    const adj=r.budget+(r.adj||0),over=Math.max(0,(r.cost-adj)/adj);
+    s.budget=clamp(100*(1-over/0.20));
+  }
+  if(isNum(r.insp))s.quality=clamp(r.insp);
+  if(isNum(r.safety))s.safety=clamp(r.safety);
+  if(isNum(r.transp))s.transp=clamp(r.transp);
+  return s;
+}
+function combine(sc){
+  let sum=0,ws=0;
+  Object.keys(WEIGHTS).forEach(k=>{if(isNum(sc[k])){sum+=WEIGHTS[k]*sc[k];ws+=WEIGHTS[k];}});
+  return ws?sum/ws:null;
+}
+function recordsFor(cid){
+  const c=cOf(cid);if(!c)return [];
+  const out=c.records.map(r=>({title:r.t,year:r.y,verified:'earlier record',s:recScores(r),raw:r}));
+  state.projects.filter(p=>p.cid===cid&&p.status==='completed'&&p.assessment).forEach(p=>{
+    const a=p.assessment;
+    const raw={planned:daysBetween(p.start,p.end),actual:daysBetween(p.start,a.actualEnd),excused:excusedDays(p),budget:p.sanction,adj:a.adj||0,cost:a.cost,insp:a.insp,safety:a.safety,transp:a.transp};
+    out.push({title:p.title,year:a.approvedAt.slice(0,4),verified:p.code,s:recScores(raw),raw});
+  });
+  out.forEach(r=>r.overall=combine(r.s));
+  return out;
+}
+function wcrs(cid){
+  const recs=recordsFor(cid);
+  if(!recs.length)return null;
+  const comps={};
+  Object.keys(WEIGHTS).forEach(k=>{const v=recs.map(r=>r.s[k]).filter(isNum);comps[k]=v.length?v.reduce((a,b)=>a+b,0)/v.length:null;});
+  return {overall:combine(comps),comps,recs,n:recs.length,missing:Object.keys(WEIGHTS).filter(k=>comps[k]==null)};
+}
+function band(v){
+  if(v==null)return {t:'Not enough evidence',c:'na'};
+  if(v>=85)return {t:'Excellent',c:'good'};
+  if(v>=70)return {t:'Good',c:'good'};
+  if(v>=55)return {t:'Fair',c:'mid'};
+  return {t:'Needs improvement',c:'low'};
+}
+const lvl=v=>v==null?'':(v>=80?'good':v>=60?'mid':'low');
+const sc0=v=>v==null?'—':Math.round(v);
+function scoreChip(cid){const w=wcrs(cid);if(!w||w.overall==null)return '';const b=band(w.overall);return `<span class="band ${b.c}">WCRS ${Math.round(w.overall)}</span>`;}
+function pubSatisfaction(cid){
+  const all=[].concat(...state.projects.filter(p=>p.cid===cid).map(p=>p.feedback||[]));
+  if(!all.length)return null;
+  return {avg:all.reduce((s,f)=>s+f.stars,0)/all.length,n:all.length};
+}
+
+/* ---------------- Question topics ---------------- */
+const TOPIC_KW={
+ 'Noise & dust':['noise','dust','drill','loud','night','sound','vibration','smoke','sleep'],
+ 'Traffic & access':['route','traffic','closed','closure','divert','detour','access','parking','gate','walk','entry','path','vehicle','bike','cycle','road'],
+ 'Safety':['safe','danger','accident','hazard','pit','hole','barricade','injur','fence','unsafe','exposed','wire'],
+ 'Timeline & delays':['when','delay','late','long','finish','complete','deadline','schedule','days','start','open','reopen'],
+ 'Quality of work':['quality','crack','defect','pothole','repair','material','poor','rework','leak','uneven','damaged'],
+ 'Cost & budget':['cost','budget','money','fund','price','expense','rupee','spend','paid']
+};
+function guessTopic(t){
+  t=t.toLowerCase();let best='Other',bn=0;
+  Object.keys(TOPIC_KW).forEach(k=>{const n=TOPIC_KW[k].filter(w=>t.includes(w)).length;if(n>bn){bn=n;best=k;}});
+  return best;
+}
+const STOP=new Set(['this','that','with','have','will','when','where','what','which','there','their','about','from','been','they','your','does','would','could','please','near','much','being']);
+const words=t=>(String(t).toLowerCase().match(/[a-z]{4,}/g)||[]).filter(w=>!STOP.has(w));
+function similarQs(p,text){
+  const tw=new Set(words(text));if(tw.size<2)return [];
+  return (p.faq||[]).map(q=>({q,n:words(q.q).filter(w=>tw.has(w)).length})).filter(x=>x.n>=2).sort((a,b)=>b.n-a.n).slice(0,3).map(x=>x.q);
+}
+
+/* ---------------- 4. MAP ---------------- */
+const svg=$('#map'),layer=$('#layer');
+const HOME={cx:350,cy:255,w:760};
+const view={cx:HOME.cx,cy:HOME.cy,w:HOME.w};
+function drawBase(){
+  const b=$('#base');b.innerHTML='';
+  S('rect',{x:-3000,y:-3000,width:8000,height:7000,class:'land'},b);
+  S('rect',{x:30,y:30,width:640,height:420,rx:6,class:'campus'},b);
+  S('rect',{x:545,y:265,width:110,height:170,rx:14,class:'ground'},b);
+  S('ellipse',{cx:600,cy:350,rx:38,ry:64,class:'track'},b);
+  S('rect',{x:550,y:135,width:100,height:70,rx:8,class:'ground'},b);
+  S('line',{x1:600,y1:140,x2:600,y2:200,class:'track'},b);
+  const all=ROADS.concat([OUTER]);
+  all.forEach(r=>S('polyline',{points:r.pts.map(p=>p.join(',')).join(' '),class:'casing','stroke-width':r.w+3},b));
+  all.forEach(r=>S('polyline',{points:r.pts.map(p=>p.join(',')).join(' '),class:'roadfill','stroke-width':r.w},b));
+  S('rect',{x:30,y:30,width:640,height:420,rx:6,class:'bound'},b);
+  BLD.forEach(o=>{
+    S('rect',{x:o.x,y:o.y,width:o.w,height:o.h,rx:3,class:'bld'},b);
+    const t=S('text',{x:o.x+o.w/2,y:o.y+o.h/2,dy:3,class:'blabel'},b);t.textContent=o.label;
+  });
+  let t=S('text',{x:600,y:354,class:'blabel'},b);t.textContent='Sports Ground';
+  t=S('text',{x:600,y:173,class:'blabel'},b);t.textContent='Courts';
+  all.forEach(r=>{const tt=S('text',{x:r.lx,y:r.ly,dy:2.6,class:'rlabel',transform:r.rot?`rotate(${r.rot} ${r.lx} ${r.ly})`:''},b);tt.textContent=r.name;});
+  GATES.forEach(g=>{
+    S('rect',{x:g.v?g.x-3:g.x-14,y:g.v?g.y-14:g.y-3,width:g.v?6:28,height:g.v?28:6,class:'gate'},b);
+    const gt=S('text',{x:g.lx,y:g.ly,class:'glabel'},b);gt.textContent=g.short;
+  });
+}
+function applyView(){
+  const r=svg.getBoundingClientRect();const W=r.width||1,H=r.height||1;
+  const h=view.w*H/W;
+  svg.setAttribute('viewBox',`${view.cx-view.w/2} ${view.cy-h/2} ${view.w} ${h}`);
+}
+let anim;
+function flyTo(cx,cy,w,dur){
+  cancelAnimationFrame(anim);dur=dur||450;
+  const s={cx:view.cx,cy:view.cy,w:view.w},t0=performance.now();
+  (function step(now){
+    const k=Math.min(1,(now-t0)/dur),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
+    view.cx=s.cx+(cx-s.cx)*e;view.cy=s.cy+(cy-s.cy)*e;view.w=s.w+(w-s.w)*e;
+    applyView();
+    if(k<1)anim=requestAnimationFrame(step);else renderLayer();
+  })(t0);
+}
+function fitProjects(list){
+  if(!list.length){flyTo(HOME.cx,HOME.cy,HOME.w,450);return;}
+  const xs=list.map(p=>p.x),ys=list.map(p=>p.y);
+  const minX=Math.min(...xs),maxX=Math.max(...xs),minY=Math.min(...ys),maxY=Math.max(...ys);
+  const r=svg.getBoundingClientRect(),asp=(r.width||1)/(r.height||1);
+  const w=Math.min(HOME.w,Math.max(260,(maxX-minX)*1.6+120,((maxY-minY)*1.6+120)*asp));
+  flyTo((minX+maxX)/2,(minY+maxY)/2,w,450);
+}
+function toMap(e){const p=svg.createSVGPoint();p.x=e.clientX;p.y=e.clientY;return p.matrixTransform(svg.getScreenCTM().inverse());}
+let drag=null,dragged=false,rl=0;
+function schedRender(){if(rl)return;rl=requestAnimationFrame(()=>{rl=0;renderLayer();});}
+svg.addEventListener('pointerdown',e=>{if(e.pointerType==='mouse'&&e.button!==0)return;drag={x:e.clientX,y:e.clientY,cx:view.cx,cy:view.cy};dragged=false;});
+window.addEventListener('pointermove',e=>{
+  if(!drag)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;
+  if(!dragged&&Math.hypot(dx,dy)<6)return;
+  dragged=true;cancelAnimationFrame(anim);
+  const k=view.w/svg.getBoundingClientRect().width;
+  view.cx=drag.cx-dx*k;view.cy=drag.cy-dy*k;applyView();
+});
+window.addEventListener('pointerup',()=>{if(drag&&dragged){schedRender();setTimeout(()=>{dragged=false;},80);}drag=null;});
+svg.addEventListener('wheel',e=>{
+  e.preventDefault();cancelAnimationFrame(anim);
+  const before=toMap(e);const f=e.deltaY<0?0.87:1.15;
+  view.w=Math.max(150,Math.min(1200,view.w*f));applyView();
+  const after=toMap(e);view.cx+=before.x-after.x;view.cy+=before.y-after.y;applyView();schedRender();
+},{passive:false});
+function zoomBy(f){flyTo(view.cx,view.cy,Math.max(150,Math.min(1200,view.w*f)),250);}
+$('#zin').onclick=()=>zoomBy(.6);
+$('#zout').onclick=()=>zoomBy(1.6);
+$('#zreset').onclick=()=>flyTo(HOME.cx,HOME.cy,HOME.w,450);
+window.addEventListener('resize',()=>{applyView();renderLayer();});
+svg.addEventListener('click',e=>{
+  if(dragged)return;
+  if(e.target.closest('[data-code]'))return;
+  if(state.mode==='dept'&&state.user&&state.dTab==='plan')setLoc(toMap(e));
+});
+function visibleProjects(){
+  if(state.mode==='public')return state.projects.filter(p=>(((p.status==='ongoing'||p.status==='planned'||p.status==='completed')&&state.filters[p.status])||p.code===state.selected)&&(!state.filters.dept||p.dept===state.filters.dept));
+  if(state.mode==='dept'&&state.user){
+    const dp=state.dept,ids=(state.dTab==='plan'&&dp.result)?new Set(dp.result.conflicts.map(c=>c.p.code)):new Set();
+    return state.projects.filter(p=>p.dept===state.user.dept||ids.has(p.code));
+  }
+  return state.projects;
+}
+const isForeign=p=>state.mode==='dept'&&!!state.user&&p.dept!==state.user.dept;
+function drawMarker(p,r,o){
+  const g=S('g',{class:'mk s-'+p.status+(o.dim?' dim':''),transform:`translate(${p.x} ${p.y})`,'data-code':p.code,tabindex:0,role:'button','aria-label':isForeign(p)?`Another department's work, ${LABEL[p.status]}`:`${p.title}, ${LABEL[p.status]}`},layer);
+  S('title',{},g).textContent=isForeign(p)?`Another department's work (${LABEL[p.status]})`:`${p.code} · ${p.title} (${LABEL[p.status]})`;
+  if(p.status==='ongoing')S('circle',{r:r,class:'pulse'},g);
+  if(p.closure&&p.status==='ongoing')S('circle',{r:r*1.9,class:'ring-closure'},g);
+  if(o.conf)S('circle',{r:r*1.75,class:'ring-conf'},g);
+  if(o.con)S('circle',{r:r*1.7,class:'ring-con'},g);
+  if(o.done)S('circle',{r:r*1.65,class:'ring-done'},g);
+  if(o.sel)S('circle',{r:r*1.65,class:'ring-sel'},g);
+  if(p.status==='planned')S('rect',{x:-r*.85,y:-r*.85,width:r*1.7,height:r*1.7,rx:r*.2,transform:'rotate(45)',class:'shape'},g);
+  else S('circle',{r:r,class:'shape'},g);
+  if(p.status==='completed'){const t=S('text',{y:r*.38,class:'tick','font-size':r*1.15},g);t.textContent='✓';}
+  if(p.status==='review'){const t=S('text',{y:r*.42,class:'tick','font-size':r*1.2},g);t.textContent='…';}
+  if(o.num){S('circle',{cx:r*1.25,cy:-r*1.25,r:r*.72,class:'numbub'},g);const t=S('text',{x:r*1.25,y:-r*1.25+r*.28,class:'numtxt','font-size':r*.85},g);t.textContent=o.num;}
+  const act=()=>{
+    if(state.mode==='public')selectProject(p.code);
+    else if(isForeign(p))toast('This is another department\'s work. Its details are not shown to you.');
+    else{const c=cOf(p.cid);toast(`${p.code}: ${p.title} · ${c?c.name:'contractor not assigned'} · ${p.dept}`);}
+  };
+  g.addEventListener('click',()=>{if(!dragged)act();});
+  g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();act();}});
+}
+function focusCid(){
+  if(state.mode!=='contractors')return null;
+  if(state.conTab==='dash')return state.cuser?state.cuser.id:null;
+  return state.conSel;
+}
+function renderLayer(){
+  layer.innerHTML='';
+  const r=Math.max(4.5,Math.min(14,view.w/62));
+  if(state.mode==='public'&&state.area)S('circle',{cx:state.area.x,cy:state.area.y,r:120,class:'halo'},layer);
+  const dp=state.dept,planning=state.mode==='dept'&&state.user&&state.dTab==='plan';
+  const confMap=new Map();
+  if(planning&&dp.loc){
+    S('circle',{cx:dp.loc.x,cy:dp.loc.y,r:RADIUS,class:'radius'},layer);
+    if(dp.result)dp.result.conflicts.forEach((c,i)=>confMap.set(c.p.code,i+1));
+  }
+  const fc=focusCid();
+  visibleProjects().forEach(p=>{
+    const isConf=confMap.has(p.code);
+    let dim=false,con=false;
+    if(planning&&dp.result)dim=!isConf;
+    if(fc){dim=p.cid!==fc;con=!dim;}
+    drawMarker(p,r,{done:state.mode==='public'&&state.filters.completed&&p.status==='completed',sel:state.selected===p.code&&state.mode==='public',conf:isConf,num:isConf?confMap.get(p.code):0,dim,con});
+  });
+  if(planning&&dp.loc){
+    const g=S('g',{transform:`translate(${dp.loc.x} ${dp.loc.y})`},layer);
+    S('rect',{x:-r*.95,y:-r*.95,width:r*1.9,height:r*1.9,rx:r*.25,transform:'rotate(45)',class:'siteshape'},g);
+    const t=S('text',{y:-r*1.7,class:'sitelabel','font-size':r*1.05},g);t.textContent='Proposed project';
+  }
+}
+
+/* ---------------- 5. PUBLIC VIEW ---------------- */
+function stagesHTML(p){
+  return `<div class="stages">${STAGES.map((n,i)=>{const c=p.stage>i?'done':(p.stage===i?'cur':'');return `<div class="stg ${c}"><span class="bar"></span><span class="nm">${n}</span></div>`;}).join('')}</div>`;
+}
+function contactHTML(p){
+  const c=cOf(p.cid);
+  if(!c)return '<div class="note warn">No contractor has been assigned yet, so there is no contact for this work. It will appear once a contractor is assigned.</div>';
+  const o=c.office||{},tel=(o.phone||'').replace(/[^+\d]/g,'');
+  return `<div class="contact"><strong>Questions about this work? Contact the contractor:</strong>
+    <div>${esc(c.name)} · <span class="muted">${esc(c.speciality)}</span></div>
+    ${o.phone?`<div>📞 <a href="tel:${esc(tel)}">${esc(o.phone)}</a></div>`:''}
+    ${o.email?`<div>✉️ <a href="mailto:${esc(o.email)}">${esc(o.email)}</a></div>`:''}
+    <div class="muted small" style="margin-top:4px">You can also ask a public question in the FAQ below.</div></div>`;
+}
+function delayHTML(p){
+  const cl=p.delayClaims||[];
+  return cl.map(c=>{
+    if(c.status==='approved')return `<div class="note warn"><strong>Delay verified by ${esc(p.dept)}:</strong> ${esc(c.type)}. ${c.okDays} day${c.okDays===1?'':'s'} added to the deadline. ${esc(c.text||'')}</div>`;
+    if(c.status==='rejected')return `<div class="note bad"><strong>Delay claim not accepted:</strong> ${esc(c.type)}. ${esc(c.reason||'')}</div>`;
+    return `<div class="note info"><strong>Delay reported by contractor</strong> (awaiting verification): ${esc(c.type)}, ${c.days} day${c.days===1?'':'s'}. ${esc(c.text||'')}</div>`;
+  }).join('');
+}
+function faqHTML(p){
+  const c=cOf(p.cid);
+  const faq=p.faq||[];
+  const answered=faq.filter(q=>q.a),open=faq.filter(q=>!q.a);
+  const me2=q=>`<button class="btn small" data-act="me2" data-qid="${esc(q.id)}"${flagged('ww_me2',p.code+q.id)?' disabled':''}>Same concern (${q.me2||0})</button>`;
+  let h=`<div class="faqbox"><strong>FAQ &amp; concerns</strong>
+    <p class="muted small" style="margin:4px 0 6px">Check here first: your question may already be answered. Press “Same concern” instead of asking twice.</p>`;
+  h+=answered.map(q=>`<details class="qitem"><summary><span class="tag">${esc(q.topic)}</span>${esc(q.q)}</summary><div class="ans"><strong>${c?esc(c.name):'Contractor'}:</strong> ${esc(q.a)}<div class="small" style="opacity:.8">Answered ${fmt(D(q.answeredAt||q.at))}</div></div>${me2(q)}</details>`).join('');
+  h+=open.map(q=>`<div class="qitem"><span class="tag">${esc(q.topic)}</span>${esc(q.q)}<div class="muted small" style="margin:4px 0">Waiting for the contractor to reply · asked ${fmt(D(q.at))}</div>${me2(q)}</div>`).join('');
+  if(!faq.length)h+='<p class="muted small">No questions yet. Be the first to ask.</p>';
+  if(!c){h+='<div class="note info">Questions open once a contractor is assigned to this project.</div></div>';return h;}
+  h+=`<h4 style="margin-top:12px">Ask ${esc(c.name)} a question</h4>
+    <textarea class="fld" id="q-text" maxlength="300" placeholder="e.g. Will the road be open for the exam week?">${esc(state.draft.q)}</textarea>
+    <div id="q-sim"></div>
+    <div class="two" style="margin-top:6px;align-items:end"><label style="margin:0">Topic<select id="q-topic">${TOPICS.map(t=>`<option${t===state.draft.topic?' selected':''}>${esc(t)}</option>`).join('')}</select></label>
+    <button class="btn primary" data-act="ask">Send question</button></div>
+    <p class="muted small" style="margin-top:6px">Questions and answers are public. Please keep them civil and don't share personal details.</p></div>`;
+  return h;
+}
+function feedbackHTML(p){
+  if(p.status!=='completed')return '';
+  const fb=p.feedback||[];
+  const avg=fb.length?fb.reduce((x,f)=>x+f.stars,0)/fb.length:0;
+  const done=flagged('ww_fb',p.code);
+  const item=f=>`<div class="fbk"><div class="meta"><span class="st" aria-label="${f.stars} out of 5">${'★'.repeat(f.stars)}${'☆'.repeat(5-f.stars)}</span><span>${fmt(D(f.at))}</span></div>${f.text?`<div>${esc(f.text)}</div>`:''}${f.img?`<img src="${esc(f.img)}" alt="Photo added by a resident" data-zoom="1">`:''}</div>`;
+  const list=fb.slice().reverse();
+  let h=`<div class="faqbox"><strong>Public feedback</strong>
+    ${fb.length?`<div class="fbsum"><span class="big">★ ${avg.toFixed(1)}</span> <span class="muted">from ${fb.length} resident${fb.length===1?'':'s'}</span></div>${list.slice(0,3).map(item).join('')}${list.length>3?`<details class="fold"><summary>Show ${list.length-3} more</summary>${list.slice(3).map(item).join('')}</details>`:''}`:'<div class="muted small">No feedback yet. Be the first to rate the finished work.</div>'}`;
+  if(done)h+='<p class="muted small" style="margin-top:8px">Thanks, you have already rated this project on this device.</p>';
+  else h+=`<h4>How was the finished work?</h4>
+    <div class="stars" role="group" aria-label="Rating">${[1,2,3,4,5].map(n=>`<button class="star" data-act="star" data-n="${n}" aria-label="${n} star${n===1?'':'s'}">${state.draft.stars>=n?'★':'☆'}</button>`).join('')}</div>
+    <textarea class="fld" id="fb-text" maxlength="240" placeholder="Optional comment">${esc(state.draft.fb)}</textarea>
+    <label for="fb-img" style="margin-top:10px">Add a photo (optional)</label>
+    <input class="fld" id="fb-img" type="file" accept="image/*">
+    ${state.draft.img?`<div class="fbimg"><img src="${esc(state.draft.img)}" alt="Your photo preview"><button class="link" data-act="rmImg">Remove photo</button></div>`:''}
+    <p class="muted small" style="margin:6px 0 0">Your comment and photo will be visible to everyone. Please avoid showing faces or number plates.</p>
+    <button class="btn primary block" data-act="sendFb" style="margin-top:8px">Submit feedback</button>`;
+  return h+'</div>';
+}
+function fbItemHTML(f){return `<div class="fbk"><div class="meta"><span class="st" aria-label="${f.stars} out of 5">${'★'.repeat(f.stars)}${'☆'.repeat(5-f.stars)}</span><span>${fmt(D(f.at))}</span></div>${f.text?`<div>${esc(f.text)}</div>`:''}${f.img?`<img src="${esc(f.img)}" alt="Photo added by a resident" data-zoom="1">`:''}</div>`;}
+function fbReportHTML(list){
+  const done=list.filter(p=>p.status==='completed');
+  if(!done.length)return '<div class="note info">No completed projects yet, so there is no resident feedback.</div>';
+  return done.map(p=>{
+    const fb=(p.feedback||[]).slice().reverse(),avg=fb.length?fb.reduce((x,f)=>x+f.stars,0)/fb.length:0;
+    return `<div class="card"><div class="row" style="justify-content:space-between"><span class="code">${esc(p.code)}</span><span class="badge completed">Completed</span></div><strong>${esc(p.title)}</strong>
+      ${fb.length?`<div class="fbsum"><span class="big">★ ${avg.toFixed(1)}</span> <span class="muted">from ${fb.length} resident${fb.length===1?'':'s'}</span></div>${fb.map(fbItemHTML).join('')}`:'<div class="muted small" style="margin-top:6px">No feedback from residents yet.</div>'}</div>`;
+  }).join('');
+}
+function renderCard(){
+  const box=$('#cardBox');
+  const p=state.projects.find(x=>x.code===state.selected);
+  if(!p){box.innerHTML='';return;}
+  const c=cOf(p.cid);
+  const rel=releasedTotal(p),pct=p.sanction?Math.min(100,rel/p.sanction*100):0;
+  const lastUpd=(p.history||[]).filter(h=>!h.kind).slice(-1)[0];
+  const upd=p.status==='planned'?'Work has not started yet.':(p.updated?`Progress last updated ${Math.max(0,Math.round((TODAY-D(p.updated))/DAY))} days ago.`:'');
+  box.innerHTML=`<div class="card">
+    <div class="row" style="justify-content:space-between">
+      <div class="row"><span class="code">${esc(p.code)}</span><span class="badge ${p.status}">${LABEL[p.status]}</span></div>
+      <button class="link" data-act="close" aria-label="Close details">✕</button>
+    </div>
+    <h3 style="margin-top:6px">${esc(p.title)}</h3>
+    <p class="muted">${esc(p.purpose)}</p>
+    <dl>
+      <dt>Department</dt><dd>${esc(p.dept)}</dd>
+      <dt>Contractor</dt><dd>${c?`<button class="link" data-act="con" data-id="${c.id}">${esc(c.name)} →</button> ${scoreChip(c.id)}`:'Not assigned yet'}</dd>
+      <dt>Budget</dt><dd>${money(p.sanction||0)} sanctioned · ${money(rel)} released</dd>
+      <dt>Starts</dt><dd>${fmt(D(p.start))}</dd>
+      <dt>Expected end</dt><dd>${fmt(D(p.end))}${excusedDays(p)?` <span class="muted">(+${excusedDays(p)} days verified)</span>`:''}</dd>
+      ${p.assessment?`<dt>Completed on</dt><dd>${fmt(D(p.assessment.actualEnd))}</dd>`:''}
+    </dl>
+    <div class="meter" title="Funds released"><i style="width:${pct.toFixed(0)}%"></i></div>
+    ${contactHTML(p)}
+    ${delayHTML(p)}
+    ${p.status==='review'?'<div class="note info"><strong>Contractor reports the work is finished.</strong> The department will inspect it before it is marked complete.</div>':''}
+    ${p.closure?`<div class="note bad"><strong>Road closure:</strong> ${fmt(D(p.closure.from))} – ${fmt(D(p.closure.to))}</div>`:''}
+    ${p.note?`<div class="note ok">${esc(p.note)}</div>`:''}
+    ${lastUpd?`<div class="note info"><strong>Latest update (${fmt(D(lastUpd.d))}):</strong> ${esc(lastUpd.t)}</div>`:''}
+    ${stagesHTML(p)}
+    <p class="muted small" style="margin-top:8px">${esc(upd)}</p>
+  </div>${feedbackHTML(p)}${faqHTML(p)}`;
+  updateSim();
+}
+function updateSim(){
+  const el=$('#q-sim');if(!el)return;
+  const p=state.projects.find(x=>x.code===state.selected);if(!p)return;
+  const sims=similarQs(p,state.draft.q);
+  el.innerHTML=sims.map(q=>`<div class="sim"><strong>Already asked:</strong> ${esc(q.q)}<br>${q.a?'<strong>Answer:</strong> '+esc(q.a):'<em>No reply yet. Press “Same concern” above instead of asking again.</em>'}</div>`).join('');
+}
+$('#cardBox').addEventListener('input',e=>{
+  if(e.target.id==='q-text'){
+    state.draft.q=e.target.value;
+    if(!state.draft.touched){state.draft.topic=guessTopic(e.target.value);const s=$('#q-topic');if(s)s.value=state.draft.topic;}
+    updateSim();
+  }
+  if(e.target.id==='fb-text')state.draft.fb=e.target.value;
+});
+$('#cardBox').addEventListener('click',e=>{const z=e.target.closest('[data-zoom]');if(z)z.classList.toggle('zoomed');});
+$('#cardBox').addEventListener('change',e=>{
+  if(e.target.id!=='fb-img')return;
+  const f=e.target.files&&e.target.files[0];if(!f)return;
+  if(!/^image\//.test(f.type)){toast('Please choose an image file.');return;}
+  const fr=new FileReader();
+  fr.onload=()=>{const im=new Image();
+    im.onload=()=>{const k=Math.min(1,900/Math.max(im.width,im.height)),c=document.createElement('canvas');
+      c.width=Math.max(1,Math.round(im.width*k));c.height=Math.max(1,Math.round(im.height*k));
+      c.getContext('2d').drawImage(im,0,0,c.width,c.height);
+      state.draft.img=c.toDataURL('image/jpeg',.72);renderCard();};
+    im.onerror=()=>toast('That image could not be read. Try a JPG or PNG.');
+    im.src=fr.result;};
+  fr.readAsDataURL(f);
+});
+$('#cardBox').addEventListener('change',e=>{if(e.target.id==='q-topic'){state.draft.topic=e.target.value;state.draft.touched=true;}});
+$('#cardBox').addEventListener('click',e=>{
+  const b=e.target.closest('[data-act]');if(!b)return;
+  const p=state.projects.find(x=>x.code===state.selected);
+  const act=b.dataset.act;
+  if(act==='close'){state.selected=null;renderPublic();}
+  else if(act==='con')openContractor(b.dataset.id);
+  else if(!p)return;
+  else if(act==='me2'){
+    const q=p.faq.find(x=>x.id===b.dataset.qid);if(!q)return;
+    q.me2=(q.me2||0)+1;setFlag('ww_me2',p.code+q.id);persist();
+    b.textContent=`Same concern (${q.me2})`;b.disabled=true;toast('Thanks, your vote helps the contractor see what matters most.');
+  }
+  else if(act==='ask'){
+    const text=state.draft.q.trim();
+    if(text.length<10){toast('Please write a little more detail (at least 10 characters).');return;}
+    p.faq.push({id:'Q'+Date.now().toString(36),topic:state.draft.topic||guessTopic(text),q:text,a:null,at:TODAY_ISO,me2:0});
+    persist();
+    resetDraft(p.code);renderCard();
+    toast(`Question sent to ${cOf(p.cid).name}. The answer will appear here for everyone.`);
+  }
+  else if(act==='rmImg'){state.draft.img=null;renderCard();}
+  else if(act==='star'){state.draft.stars=+b.dataset.n;renderCard();}
+  else if(act==='sendFb'){
+    if(!state.draft.stars){toast('Tap the stars to choose a rating first.');return;}
+    b.disabled=true;
+    const stars=state.draft.stars,text=state.draft.fb.trim(),dataUrl=state.draft.img||null,code=p.code;
+    (async()=>{
+      let img=null;
+      if(dataUrl){try{img=(await API.post('/api/upload',{dataUrl:dataUrl})).url;}catch(e){toast(e.message);b.disabled=false;return;}}
+      const pp=state.projects.find(x=>x.code===code);if(!pp){b.disabled=false;return;}
+      pp.feedback.push({stars:stars,text:text,at:TODAY_ISO,img:img});
+      setFlag('ww_fb',code);persist();resetDraft(code);renderCard();renderDone();renderLayer();
+      toast('Thank you. Your feedback is now public on this project.');
+    })();
+  }
+});
+function resetDraft(code){state.draft={code,q:'',topic:'',touched:false,fb:'',stars:0};}
+function renderList(){
+  let items=visibleProjects().filter(p=>p.status!=='completed').map(p=>({p,dist:state.area?Math.hypot(p.x-state.area.x,p.y-state.area.y):null}));
+  const order={ongoing:0,review:1,planned:2,completed:3};
+  if(state.area)items=items.filter(i=>i.dist<=120).sort((a,b)=>a.dist-b.dist);
+  else items.sort((a,b)=>order[a.p.status]-order[b.p.status]||a.p.start.localeCompare(b.p.start));
+  $('#listHead').textContent=state.area?`${items.length} project${items.length===1?'':'s'} near ${state.area.name}`:`${items.length} ongoing or planned project${items.length===1?'':'s'}`;
+  $('#clearArea').hidden=!state.area;
+  $('#list').innerHTML=items.length?items.map(({p,dist})=>{
+    const c=cOf(p.cid);
+    const pr=p.status==='completed'?100:p.status==='planned'?0:Math.round((Math.min(p.stage,3)+.5)/4*100);
+    const sn=p.status==='completed'?'Completed':p.status==='planned'?'Not started':STAGES[Math.min(p.stage,3)];
+    return `<button class="item pc" data-code="${esc(p.code)}"><span class="pc-top"><span class="code">${esc(p.code)}</span><span class="badge ${p.status}">${LABEL[p.status]}</span></span><span class="t">${esc(p.title)}</span><span class="s">${esc(p.dept)}${c?' · '+esc(c.name):''}</span><span class="pc-bar"><i class="${p.status}" style="width:${pr}%"></i></span><span class="pc-foot"><span>${esc(sn)}</span><span>${fmt(D(p.start))} – ${fmt(D(p.end))}${dist!=null?' · '+Math.round(dist)+' m away':''}</span></span>${p.closure&&p.status==='ongoing'?'<span class="pc-closure">Road closure</span>':''}</button>`;
+  }).join(''):'<p class="muted" style="padding:10px 0">No projects match these filters.</p>';
+  $$('#list .item').forEach(b=>b.onclick=()=>selectProject(b.dataset.code));
+}
+function ratingOf(p){const fb=p.feedback||[];return fb.length?{avg:fb.reduce((x,f)=>x+f.stars,0)/fb.length,n:fb.length}:null;}
+function renderDone(){
+  const items=state.projects.filter(p=>p.status==='completed'&&(!state.filters.dept||p.dept===state.filters.dept)&&(!state.area||Math.hypot(p.x-state.area.x,p.y-state.area.y)<=120))
+    .sort((a,b)=>((b.assessment&&b.assessment.actualEnd)||b.end).localeCompare((a.assessment&&a.assessment.actualEnd)||a.end));
+  $('#doneHead').textContent=`${items.length} completed project${items.length===1?'':'s'}`;
+  $('#doneHead').classList.toggle('hl-head',!!state.filters.completed);
+  $('#doneList').innerHTML=items.length?items.map(p=>{
+    const c=cOf(p.cid),r=ratingOf(p),end=(p.assessment&&p.assessment.actualEnd)||p.end,photos=(p.feedback||[]).filter(f=>f.img).length;
+    return `<button class="item pc${state.filters.completed?' hl':''}" data-code="${esc(p.code)}"><span class="pc-top"><span class="code">${esc(p.code)}</span><span class="badge completed">Completed</span></span><span class="t">${esc(p.title)}</span><span class="s">${esc(p.dept)}${c?' · '+esc(c.name):''}</span><span class="pc-bar"><i class="completed" style="width:100%"></i></span><span class="pc-foot"><span>${r?'★ '+r.avg.toFixed(1)+' · '+r.n+' review'+(r.n===1?'':'s')+(photos?' · '+photos+' photo'+(photos===1?'':'s'):''):'No feedback yet'}</span><span>Finished ${fmt(D(end))}</span></span></button>`;
+  }).join(''):'<p class="muted" style="padding:6px 0">No completed projects to show.</p>';
+  $$('#doneList .item').forEach(b=>b.onclick=()=>selectProject(b.dataset.code));
+}
+function renderPublic(){updateLayout();renderHero();renderCard();renderList();renderDone();renderLayer();}
+function selectProject(code){
+  const p=state.projects.find(x=>x.code===code);if(!p)return;
+  if(!canMode('public')){flyTo(p.x,p.y,Math.min(view.w,260),450);toast(`${p.code}: ${p.title}`);return;}
+  if(state.mode!=='public')setMode('public');
+  if(state.draft.code!==code)resetDraft(code);
+  state.selected=code;
+  renderPublic();
+  $('#panel').scrollTo({top:0,behavior:'smooth'});
+  flyTo(p.x,p.y,Math.min(view.w,260),450);
+}
+function setArea(a){
+  state.area={name:a.name,x:a.x,y:a.y};state.selected=null;
+  $('#search').value=a.name;$('#sugg').hidden=true;
+  renderPublic();flyTo(a.x,a.y,320,450);
+}
+function searchItems(q){
+  q=q.trim().toLowerCase();if(!q)return[];
+  const out=[];
+  PLACES.forEach(a=>{if(a.name.toLowerCase().includes(q))out.push({type:'Place',name:a.name,x:a.x,y:a.y});});
+  ROADS.forEach(r=>{if(r.name.toLowerCase().includes(q))out.push({type:'Road',name:r.name,x:r.sx,y:r.sy});});
+  state.projects.forEach(p=>{if(p.code.toLowerCase().includes(q)||p.title.toLowerCase().includes(q))out.push({type:'Project',name:p.title,code:p.code,sub:p.code});});
+  return out.slice(0,7);
+}
+function pick(it){if(it.type==='Project'){$('#sugg').hidden=true;$('#search').value=it.code;selectProject(it.code);}else setArea(it);}
+const sIn=$('#search'),sg=$('#sugg');
+sIn.addEventListener('input',()=>{
+  const items=searchItems(sIn.value);
+  if(!items.length){sg.hidden=true;return;}
+  sg.innerHTML=items.map((it,i)=>`<button data-i="${i}"><span class="tag">${it.type}</span><span>${esc(it.name)}${it.sub?` <span class="muted">${esc(it.sub)}</span>`:''}</span></button>`).join('');
+  sg.hidden=false;
+  sg.querySelectorAll('button').forEach(b=>b.onclick=()=>pick(items[+b.dataset.i]));
+});
+sIn.addEventListener('keydown',e=>{
+  if(e.key==='Enter'){
+    const items=searchItems(sIn.value);
+    if(items.length)pick(items[0]);else if(sIn.value.trim())toast('No match. Try a building, a road, or a project ID like WW-26-001.');
+  }
+  if(e.key==='Escape')sg.hidden=true;
+});
+document.addEventListener('click',e=>{if(!e.target.closest('.searchbox'))sg.hidden=true;});
+$('#clearArea').onclick=()=>{state.area=null;sIn.value='';renderPublic();flyTo(HOME.cx,HOME.cy,HOME.w,450);};
+TRY_PLACES.forEach(n=>{
+  const b=document.createElement('button');b.className='chip try';b.textContent=n.replace(' (Main Gate)','');
+  b.onclick=()=>setArea(PLACES.find(a=>a.name===n));$('#tryChips').appendChild(b);
+});
+$$('#statusChips .chip').forEach(b=>b.onclick=()=>{
+  const s=b.dataset.st;state.filters[s]=!state.filters[s];b.setAttribute('aria-pressed',state.filters[s]);renderPublic();
+  if(s==='completed'&&state.filters.completed){
+    const l=state.projects.filter(p=>p.status==='completed'&&(!state.filters.dept||p.dept===state.filters.dept));
+    $('#doneHead').scrollIntoView({behavior:'smooth',block:'start'});
+    if(l.length)fitProjects(l);
+  }
+});
+$('#deptFilter').innerHTML='<option value="">All departments</option>'+DEPT_ACCOUNTS.map(a=>`<option>${esc(a.dept)}</option>`).join('');
+$('#deptFilter').onchange=e=>{state.filters.dept=e.target.value;renderPublic();};
+
+/* ---------------- 6. CONTRACTORS ---------------- */
+$('#conTabs').addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  state.conTab=b.dataset.t;renderConTabs();renderLayer();
+});
+function renderConTabs(){
+  $$('#conTabs button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.t===state.conTab));
+  $('#conPortfolio').hidden=state.conTab!=='portfolio';$('#conDash').hidden=state.conTab!=='dash';
+  if(state.conTab==='portfolio')renderContractors();else renderConDash();
+}
+/* --- public portfolios + WCRS --- */
+function compBars(w){
+  return Object.keys(WEIGHTS).map(k=>{
+    const v=w.comps[k];
+    return `<div class="comp"><div class="top"><span>${COMP_LABEL[k]} <span class="muted small">(${WEIGHTS[k]}%)</span></span><strong>${v==null?'No evidence':Math.round(v)}</strong></div><div class="meter ${lvl(v)}"><i style="width:${v==null?0:v.toFixed(0)}%"></i></div></div>`;
+  }).join('');
+}
+function wcrsHTML(c){
+  const w=wcrs(c.id);
+  if(!w)return '<p class="muted">No verified projects yet.</p>';
+  const b=band(w.overall);
+  const sat=pubSatisfaction(c.id);
+  return `<div class="score"><div class="big">${w.overall==null?'—':Math.round(w.overall)}<small> / 100</small></div>
+      <div><span class="band ${b.c}">${b.t}</span><div class="muted small" style="margin-top:4px">WorkWatch Contractor Reliability Score (WCRS) from ${w.n} verified project${w.n===1?'':'s'}.${w.missing.length?' Some evidence is missing, so the score is provisional.':''}</div>${sat?`<div class="small" style="margin-top:4px">Public satisfaction on this campus: ★ ${sat.avg.toFixed(1)} (${sat.n}). Shown separately; not part of WCRS.</div>`:''}</div></div>
+    ${compBars(w)}
+    <details class="fold"><summary>How is this calculated?</summary>
+      <div class="note info" style="margin-top:6px">
+      <strong>Score = weighted average of five parts</strong>: Time 25%, Budget 20%, Quality 35%, Safety 10%, Transparency 10%. Each part is scored 0–100 per project, then averaged across the contractor's verified projects.<br><br>
+      <strong>Time:</strong> adjusted duration = planned days + verified excused days. Excess days = max(0, actual − adjusted). Score = 100 × (1 − excess ÷ (25% of planned days)).<br>
+      <strong>Budget:</strong> adjusted budget = approved budget + approved adjustments. Overrun = max(0, (actual cost − adjusted) ÷ adjusted). Score = 100 × (1 − overrun ÷ 20%).<br>
+      <strong>Quality:</strong> the independent inspection score (0–100).<br>
+      <strong>Safety &amp; Transparency:</strong> 0–100 assessments recorded by the authorised department official from documented criteria.<br><br>
+      <strong>Fairness rules:</strong> floods, cyclones, earthquakes, landslides and government-ordered suspensions only excuse time once the department verifies them, so contractors are judged on delays they could control. Missing evidence is shown as “no evidence”, never counted as 0 or 100; the weights of the remaining parts are scaled up so the score stays out of 100.<br><br>
+      Weights and thresholds are starting values and should be validated with construction professionals before real use.</div></details>
+    <h4>Verified projects behind this score</h4>
+    <div class="tblwrap"><table class="tbl"><thead><tr><th>Project</th><th>Time</th><th>Budget</th><th>Quality</th><th>Safety</th><th>Transp.</th><th>Overall</th></tr></thead><tbody>
+    ${w.recs.map(r=>`<tr><td>${esc(r.title)}<br><span class="muted">${esc(r.year)} · ${esc(r.verified)}</span></td><td>${sc0(r.s.time)}</td><td>${sc0(r.s.budget)}</td><td>${sc0(r.s.quality)}</td><td>${sc0(r.s.safety)}</td><td>${sc0(r.s.transp)}</td><td><strong>${sc0(r.overall)}</strong></td></tr>`).join('')}
+    </tbody></table></div>`;
+}
+function renderContractors(){
+  const box=$('#conBody');
+  const c=cOf(state.conSel);
+  if(!c){
+    box.innerHTML=CONTRACTORS.map(k=>{
+      const mine=state.projects.filter(p=>p.cid===k.id&&p.status!=='completed').length;
+      return `<button class="item" data-con="${k.id}"><span class="dot" style="background:var(--accent)"></span><span><span class="t">${esc(k.name)}</span> ${scoreChip(k.id)}<br><span class="s">${esc(k.speciality)}<br>${k.completed} works · ${mine} active on campus</span></span></button>`;
+    }).join('');
+    return;
+  }
+  const mine=state.projects.filter(p=>p.cid===c.id);
+  const w=wcrs(c.id);
+  box.innerHTML=`<button class="link" data-act="back">← All contractors</button>
+    <h3 style="margin-top:8px">${esc(c.name)}</h3>
+    <p class="muted">${esc(c.speciality)}</p>
+    ${wcrsHTML(c)}
+    <div class="stats">
+      <div class="stat"><b>${w&&w.overall!=null?Math.round(w.overall):'—'}</b><span>WCRS</span></div>
+      <div class="stat"><b>${c.completed}</b><span>Works done</span></div>
+      <div class="stat"><b>${c.defectDays?c.defectDays+'d':'—'}</b><span>Avg. defect fix</span></div>
+      <div class="stat"><b>${c.est}</b><span>Established</span></div>
+    </div>
+    <dl>
+      <dt>Licence</dt><dd>${esc(c.licence)}</dd>
+      <dt>Team size</dt><dd>${c.staff} people</dd>
+      <dt>Certifications</dt><dd>${c.certs.map(esc).join(', ')}</dd>
+      ${c.verification?`<dt>Onboarding</dt><dd>Verified by ${esc(c.verification.by)} on ${fmt(D(c.verification.date))}</dd>`:''}
+      <dt>Office</dt><dd><a href="tel:${esc(c.office.phone.replace(/[^+\d]/g,''))}">${esc(c.office.phone)}</a><br><a href="mailto:${esc(c.office.email)}">${esc(c.office.email)}</a></dd>
+    </dl>
+    <div style="margin-top:14px"><strong>Works on this campus (${mine.length})</strong></div>
+    ${mine.length?mine.map(p=>`<button class="item" data-proj="${esc(p.code)}"><span class="dot ${p.status}"></span><span><span class="t">${esc(p.title)}</span><br><span class="s">${esc(p.code)} · ${LABEL[p.status]} · ${fmt(D(p.start))} – ${fmt(D(p.end))}</span></span></button>`).join(''):'<p class="muted">No works assigned right now.</p>'}`;
+}
+$('#conBody').addEventListener('click',e=>{
+  const c=e.target.closest('[data-con]'),p=e.target.closest('[data-proj]'),b=e.target.closest('[data-act="back"]');
+  if(c)openContractor(c.dataset.con);
+  else if(p)selectProject(p.dataset.proj);
+  else if(b){state.conSel=null;renderContractors();renderLayer();flyTo(HOME.cx,HOME.cy,HOME.w,450);}
+});
+function openContractor(id){
+  state.conTab='portfolio';
+  if(state.mode!=='contractors')setMode('contractors');
+  state.conSel=id;renderConTabs();renderLayer();
+  $('#panel').scrollTo({top:0,behavior:'smooth'});
+  fitProjects(state.projects.filter(p=>p.cid===id));
+}
+
+/* --- contractor login + dashboard --- */
+$('#cl-con').innerHTML=CONTRACTORS.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('');
+$('#cDemoCreds').innerHTML=CONTRACTORS.map(c=>`${esc(c.name)}: <code>${esc(CON_PASS[c.id])}</code>`).join('<br>');
+function cLogin(){
+  const c=cOf($('#cl-con').value),err=$('#cl-err');
+  if(!c||$('#cl-pass').value!==CON_PASS[c.id]){err.textContent='Incorrect passcode for this contractor.';err.hidden=false;return;}
+  err.hidden=true;$('#cl-pass').value='';
+  state.cuser=c;state.cdTab='queries';state.editingQ=null;
+  renderConDash();renderLayer();toast(`Logged in as ${c.name}.`);
+}
+$('#cl-btn').onclick=cLogin;
+$('#cl-pass').addEventListener('keydown',e=>{if(e.key==='Enter')cLogin();});
+$('#cLogout').onclick=()=>endSession();
+$('#cdTabs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;state.cdTab=b.dataset.t;state.editingQ=null;renderConDash();});
+const myProjects=()=>state.projects.filter(p=>p.cid===state.cuser.id);
+function logHTML(p){
+  const h=(p.history||[]).slice().reverse();
+  return `<details class="fold"><summary>Project log (${h.length})</summary>${h.map(x=>`<div class="logline"><strong>${fmt(D(x.d))}</strong> · ${esc(x.t)} <span class="muted">(${esc(x.by)})</span></div>`).join('')}</details>`;
+}
+function cProfileHTML(c){
+  const mine=myProjects(),cnt=s=>mine.filter(p=>p.status===s).length,o=c.office||{};
+  const v=x=>x==null||x===''?'—':esc(x);
+  const f=(cls,label,val)=>`<div class="pf ${cls}"><span>${label}</span><b>${val}</b></div>`;
+  const active=mine.filter(p=>p.status!=='completed');
+  return `<section class="pg pg-blue"><h3>🏗 Company profile</h3><div class="pgrid">
+    ${f('s3','Contractor ID',v(c.id))}${f('s6 long','Company name',v(c.name))}${f('s3','Established',v(c.est))}
+    ${f('s5 long','Speciality',v(c.speciality))}${f('s7 long','Licence',v(c.licence))}
+    ${f('s3','Team size',c.staff?esc(c.staff)+' staff':'—')}${f('s3','Works completed',v(c.completed))}${f('s3','Avg. defect fix time',c.defectDays!=null?esc(c.defectDays)+' days':'—')}${f('s3','Active on campus',active.length)}
+    ${f('s5 long','Office phone',v(o.phone))}${f('s7 long','Office email',v(o.email))}
+    <div class="pf s12 long"><span>Certifications</span><div class="pchips">${(c.certs||[]).length?c.certs.map(x=>`<em>${esc(x)}</em>`).join(''):'<b>—</b>'}</div></div>
+  </div></section>
+  <section class="pg pg-grey"><h3>📊 Reliability score</h3>${wcrsHTML(c)}</section>
+  <section class="pg pg-warm"><h3>🛠 Work on campus</h3><div class="pgrid">
+    ${f('s3 kpi','Ongoing',cnt('ongoing'))}${f('s3 kpi','Planned',cnt('planned'))}${f('s3 kpi','Under verification',cnt('review'))}${f('s3 kpi','Completed',cnt('completed'))}
+  </div>
+  ${active.length?active.map(p=>{const pr=p.status==='planned'?0:Math.round((Math.min(p.stage,3)+.5)/4*100);return `<div class="mp"><div class="row" style="justify-content:space-between"><span class="code">${esc(p.code)}</span><span class="badge ${p.status}">${LABEL[p.status]}</span></div><b>${esc(p.title)}</b><div class="muted small">${esc(p.dept)} · ${fmt(D(p.start))} – ${fmt(D(p.end))}</div><span class="pc-bar"><i class="${p.status}" style="width:${pr}%"></i></span><div class="pc-foot"><span>${p.status==='planned'?'Not started':esc(STAGES[Math.min(p.stage,3)])}</span><button class="link" data-goto="projects">Update progress</button></div></div>`;}).join(''):'<div class="note info" style="margin-top:10px">No active works right now.</div>'}
+  </section>`;
+}
+$('#cProfile').addEventListener('click',e=>{const b=e.target.closest('[data-goto]');if(b){state.cdTab=b.dataset.goto;state.editingQ=null;renderConDash();$('#cdTabs').scrollIntoView({behavior:'smooth',block:'start'});}});
+function renderConDash(){
+  const logged=!!state.cuser;
+  $('#cLogin').hidden=logged;$('#cApp').hidden=!logged;
+  if(!logged)return;
+  $('#cu-name').textContent=state.cuser.name;
+  const w=wcrs(state.cuser.id);
+  $('#cu-sub').textContent=`WCRS ${w&&w.overall!=null?Math.round(w.overall):'—'} · ${myProjects().length} project${myProjects().length===1?'':'s'} on campus`;
+  $('#cProfile').innerHTML=cProfileHTML(state.cuser);
+  $$('#cdTabs button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.t===state.cdTab));
+  const body=$('#cd-body');
+  if(state.cdTab==='queries')body.innerHTML=queriesHTML();
+  else if(state.cdTab==='projects')body.innerHTML=cProjectsHTML();
+  else if(state.cdTab==='feedback')body.innerHTML=cFeedbackHTML();
+  else body.innerHTML=cHistoryHTML();
+  const nf=[].concat(...myProjects().filter(p=>p.status==='completed').map(p=>p.feedback||[])).length;
+  $('#cdTabs [data-t="feedback"]').textContent='Feedback'+(nf?` (${nf})`:'');
+}
+function queriesHTML(){
+  const items=[];
+  myProjects().forEach(p=>(p.faq||[]).forEach(q=>items.push({p,q})));
+  const un=items.filter(i=>!i.q.a).length;
+  let h=`<p class="muted" style="margin-top:10px">${items.length} question${items.length===1?'':'s'} from residents, grouped by topic. <strong>${un} waiting for your reply.</strong> Answers are posted publicly in each project's FAQ so others don't need to ask again.</p>`;
+  if(!items.length)return h+'<div class="note info">No questions yet.</div>';
+  TOPICS.forEach(t=>{
+    const g=items.filter(i=>i.q.topic===t).sort((a,b)=>(a.q.a?1:0)-(b.q.a?1:0)||(b.q.me2||0)-(a.q.me2||0));
+    if(!g.length)return;
+    const u=g.filter(i=>!i.q.a).length;
+    h+=`<details class="fold" open><summary><span class="tag">${esc(t)}</span>${g.length} question${g.length===1?'':'s'}${u?` · <span style="color:var(--ongoing)">${u} unanswered</span>`:''}</summary>`;
+    g.forEach(({p,q})=>{
+      const editing=state.editingQ===q.id;
+      h+=`<div class="card" data-code="${esc(p.code)}" data-qid="${esc(q.id)}">
+        <div class="code">${esc(p.code)} · ${esc(p.title)}</div>
+        <div style="margin:4px 0"><strong>“${esc(q.q)}”</strong></div>
+        <div class="muted small">Asked ${fmt(D(q.at))} · ${q.me2||0} resident${(q.me2||0)===1?'':'s'} share this concern</div>
+        ${q.a&&!editing?`<div class="note ok"><strong>Your answer:</strong> ${esc(q.a)}</div><button class="btn small" data-act="editAns">Edit answer</button>`:
+          `<textarea class="fld ans-text" maxlength="400" placeholder="Write a clear answer for everyone...">${esc(q.a||'')}</textarea><button class="btn primary small" data-act="postAns" style="margin-top:6px">${q.a?'Update answer':'Post answer publicly'}</button>`}
+      </div>`;
+    });
+    h+='</details>';
+  });
+  return h;
+}
+function cProjectsHTML(){
+  const cur=myProjects().filter(p=>p.status!=='completed');
+  if(!cur.length)return '<div class="note info" style="margin-top:10px">No active projects. Finished work is under History.</div>';
+  return `<p class="muted" style="margin-top:10px">Keep progress current. When the work is finished, submit it for verification. It only counts as complete after the department's inspection and approval.</p>`+cur.map(p=>{
+    const rel=releasedTotal(p);
+    const rejected=p.completion&&p.completion.status==='rejected';
+    let h=`<div class="card pcard" data-code="${esc(p.code)}"><div class="row" style="justify-content:space-between"><span class="code">${esc(p.code)}</span><span class="badge ${p.status}">${LABEL[p.status]}</span></div>
+      <strong>${esc(p.title)}</strong>
+      <div class="muted small" style="margin:4px 0">${esc(p.dept)} · ${fmt(D(p.start))} – ${fmt(D(p.end))}${excusedDays(p)?` (+${excusedDays(p)} d verified)`:''} · ${money(p.sanction)} sanctioned, ${money(rel)} released</div>
+      ${stagesHTML(p)}`;
+    if(rejected)h+=`<div class="note bad"><strong>Completion not approved:</strong> ${esc(p.completion.reason||'')}</div>`;
+    (p.delayClaims||[]).forEach(c=>{h+=`<div class="note ${c.status==='approved'?'warn':c.status==='rejected'?'bad':'info'}"><strong>${esc(c.type)}</strong>, ${c.days} day${c.days===1?'':'s'}: ${c.status==='pending'?'awaiting department verification':c.status==='approved'?`verified (+${c.okDays} d)`:'not accepted'}</div>`;});
+    if(p.status==='planned'){
+      h+=`<div class="note info">Starts ${fmt(D(p.start))}. Progress updates open when work begins.</div>`;
+    }else if(p.status==='review'){
+      h+=`<div class="note info"><strong>Submitted for verification.</strong> Waiting for ${esc(p.dept)} to inspect and approve.</div>`;
+    }else{
+      h+=`<div class="two"><label style="margin-top:8px">Current stage<select class="fld f-stage">${STAGES.map((n,i)=>`<option value="${i}"${i===p.stage?' selected':''}>${n}</option>`).join('')}</select></label>
+        <label style="margin-top:8px">Progress note (public)<input class="fld f-note" type="text" maxlength="160" placeholder="e.g. Pipe laying 70% done"></label></div>
+        <button class="btn small" data-act="postUpdate" style="margin-top:8px">Post progress update</button>
+        <details class="fold"><summary>Report a delay or exceptional event</summary>
+          <div class="two"><label>Event<select class="fld d-type">${EVENT_TYPES.map(t=>`<option>${esc(t)}</option>`).join('')}</select></label><label>Days lost<input class="fld d-days" type="number" min="1" max="365" value="3"></label></div>
+          <label>What happened?<textarea class="fld d-text" maxlength="200" placeholder="Describe the event and its effect on work"></textarea></label>
+          <button class="btn small" data-act="reportDelay" style="margin-top:6px">Submit for department verification</button>
+          <p class="muted small" style="margin-top:4px">Only delays the department verifies are excused in your score.</p></details>
+        <button class="btn good block" data-act="submitDone">Mark finished and submit for verification</button>`;
+    }
+    return h+logHTML(p)+'</div>';
+  }).join('');
+}
+function cFeedbackHTML(){
+  const all=[].concat(...myProjects().filter(p=>p.status==='completed').map(p=>p.feedback||[]));
+  const avg=all.length?all.reduce((x,f)=>x+f.stars,0)/all.length:null;
+  return `<p class="muted" style="margin-top:10px">What residents said about your finished works, with their photos. Only you and the department that owns each project can see this view.</p>
+    <div class="note info"><strong>${all.length?`★ ${avg.toFixed(1)} across ${all.length} rating${all.length===1?'':'s'}`:'No ratings yet'}</strong></div>`+fbReportHTML(myProjects());
+}
+function cHistoryHTML(){
+  const done=myProjects().filter(p=>p.status==='completed');
+  let h=`<p class="muted" style="margin-top:10px">Completed and verified projects, with how each one was scored.</p>`;
+  if(!done.length)h+='<div class="note info">No completed projects on campus yet.</div>';
+  done.forEach(p=>{
+    const a=p.assessment;
+    const raw=a?{planned:daysBetween(p.start,p.end),actual:daysBetween(p.start,a.actualEnd),excused:excusedDays(p),budget:p.sanction,adj:a.adj||0,cost:a.cost,insp:a.insp,safety:a.safety,transp:a.transp}:null;
+    const s=raw?recScores(raw):null,ov=s?combine(s):null;
+    const fb=p.feedback||[],avg=fb.length?fb.reduce((x,f)=>x+f.stars,0)/fb.length:null;
+    h+=`<div class="card"><div class="row" style="justify-content:space-between"><span class="code">${esc(p.code)}</span><span class="badge completed">Completed</span></div>
+      <strong>${esc(p.title)}</strong>
+      <div class="muted small">${fmt(D(p.start))} – ${a?fmt(D(a.actualEnd)):''} · final cost ${a?money(a.cost):'—'} of ${money(p.sanction)}</div>
+      ${s?`<div class="tblwrap"><table class="tbl"><thead><tr><th>Time</th><th>Budget</th><th>Quality</th><th>Safety</th><th>Transp.</th><th>Project</th></tr></thead><tbody><tr><td>${sc0(s.time)}</td><td>${sc0(s.budget)}</td><td>${sc0(s.quality)}</td><td>${sc0(s.safety)}</td><td>${sc0(s.transp)}</td><td><strong>${sc0(ov)}</strong></td></tr></tbody></table></div>`:''}
+      <div class="small">Public feedback: ${avg==null?'none yet':`★ ${avg.toFixed(1)} from ${fb.length}`}</div>
+      ${logHTML(p)}</div>`;
+  });
+  const w=wcrs(state.cuser.id);
+  h+=`<div class="note info">Your public score is <strong>${w&&w.overall!=null?Math.round(w.overall):'—'}/100</strong>. <button class="link" data-act="seePortfolio">View public portfolio →</button></div>`;
+  return h;
+}
+$('#cd-body').addEventListener('click',e=>{
+  const z=e.target.closest('[data-zoom]');if(z){z.classList.toggle('zoomed');return;}
+  const b=e.target.closest('[data-act]');if(!b)return;
+  const act=b.dataset.act;
+  const card=b.closest('[data-code]');
+  const p=card?state.projects.find(x=>x.code===card.dataset.code):null;
+  if(act==='seePortfolio'){openContractor(state.cuser.id);return;}
+  if(act==='editAns'){state.editingQ=card.dataset.qid;renderConDash();return;}
+  if(!p||p.cid!==state.cuser.id)return;
+  const g=sel=>card.querySelector(sel);
+  if(act==='postAns'){
+    const q=p.faq.find(x=>x.id===card.dataset.qid),txt=g('.ans-text').value.trim();
+    if(!q)return;if(txt.length<5){toast('Write a short answer first.');return;}
+    q.a=txt;q.answeredAt=TODAY_ISO;state.editingQ=null;persist();renderConDash();toast('Answer posted. It now shows in the public FAQ for this project.');
+  }
+  if(act==='postUpdate'){
+    const st=parseInt(g('.f-stage').value,10),note=g('.f-note').value.trim();
+    p.stage=st;p.updated=TODAY_ISO;
+    log(p,note||`Stage updated to ${STAGES[st]}.`,state.cuser.name);
+    persist();renderConDash();toast('Progress update posted publicly.');
+  }
+  if(act==='reportDelay'){
+    const days=parseInt(g('.d-days').value,10),text=g('.d-text').value.trim();
+    if(!days||days<1){toast('Enter the number of days lost.');return;}
+    if(text.length<8){toast('Describe what happened (a short sentence).');return;}
+    const type=g('.d-type').value;
+    p.delayClaims.push({id:'DC'+Date.now().toString(36),type,days,text,status:'pending',at:TODAY_ISO});
+    log(p,`Reported ${type.toLowerCase()}: ${days} day(s) lost.`,state.cuser.name);
+    persist();renderConDash();toast('Sent to the department for verification.');
+  }
+  if(act==='submitDone'){
+    if(p.status!=='ongoing')return;
+    if(p.stage<3){toast('Set the stage to Restoration before submitting finished work.');return;}
+    p.status='review';p.completion={status:'pending',submittedAt:TODAY_ISO};p.stage=3;
+    log(p,'Contractor submitted work for verification.',state.cuser.name);
+    persist();renderConDash();renderLayer();toast('Submitted. The project is complete only after department approval.');
+  }
+});
+
+/* ---------------- 7. DEPARTMENT ---------------- */
+$('#lg-dept').innerHTML=DEPT_ACCOUNTS.map(a=>`<option>${esc(a.dept)}</option>`).join('');
+$('#demoCreds').innerHTML=DEPT_ACCOUNTS.map(a=>`${esc(a.dept)}: <code>${esc(a.pass)}</code>`).join('<br>');
+function conOptions(sel){return '<option value="">Assign later</option>'+CONTRACTORS.map(c=>`<option value="${c.id}"${c.id===sel?' selected':''}>${esc(c.name)} · ${esc(c.speciality)}</option>`).join('');}
+$('#f-con').innerHTML=conOptions('');
+function doLogin(){
+  const acct=DEPT_ACCOUNTS.find(a=>a.dept===$('#lg-dept').value);
+  const err=$('#lg-err');
+  if(!acct||$('#lg-pass').value!==acct.pass){err.textContent='Incorrect passcode for this department.';err.hidden=false;return;}
+  err.hidden=true;$('#lg-pass').value='';
+  state.user=acct;state.dTab='dash';
+  state.dept={loc:null,window:state.dept.window,result:null,merged:null,just:''};
+  resetPlanForm();renderDept();renderLayer();
+  toast(`Logged in as ${acct.dept}.`);
+}
+$('#lg-btn').onclick=doLogin;
+$('#lg-pass').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
+$('#logoutBtn').onclick=()=>endSession();
+function resetPlanForm(){
+  ['f-title','f-purpose','f-budget','f-start','f-end'].forEach(id=>$('#'+id).value='');
+  $('#f-con').value='';
+  const lt=$('#locText');lt.classList.remove('set');lt.textContent='📍 Click the map to choose the project location';
+  $('#result').innerHTML='';
+}
+function renderDept(){
+  updateLayout();
+  const logged=!!state.user;
+  $('#deptLogin').hidden=logged;$('#deptApp').hidden=!logged;
+  $('#hint').hidden=true;
+  if(!logged)return;
+  renderDeptBadge();
+  $('#ub-dept').textContent=state.user.dept;
+  $('#ub-off').textContent=`${state.user.officer} · ${state.user.role}`;
+  $('#tab-dash').hidden=state.dTab!=='dash';$('#tab-plan').hidden=state.dTab!=='plan';$('#tab-con').hidden=state.dTab!=='con';
+  $$('#deptTabs button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.t===state.dTab));
+  if(state.dTab==='dash')renderDashboard();else if(state.dTab==='con')renderConVerify();else renderResult();
+  $('#hint').hidden=!(state.mode==='dept'&&state.dTab==='plan'&&!state.dept.loc);
+}
+$('#deptTabs').addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  state.dTab=b.dataset.t;renderDept();renderLayer();
+});
+
+/* --- department dashboard --- */
+function dCardHTML(p){
+    const c=cOf(p.cid),r=releasedTotal(p),pct=p.sanction?Math.min(100,r/p.sanction*100):0;
+    return `<div class="card pcard" data-code="${esc(p.code)}"><div class="row" style="justify-content:space-between"><span class="code">${esc(p.code)}</span><span class="badge ${p.status}">${LABEL[p.status]}</span></div>
+      <strong>${esc(p.title)}</strong>
+      <dl><dt>Contractor</dt><dd>${c?esc(c.name)+' '+scoreChip(c.id):'Not assigned'}</dd>
+      <dt>Dates</dt><dd>${fmt(D(p.start))} – ${fmt(D(p.end))}${excusedDays(p)?` (+${excusedDays(p)} d)`:''}</dd>
+      <dt>Sanctioned</dt><dd>${money(p.sanction)}</dd><dt>Released</dt><dd>${money(r)} (${pct.toFixed(0)}%) · ${money(Math.max(0,p.sanction-r))} left</dd>
+      ${p.assessment?`<dt>Final cost</dt><dd>${money(p.assessment.cost)}</dd>`:''}
+      </dl>
+      <div class="meter"><i style="width:${pct.toFixed(0)}%"></i></div>
+      ${(p.released||[]).length?`<div class="small muted" style="margin-top:4px">${p.released.map(x=>`${fmt(D(x.d))}: ${money(x.amt)} (${esc(x.note)})`).join('<br>')}</div>`:''}
+      ${p.status!=='completed'?`<div class="two" style="margin-top:8px"><label style="margin:0">Release (₹ lakh)<input class="fld r-amt" type="number" min="0" step="0.1"></label><label style="margin:0">For<input class="fld r-note" type="text" maxlength="60" placeholder="e.g. Stage payment"></label></div><button class="btn small" data-act="release" style="margin-top:6px">Record fund release</button>`:''}
+      <details class="fold"><summary>Change contractor</summary>
+        <p class="muted small" style="margin:4px 0 0">The public contact for this work is the assigned contractor's office.</p>
+        <label>Contractor<select class="fld e-con">${conOptions(p.cid)}</select></label>
+        <button class="btn small" data-act="saveAssign" style="margin-top:6px">Save</button></details>
+      ${logHTML(p)}</div>`;
+}
+
+const ST_ORDER={ongoing:0,review:1,planned:2,completed:3};
+function dFiltered(){
+  const q=state.dq.trim().toLowerCase();
+  return state.projects.filter(p=>p.dept===state.user.dept&&state.df[p.status]&&(!q||p.title.toLowerCase().includes(q)||p.code.toLowerCase().includes(q)||(cOf(p.cid)&&cOf(p.cid).name.toLowerCase().includes(q))))
+    .sort((a,b)=>ST_ORDER[a.status]-ST_ORDER[b.status]||a.start.localeCompare(b.start));
+}
+function dProjectsHTML(){
+  const l=dFiltered();
+  return l.length?l.map(dCardHTML).join(''):'<div class="note info">No projects match your search and filters.</div>';
+}
+function dToolbarHTML(mine){
+  const n=s=>mine.filter(p=>p.status===s).length;
+  const ch=(s,t)=>`<button class="chip" data-dst="${s}" aria-pressed="${state.df[s]}"><span class="dot ${s}"></span>${t} (${n(s)})</button>`;
+  return `<div class="dtool"><div class="searchbox"><input id="dq" type="search" value="${esc(state.dq)}" placeholder="Search your projects by title, ID or contractor" autocomplete="off" aria-label="Search your department's projects"></div>
+    <div class="chips">${ch('ongoing','Ongoing')}${ch('planned','Planned')}${ch('review','Under verification')}${ch('completed','Completed')}</div></div>`;
+}
+function escalationsFor(mine){
+  const out=[];
+  mine.forEach(p=>{
+    if(p.status==='completed')return;
+    (p.faq||[]).forEach(q=>{if(!q.a){const d=Math.round((TODAY-D(q.at))/DAY);if(d>=3)out.push({d,t:q.q,p,sub:'Public question unanswered'});}});
+    if(p.status==='ongoing'){
+      const late=Math.round((TODAY-(D(p.end).getTime()+excusedDays(p)*DAY))/DAY);
+      if(late>0)out.push({d:late,t:'Past its expected end date',p,sub:late+' day'+(late===1?'':'s')+' late'});
+      if(p.updated){const st=Math.round((TODAY-D(p.updated))/DAY);if(st>=14)out.push({d:st,t:'No progress update from the contractor',p,sub:st+' days since last update'});}
+    }
+  });
+  return out.sort((a,b)=>b.d-a.d);
+}
+function insightsHTML(mine){
+  const dept=state.user.dept;
+  const esc_=escalationsFor(mine);
+  const cf=conflictPairs().filter(c=>c.a.dept===dept||c.b.dept===dept);
+  const mx=Math.max(1,...mine.map(p=>p.sanction||0));
+  const bar=(cls,v)=>`<div class="bvs-b"><div class="trk"><i class="${cls}" style="width:${(v/mx*100).toFixed(1)}%"></i></div><span>${money(v)}</span></div>`;
+  const chart=mine.length?mine.map(p=>`<div class="bvs-row"><div class="bvs-l">${esc(p.code)} · ${esc(p.title)}</div>${bar('b',p.sanction||0)}${bar('s',releasedTotal(p))}</div>`).join(''):'<p class="muted small">No projects yet.</p>';
+  const cfHTML=c=>{
+    const m=c.a.dept===dept?c.a:c.b,o=m===c.a?c.b:c.a,same=o.dept===dept,pl=nearestPlace(m.x,m.y).name;
+    return `<div class="cfl"><b>${esc(pl)}</b><span>${same?esc(m.code)+' and '+esc(o.code)+' (both yours)':esc(m.code)+' (yours) × another department\'s work'} · overlap ${fmt(D(c.s))} → ${fmt(D(c.e))}</span><br><span class="muted">Within ${NEAR} m of each other.${same?'':' Details of other departments\' work are not shown.'}</span><br><button class="link" data-map="${esc(m.code)}">Show on map</button></div>`;
+  };
+  return `<div class="dgrid">
+    <section class="panel wide"><h3>Budget vs spend by project (your department)</h3>${chart}<div class="bvs-leg"><span><i style="background:#0284c7"></i>Sanctioned</span><span><i style="background:#d97706"></i>Released</span></div></section>
+    <section class="panel"><h3>Escalations (${esc_.length})</h3>${esc_.length?esc_.slice(0,6).map(e=>`<div class="esc"><b>${esc(e.t)}</b><span>${esc(e.p.title)} · ${esc(e.sub)}</span></div>`).join(''):'<div class="note ok">Nothing escalated. Questions are answered and works are on schedule.</div>'}</section>
+    <section class="panel"><h3>Conflicts to coordinate (${cf.length})</h3>${cf.length?cf.map(cfHTML).join(''):'<div class="note ok">No nearby works overlap with your projects.</div>'}</section>
+  </div>`;
+}
+$('#tab-dash').addEventListener('input',e=>{if(e.target.id==='dq'){state.dq=e.target.value;$('#dpList').innerHTML=dProjectsHTML();}});
+$('#tab-dash').addEventListener('click',e=>{
+  const z=e.target.closest('[data-zoom]');if(z){z.classList.toggle('zoomed');return;}
+  const c=e.target.closest('[data-dst]');
+  if(c){const k=c.dataset.dst;state.df[k]=!state.df[k];c.setAttribute('aria-pressed',state.df[k]);$('#dpList').innerHTML=dProjectsHTML();return;}
+  const m=e.target.closest('[data-map]');
+  if(m){const p=state.projects.find(x=>x.code===m.dataset.map);if(!p)return;state.mapOpen=true;updateLayout();requestAnimationFrame(()=>flyTo(p.x,p.y,260,450));}
+});
+
+function renderDashboard(){
+  const mine=state.projects.filter(p=>p.dept===state.user.dept);
+  const sanc=mine.reduce((s,p)=>s+(p.sanction||0),0),rel=mine.reduce((s,p)=>s+releasedTotal(p),0);
+  const pendDone=mine.filter(p=>p.status==='review');
+  const pendClaims=[];mine.forEach(p=>(p.delayClaims||[]).filter(c=>c.status==='pending').forEach(c=>pendClaims.push({p,c})));
+  const approvals=[];mine.forEach(p=>(p.history||[]).filter(h=>h.kind==='approval'||h.kind==='funds').forEach(h=>approvals.push({p,h})));
+  approvals.sort((a,b)=>b.h.d.localeCompare(a.h.d));
+  let h=`<div class="tiles">
+    <div class="tile"><b>${mine.length}</b><span>Projects</span></div>
+    <div class="tile"><b>${pendDone.length+pendClaims.length}</b><span>Waiting for your approval</span></div>
+    <div class="tile"><b>${money(sanc)}</b><span>Sanctioned</span></div>
+    <div class="tile"><b>${money(rel)}</b><span>Released (${sanc?Math.round(rel/sanc*100):0}%)</span></div></div>`;
+  h+=insightsHTML(mine);
+  h+='<h4>Needs your action</h4>';
+  if(!pendDone.length&&!pendClaims.length)h+='<div class="note ok">Nothing waiting. All contractor submissions are handled.</div>';
+  pendDone.forEach(p=>{
+    const c=cOf(p.cid);
+    h+=`<div class="card pcard" data-code="${esc(p.code)}"><div class="row" style="justify-content:space-between"><span class="code">${esc(p.code)}</span><span class="badge review">Completion submitted</span></div>
+      <strong>${esc(p.title)}</strong><div class="muted small">${c?esc(c.name):''} submitted this work as finished on ${fmt(D(p.completion.submittedAt))}. Record the inspection result to approve, or send it back.</div>
+      <div class="two"><label>Actual completion date<input class="fld a-end" type="date" value="${esc(p.completion.submittedAt)}"></label><label>Final cost (₹ lakh)<input class="fld a-cost" type="number" min="0" step="0.1" value="${p.sanction}"></label></div>
+      <div class="two"><label>Approved budget adjustments (₹ lakh)<input class="fld a-adj" type="number" min="0" step="0.1" value="0"></label><span></span></div>
+      <div class="three"><label>Inspection (0–100)<input class="fld a-insp" type="number" min="0" max="100"></label><label>Safety (0–100)<input class="fld a-safe" type="number" min="0" max="100"></label><label>Transparency<input class="fld a-tr" type="number" min="0" max="100"></label></div>
+      <p class="muted small" style="margin-top:4px">Leave a score blank if there is no evidence yet. It is recorded as “no evidence”, not as 0 or 100.</p>
+      <label>Inspection note (summary of report and photos)<textarea class="fld a-note" maxlength="240" placeholder="e.g. Core cutting, level and drainage checks passed"></textarea></label>
+      <div class="row" style="margin-top:8px"><button class="btn good small" data-act="approve">Approve completion</button><button class="btn bad small" data-act="reject">Send back (note required)</button></div></div>`;
+  });
+  pendClaims.forEach(({p,c})=>{
+    h+=`<div class="card pcard" data-code="${esc(p.code)}" data-cid="${esc(c.id)}"><div class="row" style="justify-content:space-between"><span class="code">${esc(p.code)}</span><span class="badge planned">Delay claim</span></div>
+      <strong>${esc(p.title)}</strong><div class="small" style="margin:4px 0"><strong>${esc(c.type)}</strong>, ${c.days} day${c.days===1?'':'s'} claimed by ${esc(cOf(p.cid)?cOf(p.cid).name:'contractor')}: ${esc(c.text)}</div>
+      <div class="two"><label>Days to excuse<input class="fld c-days" type="number" min="0" max="365" value="${c.days}"></label><label>Note<input class="fld c-note" type="text" maxlength="120" placeholder="Reason / evidence checked"></label></div>
+      <div class="row" style="margin-top:8px"><button class="btn good small" data-act="claimOk">Verify and excuse</button><button class="btn bad small" data-act="claimNo">Reject claim</button></div></div>`;
+  });
+  h+='<h4>Public feedback on your completed works</h4><p class="muted small" style="margin:0 0 6px">Ratings, comments and photos from residents, shown only to your department and the contractor on each project.</p>'+fbReportHTML(mine);
+  h+='<h4>Projects &amp; budget</h4>'+dToolbarHTML(mine)+'<div id="dpList">'+dProjectsHTML()+'</div>';
+    h+='<h4>Approvals &amp; releases log</h4>';
+  h+=approvals.length?approvals.slice(0,12).map(({p,h:x})=>`<div class="logline"><strong>${fmt(D(x.d))}</strong> · <span class="code">${esc(p.code)}</span> ${esc(x.t)}</div>`).join(''):'<p class="muted small">No approvals recorded yet.</p>';
+  $('#tab-dash').innerHTML=h;
+}
+$('#tab-dash').addEventListener('click',e=>{
+  const b=e.target.closest('[data-act]');if(!b||!state.user)return;
+  const card=b.closest('[data-code]');if(!card)return;
+  const p=state.projects.find(x=>x.code===card.dataset.code);
+  if(!p||p.dept!==state.user.dept){toast('You can only act on your own department\'s projects.');return;}
+  const g=sel=>card.querySelector(sel),act=b.dataset.act,by=state.user.dept;
+  const done=msg=>{persist();renderDashboard();renderLayer();toast(msg);};
+  if(act==='approve'||act==='reject'){
+    const note=g('.a-note').value.trim();
+    if(act==='reject'){
+      if(!note){toast('Add a note explaining what must be fixed.');return;}
+      p.status='ongoing';p.completion={status:'rejected',submittedAt:p.completion.submittedAt,reason:note};
+      log(p,'Completion not approved: '+note,by,'approval');done('Sent back to the contractor with your note.');return;
+    }
+    const end=g('.a-end').value,cost=parseFloat(g('.a-cost').value),adj=parseFloat(g('.a-adj').value||'0')||0;
+    if(!end||isNaN(cost)||cost<0){toast('Enter the completion date and the final cost.');return;}
+    if(D(end)<D(p.start)){toast('Completion date cannot be before the start date.');return;}
+    if(!note){toast('Add an inspection note (summary of the report).');return;}
+    const sc=sel=>{const v=g(sel).value.trim();if(v==='')return null;const n=parseFloat(v);return isNaN(n)?null:clamp(n);};
+    p.assessment={actualEnd:end,cost,adj,insp:sc('.a-insp'),safety:sc('.a-safe'),transp:sc('.a-tr'),note,approvedAt:TODAY_ISO,by};
+    p.status='completed';p.stage=4;p.updated=TODAY_ISO;p.completion={status:'approved',submittedAt:p.completion.submittedAt};
+    log(p,'Completion verified and approved. Inspection note: '+note,by,'approval');
+    resetDraft(p.code);
+    done('Approved. Residents can now give feedback, and the contractor score is updated.');
+  }
+  else if(act==='claimOk'||act==='claimNo'){
+    const c=p.delayClaims.find(x=>x.id===card.dataset.cid);if(!c)return;
+    const note=g('.c-note').value.trim();
+    if(act==='claimOk'){
+      const d=parseInt(g('.c-days').value,10);
+      if(isNaN(d)||d<0){toast('Enter the number of days to excuse.');return;}
+      c.status='approved';c.okDays=d;c.reason=note;
+      log(p,`Delay verified: ${c.type}, ${d} day(s) excused.`+(note?' '+note:''),by,'approval');done('Delay verified. These days will not count against the contractor.');
+    }else{
+      if(!note){toast('Add a short reason for rejecting the claim.');return;}
+      c.status='rejected';c.reason=note;
+      log(p,`Delay claim rejected (${c.type}): ${note}`,by,'approval');done('Claim rejected and shown on the public page.');
+    }
+  }
+  else if(act==='release'){
+    const amt=parseFloat(g('.r-amt').value),note=g('.r-note').value.trim()||'Payment';
+    if(isNaN(amt)||amt<=0){toast('Enter an amount in ₹ lakh.');return;}
+    if(releasedTotal(p)+amt>p.sanction+0.0001){toast('This would exceed the sanctioned budget.');return;}
+    p.released.push({d:TODAY_ISO,amt,note});
+    log(p,`Released ${money(amt)} (${note}).`,by,'funds');done(`Released ${money(amt)}. The public page shows the updated total.`);
+  }
+  else if(act==='saveAssign'){
+    p.cid=g('.e-con').value;
+    log(p,`Contractor set to ${p.cid?cOf(p.cid).name:'none'}.`,by,'approval');
+    done('Saved. The public page now shows this contractor as the contact.');
+  }
+});
+
+/* --- plan new work + conflict check --- */
+function nearestPlace(x,y){let b=PLACES[0],bd=1e9;PLACES.forEach(a=>{const d=Math.hypot(a.x-x,a.y-y);if(d<bd){bd=d;b=a;}});return b;}
+function setLoc(pt){
+  state.dept.loc={x:Math.round(pt.x),y:Math.round(pt.y)};
+  const a=nearestPlace(pt.x,pt.y);
+  const lt=$('#locText');lt.classList.add('set');lt.textContent=`📍 Location set near ${a.name}`;
+  $('#hint').hidden=true;
+  maybeRecheck();renderLayer();
+}
+function readForm(){return {title:$('#f-title').value.trim(),s:$('#f-start').value,e:$('#f-end').value};}
+function validate(f){
+  if(!f.title)return 'Add a project title first.';
+  if(!state.dept.loc)return 'Click the map to choose the project location.';
+  if(!f.s||!f.e)return 'Set both a start and an end date.';
+  if(D(f.e)<D(f.s))return 'The end date must be on or after the start date.';
+  return '';
+}
+function gapText(p,ns,ne){
+  const ps=D(p.start),pe=D(p.end);
+  if(ps<=ne&&pe>=ns)return {kind:'overlap',text:'Overlaps your dates'};
+  const mo=x=>{const m=Math.round(x/(30.44*DAY)*10)/10;return m<1?'less than 1 month':m+' month'+(m===1?'':'s');};
+  if(ps>ne)return {kind:'after',text:`Starts ${mo(ps-ne)} after your work ends`};
+  return {kind:'before',text:`Ended ${mo(ns-pe)} before your work starts`};
+}
+function findConflicts(np,win,exclude){
+  const from=addMonths(np.start,-win),to=addMonths(np.end,win);
+  return state.projects.filter(p=>p.code!==exclude&&Math.hypot(p.x-np.x,p.y-np.y)<=RADIUS&&D(p.start)<=to&&D(p.end)>=from)
+    .map(p=>({p,dist:Math.hypot(p.x-np.x,p.y-np.y),gap:gapText(p,np.start,np.end)}))
+    .sort((a,b)=>D(a.p.start)-D(b.p.start));
+}
+function runCheck(silent){
+  const f=readForm(),err=validate(f);
+  if(err){if(!silent)toast(err);if(silent){state.dept.result=null;renderResult();renderLayer();}return;}
+  const np={x:state.dept.loc.x,y:state.dept.loc.y,start:D(f.s),end:D(f.e)};
+  const conflicts=findConflicts(np,state.dept.window,state.dept.merged);
+  state.dept.result={conflicts,np,window:state.dept.window};
+  renderResult();renderLayer();
+  if(!silent)flyTo(np.x,np.y,Math.min(view.w,300),450);
+}
+function maybeRecheck(){if(state.dept.result)runCheck(true);}
+function timelineHTML(np,conflicts){
+  const items=[{label:'Your project',s:np.start,e:np.end,cls:'new'}].concat(conflicts.map(c=>({s:D(c.p.start),e:D(c.p.end),cls:c.p.status,label:c.p.dept===state.user.dept?c.p.title:'Another department'})));
+  const min=Math.min(...items.map(i=>+i.s)),max=Math.max(...items.map(i=>+i.e)),span=(max-min)||1;
+  return `<div class="tl"><strong style="font-size:13px">Shared calendar</strong>${items.map(i=>`<div class="tl-row"><div class="tl-label">${esc(i.label)}</div><div class="tl-track"><div class="tl-bar ${i.cls}" style="left:${((i.s-min)/span*100).toFixed(2)}%;width:${Math.max(2,(i.e-i.s)/span*100).toFixed(2)}%"></div></div></div>`).join('')}<div class="tl-axis"><span>${fmt(min)}</span><span>${fmt(max)}</span></div></div>`;
+}
+function coordNote(){const m=state.projects.find(p=>p.code===state.dept.merged);const lab=m&&state.user&&m.dept!==state.user.dept?'another department\'s work':esc(m?m.code:'');return `<div class="note ok">✔ Coordinated with <strong>${lab}</strong> – same dates, shared excavation. <button class="link" data-act="unmerge">Undo</button></div>`;}
+function renderResult(){
+  const box=$('#result'),r=state.dept.result;
+  if(!r){box.innerHTML='';return;}
+  const n=r.conflicts.length,w=r.window;
+  let h='';
+  if(!n){
+    h+=`<div class="note ok" style="margin-top:14px"><strong>No conflicts found.</strong> Nothing else is planned within ${RADIUS} m in the ${w} months before or after your dates.</div>`;
+    if(state.dept.merged)h+=coordNote();
+  }else{
+    h+=`<div class="note warn" style="margin-top:14px"><strong>⚠ ${n} possible conflict${n===1?'':'s'}</strong> within ${RADIUS} m and ${w} months of your dates. Digging here again may undo or disturb nearby work.</div>`;
+    if(state.dept.merged)h+=coordNote();
+    h+=r.conflicts.map((c,i)=>{const k=cOf(c.p.cid),own=c.p.dept===state.user.dept;return `<div class="conf"><div class="h"><span class="num">${i+1}</span><div><strong>${own?esc(c.p.title):'Another department\'s work'}</strong><br>${own?`<span class="code">${esc(c.p.code)}</span> · ${esc(c.p.dept)}${k?' · '+esc(k.name):''}`:'<span class="muted">Details hidden</span>'}<br><span class="muted">${Math.round(c.dist)} m away · ${fmt(D(c.p.start))} – ${fmt(D(c.p.end))}</span><br><strong style="color:var(--ongoing)">${esc(c.gap.text)}</strong></div></div>
+      ${c.p.status!=='completed'?`<div style="margin-top:8px"><button class="btn small" data-act="merge" data-code="${esc(c.p.code)}">Coordinate: use same dates</button></div>`:''}</div>`;}).join('');
+    h+=timelineHTML(r.np,r.conflicts);
+    h+=`<div class="row" style="margin:8px 0"><button class="btn small" data-act="suggest">Suggest conflict-free dates</button></div>`;
+  }
+  const needJust=n>0&&!state.dept.merged;
+  if(needJust)h+=`<label for="just">Not changing anything? Add a justification to proceed<textarea id="just" placeholder="e.g. Emergency repair, cannot be deferred">${esc(state.dept.just)}</textarea></label>`;
+  h+=`<button class="btn primary block" id="saveBtn" data-act="save" ${needJust&&!state.dept.just.trim()?'disabled':''}>${needJust?'Save with justification':'Save project &amp; publish on map'}</button>`;
+  box.innerHTML=h;
+  const j=$('#just');if(j)j.oninput=()=>{state.dept.just=j.value;$('#saveBtn').disabled=!j.value.trim();};
+}
+$('#result').addEventListener('click',e=>{
+  const b=e.target.closest('[data-act]');if(!b)return;
+  const act=b.dataset.act;
+  if(act==='merge'){
+    const p=state.projects.find(x=>x.code===b.dataset.code);if(!p)return;
+    state.dept.merged=p.code;$('#f-start').value=p.start;$('#f-end').value=p.end;state.dept.just='';
+    runCheck(true);toast(`Dates aligned with ${p.code}. Both jobs can share one excavation.`);
+  }
+  if(act==='unmerge'){state.dept.merged=null;runCheck(true);}
+  if(act==='suggest')suggestDates();
+  if(act==='save')saveProject();
+});
+function suggestDates(){
+  const r=state.dept.result;if(!r)return;
+  const dur=r.np.end-r.np.start;
+  for(let s=15;s<=36*30;s+=15){
+    const ns=new Date(+r.np.start+s*DAY),ne=new Date(+ns+dur);
+    if(!findConflicts({x:r.np.x,y:r.np.y,start:ns,end:ne},r.window,state.dept.merged).length){
+      $('#f-start').value=iso(ns);$('#f-end').value=iso(ne);runCheck(true);
+      toast(`Moved to ${fmt(ns)} – ${fmt(ne)}: no clashes within ${r.window} months.`);return;
+    }
+  }
+  toast('No conflict-free slot in the next 3 years. Try coordinating with the other project.');
+}
+function saveProject(){
+  if(!state.user)return;
+  const r=state.dept.result;if(!r)return;
+  const n=r.conflicts.length;
+  if(n&&!state.dept.merged&&!state.dept.just.trim()){toast('Add a justification to proceed.');return;}
+  const sanction=parseFloat($('#f-budget').value);
+  if(isNaN(sanction)||sanction<=0){toast('Enter the sanctioned budget in ₹ lakh.');return;}
+  const f=readForm();
+  const code='WW-26-'+String(101+state.projects.filter(p=>/^WW-26-1\d\d$/.test(p.code)).length).padStart(3,'0');
+  const p={code,title:f.title,purpose:$('#f-purpose').value.trim()||('Planned by '+state.user.dept+'.'),dept:state.user.dept,cid:$('#f-con').value,sanction,
+    start:f.s,end:f.e,status:'planned',stage:-1,x:r.np.x,y:r.np.y,released:[],delayClaims:[],faq:[],feedback:[],
+    history:[{d:TODAY_ISO,t:'Project planned and published.',by:state.user.dept,kind:'approval'}]};
+  if(state.dept.merged)p.note='Coordinated with '+state.dept.merged+' to share excavation.';
+  else if(n)p.note='Nearby clashes acknowledged. Justification: '+state.dept.just.trim();
+  else p.note='Checked for clashes within '+r.window+' months: none found.';
+  state.projects.push(p);persist();
+  state.dept={loc:null,window:state.dept.window,result:null,merged:null,just:''};
+  resetPlanForm();
+  state.area=null;$('#search').value='';
+  selectProject(code);
+  toast(`Saved as ${code}. It now appears on the public map.`);
+}
+$('#winSeg').addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  state.dept.window=+b.dataset.w;
+  $$('#winSeg button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+  if(state.dept.result)runCheck(true);else if(!validate(readForm()))runCheck(true);
+});
+$('#checkBtn').onclick=()=>runCheck(false);
+['f-title','f-start','f-end'].forEach(id=>$('#'+id).addEventListener('change',()=>{if(id!=='f-title')state.dept.merged=null;maybeRecheck();}));
+$('#demoBtn').onclick=()=>{
+  $('#f-title').value='Central Road Resurfacing – Academic Complex';
+  $('#f-purpose').value='Resurface Central Road in front of the Academic Complex.';
+  $('#f-con').value='C01';$('#f-budget').value='90';
+  $('#f-start').value='2027-06-01';$('#f-end').value='2027-06-25';
+  state.dept.merged=null;state.dept.just='';
+  state.dept.window=3;$$('#winSeg button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.w==='3'));
+  setLoc({x:300,y:242});
+  runCheck(false);
+  toast('No clashes at 3 months. Now switch the window to 6 and 12 months.');
+};
+$('#resetBtn').onclick=async()=>{
+  if(!API.token||state.role!=='dept'){toast('Only a department login can reset the database.');return;}
+  if(!confirm('This erases all projects, applications, feedback and uploaded photos in the database and restores the demo data. Continue?'))return;
+  let r;try{r=await API.post('/api/reset');}catch(e){toast(e.message);return;}
+  try{localStorage.removeItem('ww_fb');localStorage.removeItem('ww_me2');}catch(e){}
+  for(let i=CONTRACTORS.length-1;i>=0;i--){if(CONTRACTORS[i].verification){delete CON_PASS[CONTRACTORS[i].id];CONTRACTORS.splice(i,1);}}
+  refreshConLists();
+  adopt(r.projects,r.revs);
+  AC.apps=[];AC.others=0;AC.log=[];
+  state.selected=null;state.area=null;state.conSel=null;state.editingQ=null;
+  state.dept={loc:null,window:3,result:null,merged:null,just:''};$('#result').innerHTML='';
+  if(state.mode==='dept'&&state.dTab==='con')state.dTab='dash';
+  $('#search').value='';resetDraft(null);
+  setMode(state.mode);toast('Database reset to the demo data.');
+};
+
+/* ---------------- 7b. CONTRACTOR APPLICATIONS & VERIFICATION ---------------- */
+const CON_REQS=[
+ {k:'licence',t:'Valid contractor licence / registration',ph:'Licence certificate number'},
+ {k:'identity',t:'Identity and tax registration (PAN / GST)',ph:'GST certificate or PAN card details'},
+ {k:'experience',t:'Experience: at least 3 similar works with completion certificates',ph:'List 3 works and certificate numbers'},
+ {k:'finance',t:'Financial capacity (solvency certificate or audited turnover)',ph:'Certificate number or CA reference'},
+ {k:'safety',t:'Safety policy and trained site crew',ph:'Safety policy / training records'},
+ {k:'insurance',t:'Insurance cover (workmen compensation / third party)',ph:'Policy number and insurer'},
+ {k:'staff',t:'Qualified engineer or supervisor on the team',ph:'Name and qualification'},
+ {k:'refs',t:'Two client references',ph:'Names and phone numbers of 2 clients'},
+ {k:'debar',t:'Not blacklisted or debarred by any government body',ph:'Self-declaration reference'}
+];
+const LIC_CLASSES=['Class I Civil Contractor','Class II Civil Contractor','Class III Civil Contractor','Class A Electrical Contractor','Class B Electrical Contractor','Water works contractor','Telecom / fibre infrastructure provider','Other registered contractor'];
+const AC={apps:[],others:0,log:[]};
+async function refreshApps(){
+  if(!state.user||!API.token)return;
+  try{const r=await API.get('/api/applications');AC.apps=r.apps;AC.others=r.othersPending;AC.log=r.log;}
+  catch(e){if(e.status===401)sessionExpired();}
+}
+const DEFAULT_VDEPT='Engineering Unit – Civil';
+const appDept=a=>a.dept||DEFAULT_VDEPT;
+function suggestDept(lc){return /Electrical/.test(lc)?'Engineering Unit – Electrical':/Telecom/.test(lc)?'IT & Network Services':DEFAULT_VDEPT;}
+function refreshConLists(){
+  const opt=CONTRACTORS.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('');
+  ['#cl-con','#g-con'].forEach(q=>{const el=$(q);if(!el)return;const v=el.value;el.innerHTML=opt;if(cOf(v))el.value=v;});
+  const fc=$('#f-con');if(fc){const v=fc.value;fc.innerHTML=conOptions(cOf(v)?v:'');}
+  const base=CONTRACTORS.filter(c=>!c.verification);
+  const cc=$('#cDemoCreds');if(cc)cc.innerHTML=base.map(c=>`${esc(c.name)}: <code>${esc(CON_PASS[c.id])}</code>`).join('<br>');
+  const gc=$('#g-democreds');
+  if(gc)gc.innerHTML='<strong>Contractors</strong><br>'+base.map(c=>`${esc(c.name)}: <code>${esc(CON_PASS[c.id])}</code>`).join('<br>')+'<br><strong>Departments</strong><br>'+DEPT_ACCOUNTS.map(a=>`${esc(a.dept)}: <code>${esc(a.pass)}</code>`).join('<br>');
+}
+/* department review queue */
+function renderConVerify(skip){
+  if(!skip)refreshApps().then(()=>{if(state.user&&state.mode==='dept'&&state.dTab==='con')renderConVerify(true);renderDeptBadge();});
+  const mineDept=state.user.dept;
+  const pending=AC.apps.filter(a=>a.status==='pending');
+  const others=AC.others;
+  const log=AC.log.slice(0,8);
+  let h=`<p class="muted" style="margin-top:10px">When a contractor creates an account they choose the department that will verify them. Only that department sees and decides the application. Check each requirement against the documents provided, then approve or decline. Approved contractors are added to the contractor list and can log in.</p>
+  <h4>Waiting for ${esc(mineDept)} (${pending.length})</h4>`;
+  if(!pending.length)h+='<div class="note ok">No applications waiting for your department.</div>';
+  if(others)h+=`<div class="note info">${others} other application${others===1?'':'s'} ${others===1?'is':'are'} waiting with other departments. Only the department the contractor chose can verify them.</div>`;
+  pending.forEach(a=>{
+    h+=`<div class="card pcard" data-app="${esc(a.id)}">
+      <div class="row" style="justify-content:space-between"><span class="code">${esc(a.id)}</span><span class="badge review">New application</span></div>
+      <strong>${esc(a.name)}</strong>
+      <div class="muted small">Submitted ${fmt(D(a.at))}</div>
+      <dl><dt>Speciality</dt><dd>${esc(a.spec)}</dd>
+      <dt>Licence</dt><dd>${esc(a.lclass)}, No. ${esc(a.lno)}<br>valid to ${fmt(D(a.lexp))}</dd>
+      <dt>Insurance</dt><dd>valid to ${fmt(D(a.iexp))}</dd>
+      <dt>PAN / GST</dt><dd>${esc(a.tax)}</dd>
+      <dt>Established</dt><dd>${esc(a.est)} · ${esc(a.staff)} staff</dd>
+      <dt>Certifications</dt><dd>${a.certs.length?a.certs.map(esc).join(', '):'none listed'}</dd>
+      <dt>Office</dt><dd>${esc(a.phone)}<br>${esc(a.email)}</dd></dl>
+      <div class="vsec" style="margin-top:6px">Requirements: tick once you have checked the document</div>
+      ${CON_REQS.map(r=>`<div class="vrow"><input type="checkbox" class="v-chk" id="vc-${esc(a.id)}-${r.k}" data-k="${r.k}"><label for="vc-${esc(a.id)}-${r.k}">${esc(r.t)}<br><span class="muted small" style="font-weight:400">Applicant provided: ${esc((a.refs&&a.refs[r.k])||'')}</span></label></div>`).join('')}
+      <label>Verification note (what you checked)<textarea class="fld v-note" maxlength="240" placeholder="e.g. Originals seen on 10 Oct; licence confirmed with issuing office"></textarea></label>
+      <div class="row" style="margin-top:8px"><button class="btn good small" data-act="approveApp">Verify &amp; approve</button></div>
+      <label>Or decline: reason shown to the applicant<input class="fld v-reason" type="text" maxlength="140" placeholder="e.g. Licence number could not be verified"></label>
+      <button class="btn bad small" data-act="rejectApp" style="margin-top:6px">Decline application</button>
+    </div>`;
+  });
+  h+=`<h4>Registered contractors (${CONTRACTORS.length})</h4>`+CONTRACTORS.map(c=>`<div class="logline"><strong>${esc(c.name)}</strong> ${scoreChip(c.id)}<br><span class="muted">${c.verification?`Verified by ${esc(c.verification.by)} on ${fmt(D(c.verification.date))} · licence valid to ${fmt(D(c.verification.licenceExpiry))}`:'Pre-registered (earlier records)'}</span></div>`).join('');
+  h+='<h4>Verification log</h4>'+(log.length?log.map(x=>`<div class="logline"><strong>${fmt(D(x.d))}</strong> · ${esc(x.t)} <span class="muted">(${esc(x.by)})</span></div>`).join(''):'<p class="muted small">No activity yet.</p>');
+  $('#tab-con').innerHTML=h;
+}
+$('#tab-con').addEventListener('click',async e=>{
+  const b=e.target.closest('[data-act]');if(!b||!state.user)return;
+  const card=b.closest('[data-app]');if(!card)return;
+  const a=AC.apps.find(x=>x.id===card.dataset.app&&x.status==='pending');
+  if(!a){toast('This application is no longer pending.');renderConVerify();return;}
+  if(appDept(a)!==state.user.dept){toast('Only '+appDept(a)+' can verify this contractor.');renderConVerify();return;}
+  const by=state.user.dept;
+  if(b.dataset.act==='rejectApp'){
+    const why=card.querySelector('.v-reason').value.trim();
+    if(why.length<5){toast('Add a reason for declining.');return;}
+    try{await API.post('/api/applications/decide',{id:a.id,action:'reject',reason:why});}catch(err){toast(err.message);return;}
+    await refreshApps();renderConVerify(true);renderDeptBadge();toast('Application declined. The applicant will see your reason.');return;
+  }
+  if(b.dataset.act!=='approveApp')return;
+  const checks=[];
+  for(const r of CON_REQS){
+    const box=card.querySelector(`.v-chk[data-k="${r.k}"]`);
+    if(!box.checked){toast('Not verified yet: '+r.t+'. Every requirement must be verified before approval.');return;}
+    checks.push({k:r.k,t:r.t,ref:(a.refs&&a.refs[r.k])||''});
+  }
+  const note=card.querySelector('.v-note').value.trim();
+  if(note.length<5){toast('Add a verification note describing what you checked.');return;}
+  if(D(a.lexp)<=TODAY||D(a.iexp)<=TODAY){toast('The licence or insurance has expired. Decline the application instead.');return;}
+  if(CONTRACTORS.some(c=>c.name.toLowerCase()===a.name.toLowerCase())){toast('A contractor with this name is already registered.');return;}
+  const c={name:a.name,speciality:a.spec,licence:`${a.lclass} (No. ${a.lno})`,est:a.est,staff:a.staff,completed:0,defectDays:0,
+    certs:a.certs.length?a.certs:['Verified at onboarding'],office:{phone:a.phone,email:a.email},records:[],
+    verification:{by,officer:state.user.officer,date:TODAY_ISO,applicationId:a.id,licenceNo:a.lno,licenceExpiry:a.lexp,insuranceExpiry:a.iexp,taxId:a.tax,checks,note}};
+  let res;
+  try{res=await API.post('/api/applications/decide',{id:a.id,action:'approve',contractor:c});}catch(err){toast(err.message);return;}
+  const nc=res.contractor;
+  if(!cOf(nc.id))CONTRACTORS.push(nc);
+  await refreshApps();refreshConLists();renderConVerify(true);renderDeptBadge();
+  toast(`${a.name} approved as ${nc.id}. They can now log in and be assigned to works.`);
+});
+function renderDeptBadge(){
+  const n=state.user?AC.apps.filter(a=>a.status==='pending').length:0;
+  const t=$('#deptTabs [data-t="con"]');if(t)t.textContent='Verify contractor'+(n?` (${n})`:'');
+}
+
+/* ---------------- 7b. LAYOUT (dashboard / split / no-map) + HERO ---------------- */
+function layoutName(){
+  if(state.mode==='public')return (state.selected||state.area)?'split':'dash';
+  if(state.mode==='dept'&&state.user&&state.dTab==='plan')return 'split';
+  return state.mapOpen?'split':'nomap';
+}
+function updateLayout(){
+  const n=layoutName(),m=$('main'),cls='m-'+n;
+  if(!m.classList.contains(cls)){
+    m.classList.remove('m-dash','m-split','m-nomap');m.classList.add(cls);
+    const w=$('#mapwrap');w.classList.remove('pop');
+    if(n!=='nomap'){void w.offsetWidth;w.classList.add('pop');}
+    requestAnimationFrame(()=>{applyView();renderLayer();});
+  }
+  const forced=state.mode==='dept'&&state.user&&state.dTab==='plan';
+  const t=$('#mapToggle');
+  t.hidden=!state.role||state.mode==='public'||!!forced;
+  t.textContent=state.mapOpen?'🗺 Hide map':'🗺 Show map';
+  t.setAttribute('aria-pressed',state.mapOpen);
+}
+$('#mapToggle').onclick=()=>{
+  state.mapOpen=!state.mapOpen;updateLayout();
+  if(state.mapOpen)requestAnimationFrame(()=>{
+    const f=state.mode==='contractors'?focusCid():null;
+    const l=f?state.projects.filter(p=>p.cid===f):[];
+    if(l.length)fitProjects(l);else flyTo(HOME.cx,HOME.cy,HOME.w,450);
+  });
+};
+const NEAR=120; // metres: works this close with overlapping dates are flagged
+function conflictPairs(){
+  const act=state.projects.filter(p=>p.status!=='completed'&&p.start&&p.end),out=[];
+  for(let i=0;i<act.length;i++)for(let j=i+1;j<act.length;j++){
+    const a=act[i],b=act[j];
+    if(Math.hypot(a.x-b.x,a.y-b.y)>NEAR)continue;
+    const s0=a.start>b.start?a.start:b.start,e0=a.end<b.end?a.end:b.end;
+    if(s0<=e0)out.push({a,b,s:s0,e:e0});
+  }
+  return out;
+}
+function renderHero(){
+  const P=state.projects;
+  const st=[[P.filter(p=>p.status==='ongoing').length,'Active projects'],[conflictPairs().length,'Conflicts flagged'],[P.filter(p=>p.status==='planned').length,'Planned projects']];
+  $('#hstats').innerHTML=st.map(x=>`<div class="hstat"><b>${x[0]}</b><span>${x[1]}</span></div>`).join('');
+}
+$('#heroBrowse').onclick=()=>$('#projSec').scrollIntoView({behavior:'smooth',block:'start'});
+$('#heroCon').onclick=()=>setMode('contractors');
+$('#backDash').onclick=()=>{state.selected=null;state.area=null;$('#search').value='';renderPublic();flyTo(HOME.cx,HOME.cy,HOME.w,450);$('#panel').scrollTop=0;};
+
+/* ---------------- 8. MODES ---------------- */
+function setMode(m){
+  if(!canMode(m))return;
+  state.mode=m;
+  $('main').dataset.mode=m;
+  updateLayout();
+  $('#pub').hidden=m!=='public';$('#con').hidden=m!=='contractors';$('#dept').hidden=m!=='dept';
+  $$('#modeSeg button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.mode===m));
+  $('#hint').hidden=true;
+  if(m==='public')renderPublic();
+  else if(m==='contractors'){
+    renderConTabs();renderLayer();
+    if(state.conTab==='portfolio'&&state.conSel)fitProjects(state.projects.filter(p=>p.cid===state.conSel));
+    else if(state.conTab==='dash'&&state.cuser)fitProjects(myProjects());
+  }
+  else{renderDept();renderLayer();}
+  $('#panel').scrollTop=0;
+  pullProjects().then(ch=>{if(ch&&state.mode===m)rerender();});
+}
+$('#modeSeg').addEventListener('click',e=>{const b=e.target.closest('button');if(b)setMode(b.dataset.mode);});
+
+/* ---------------- 9. INIT ---------------- */
+drawBase();applyView();
+if(window.ResizeObserver){let ro=0;new ResizeObserver(()=>{if(ro)return;ro=requestAnimationFrame(()=>{ro=0;applyView();renderLayer();});}).observe($('#mapwrap'));}
+
+/* ---------------- 10. LOGIN GATE ---------------- */
+const SESS='ww_session';
+const GMAIL=/^[a-z0-9._%+-]+@gmail\.com$/i;
+const ROLE_MODES={public:['public','contractors'],contractor:['contractors'],dept:['dept']};
+state.role=null;state.pubEmail=null;
+function canMode(m){return !!state.role&&ROLE_MODES[state.role].indexOf(m)>-1;}
+let gRole='public';
+$('#g-dsel').innerHTML=DEPT_ACCOUNTS.map(a=>`<option>${esc(a.dept)}</option>`).join('');
+buildSignup();
+refreshConLists();
+function showGateTab(r){
+  gRole=r;
+  $$('#gTabs button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.r===r));
+  $('#g-public').hidden=r!=='public';$('#g-contractor').hidden=r!=='contractor';$('#g-dept').hidden=r!=='dept';
+  $('#g-demo').hidden=r==='public';$('#g-err').hidden=true;$('#g-ok').hidden=true;
+  updateGateBtn();
+}
+let gcMode='login';
+function setGcMode(m){
+  gcMode=m;
+  $$('#gcTabs button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.m===m));
+  $('#gc-login').hidden=m!=='login';$('#gc-signup').hidden=m!=='signup';
+  $('#g-err').hidden=true;
+  if(m==='signup')$('#g-ok').hidden=true;
+  updateGateBtn();
+}
+function updateGateBtn(){$('#g-btn').textContent=(gRole==='contractor'&&gcMode==='signup')?'Submit for verification':'Log in';}
+$('#gcTabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b)setGcMode(b.dataset.m);});
+function buildSignup(){
+  $('#gc-signup').innerHTML=`<p class="muted small" style="margin-top:10px">Apply for a contractor account. A department officer checks your details and documents before your account is approved. You can log in after approval.</p>
+  <button type="button" class="btn small" id="a-demo">Fill demo details</button>
+  <label for="a-name">Business name<input id="a-name" type="text" maxlength="80"></label>
+  <label for="a-spec">Speciality<input id="a-spec" type="text" maxlength="90" placeholder="e.g. Pipelines, plumbing and drainage"></label>
+  <div class="two"><label for="a-lclass">Licence class<select id="a-lclass">${LIC_CLASSES.map(x=>`<option>${esc(x)}</option>`).join('')}</select></label><label for="a-lno">Licence number<input id="a-lno" type="text" maxlength="40"></label></div>
+  <div class="two"><label for="a-lexp">Licence valid until<input id="a-lexp" type="date"></label><label for="a-iexp">Insurance valid until<input id="a-iexp" type="date"></label></div>
+  <div class="two"><label for="a-tax">PAN / GST number<input id="a-tax" type="text" maxlength="30"></label><label for="a-est">Year established<input id="a-est" type="number" min="1950" max="2026"></label></div>
+  <div class="two"><label for="a-staff">Team size<input id="a-staff" type="number" min="1"></label><label for="a-certs">Certifications (optional)<input id="a-certs" type="text" maxlength="120" placeholder="e.g. ISO 9001:2015"></label></div>
+  <div class="two"><label for="a-phone">Office phone<input id="a-phone" type="tel"></label><label for="a-email">Office email<input id="a-email" type="email"></label></div>
+  <label for="a-dept">Department that will verify you<select id="a-dept">${DEPT_ACCOUNTS.map(d=>`<option>${esc(d.dept)}</option>`).join('')}</select></label>
+  <p class="muted small" style="margin:4px 0 0">Only this department can see and approve your application. It is suggested from your licence class; change it if another department handles your work.</p>
+  <div class="vsec">Documents and proofs</div>
+  <p class="muted small" style="margin:2px 0 0">For each requirement, give the document number or a short description. The officer will ask to see the originals.</p>
+  ${CON_REQS.map(r=>`<label>${esc(r.t)}<input class="a-ref" data-k="${r.k}" type="text" maxlength="100" placeholder="${esc(r.ph)}"></label>`).join('')}
+  <div class="vsec">Login passcode</div>
+  <div class="two"><label for="a-pass">Passcode (6+ characters)<input id="a-pass" type="password" autocomplete="new-password" maxlength="40"></label><label for="a-pass2">Confirm passcode<input id="a-pass2" type="password" autocomplete="new-password" maxlength="40"></label></div>
+  <div class="vrow"><input type="checkbox" id="a-ok"><label for="a-ok">I confirm these details are true and I will show the original documents on request.</label></div>`;
+}
+const DEMO_APPS=[
+ {dept:'Engineering Unit – Civil',name:'Coastal Pipeworks',spec:'Pipelines, plumbing and drainage',lclass:'Water works contractor',lno:'WW-TN-2041',tax:'33AAFCC4821K1Z5',est:2014,staff:34,certs:'ISO 45001',phone:'+91 90000 31001',email:'info@coastalpipeworks-demo.example',
+  refs:{licence:'Water works licence WW-TN-2041',identity:'GSTIN 33AAFCC4821K1Z5, PAN AAFCC4821K',experience:'3 works: municipal drain 2025 (cert 118/25), hostel pipeline 2024 (cert 77/24), school tank 2023 (cert 41/23)',finance:'Solvency certificate SC/2026/882, turnover Rs 2.1 Cr',safety:'Safety policy v3 and 12 crew with first-aid training',insurance:'Policy 4501/WC/2026, National Insurance',staff:'R. Karthik, B.E. Civil, 9 years',refs:'Mr. Anand (Municipal AE) 90000 41001; Ms. Latha (School trust) 90000 41002',debar:'Self-declaration SD/2026/17'}},
+ {dept:'Hostel Office',name:'GreenLeaf Landscaping & Civil',spec:'Landscaping, boundary walls and pavements',lclass:'Class III Civil Contractor',lno:'CIV-III-7716',tax:'33BBGLC9087M1Z2',est:2018,staff:26,certs:'Safety-trained site crew',phone:'+91 90000 31002',email:'hello@greenleaf-demo.example',
+  refs:{licence:'Class III licence CIV-III-7716',identity:'GSTIN 33BBGLC9087M1Z2, PAN BBGLC9087M',experience:'3 works: park paving 2025 (cert 52/25), compound wall 2024 (cert 30/24), garden 2023 (cert 19/23)',finance:'CA turnover certificate CA/2026/310, Rs 0.9 Cr',safety:'Site safety checklist and helmets/harness for all workers',insurance:'Policy 7782/TP/2026, United India',staff:'S. Meena, Diploma Civil, 6 years',refs:'Mr. Joseph (Park trust) 90000 41003; Mr. Imran (College estate) 90000 41004',debar:'Self-declaration SD/2026/18'}},
+ {dept:'Engineering Unit – Electrical',name:'SparkGrid Solar Solutions',spec:'Rooftop solar and power backup',lclass:'Class B Electrical Contractor',lno:'ELEC-B-3350',tax:'33CCSSG5512P1Z8',est:2019,staff:19,certs:'Licensed electrical supervisor on every site',phone:'+91 90000 31003',email:'projects@sparkgrid-demo.example',
+  refs:{licence:'Class B electrical licence ELEC-B-3350',identity:'GSTIN 33CCSSG5512P1Z8, PAN CCSSG5512P',experience:'3 works: 50 kW rooftop 2025 (cert 66/25), UPS room 2024 (cert 44/24), street lights 2023 (cert 23/23)',finance:'Solvency certificate SC/2026/455, turnover Rs 1.4 Cr',safety:'Electrical safety SOP and lock-out/tag-out training',insurance:'Policy 9120/WC/2026, New India Assurance',staff:'V. Prakash, B.E. EEE, 7 years',refs:'Dr. Nirmala (Engineering college) 90000 41005; Mr. Suresh (Apartment society) 90000 41006',debar:'Self-declaration SD/2026/19'}}
+];
+let demoIdx=0;const usedDemo=new Set();
+function fillDemoApp(){
+  const taken=n=>CONTRACTORS.some(c=>c.name.toLowerCase()===n.toLowerCase())||usedDemo.has(n);
+  let d=null;
+  for(let i=0;i<DEMO_APPS.length;i++){const x=DEMO_APPS[(demoIdx+i)%DEMO_APPS.length];if(!taken(x.name)){d=x;usedDemo.add(x.name);demoIdx=(demoIdx+i+1)%DEMO_APPS.length;break;}}
+  if(!d){toast('All demo applicants are already registered. Reset demo data to use them again.');return;}
+  const set=(id,v)=>{$('#'+id).value=v;};
+  set('a-name',d.name);$('#a-dept').value=d.dept;set('a-spec',d.spec);$('#a-lclass').value=d.lclass;set('a-lno',d.lno);
+  set('a-lexp','2029-03-31');set('a-iexp','2027-12-31');set('a-tax',d.tax);set('a-est',d.est);set('a-staff',d.staff);
+  set('a-certs',d.certs);set('a-phone',d.phone);set('a-email',d.email);
+  CON_REQS.forEach(r=>{$('#gc-signup .a-ref[data-k="'+r.k+'"]').value=d.refs[r.k];});
+  set('a-pass','demo@123');set('a-pass2','demo@123');$('#a-ok').checked=true;
+  $('#g-err').hidden=true;
+  toast(`Demo filled in for ${d.dept} (passcode demo@123). Press Submit for verification.`);
+}
+$('#gc-signup').addEventListener('click',e=>{if(e.target.id==='a-demo')fillDemoApp();});
+$('#gc-signup').addEventListener('change',e=>{if(e.target.id==='a-lclass')$('#a-dept').value=suggestDept(e.target.value);});
+async function submitApplication(){
+  const err=$('#g-err'),ok=$('#g-ok');
+  const fail=m=>{ok.hidden=true;err.textContent=m;err.hidden=false;err.scrollIntoView({block:'nearest'});};
+  const g=id=>$('#'+id).value.trim();
+  const name=g('a-name'),spec=g('a-spec'),lno=g('a-lno'),lexp=g('a-lexp'),iexp=g('a-iexp'),tax=g('a-tax');
+  const est=parseInt(g('a-est'),10),staff=parseInt(g('a-staff'),10),phone=g('a-phone'),email=g('a-email'),pass=$('#a-pass').value;
+  if(name.length<3)return fail('Enter your business name.');
+  if(!spec)return fail('Enter your speciality.');
+  if(!lno)return fail('Enter your licence number.');
+  if(!lexp||D(lexp)<=TODAY)return fail('Your licence must be valid beyond today.');
+  if(!iexp||D(iexp)<=TODAY)return fail('Your insurance must be valid beyond today.');
+  if(!tax)return fail('Enter your PAN / GST number.');
+  if(isNaN(est)||est<1950||est>2026)return fail('Enter a valid year of establishment.');
+  if(isNaN(staff)||staff<1)return fail('Enter your team size.');
+  if(phone.replace(/\D/g,'').length<8)return fail('Enter an office phone number.');
+  if(!/^\S+@\S+\.\S+$/.test(email))return fail('Enter a valid office email.');
+  const dept=$('#a-dept').value;
+  if(!DEPT_ACCOUNTS.some(x=>x.dept===dept))return fail('Choose the department that will verify you.');
+  const refs={};
+  for(const r of CON_REQS){
+    const v=$('#gc-signup .a-ref[data-k="'+r.k+'"]').value.trim();
+    if(!v)return fail('Add the document details for: '+r.t+'.');
+    refs[r.k]=v;
+  }
+  if(pass.length<6)return fail('Choose a passcode of at least 6 characters.');
+  if(pass!==$('#a-pass2').value)return fail('The two passcodes do not match.');
+  if(!$('#a-ok').checked)return fail('Please confirm the declaration.');
+  if(CONTRACTORS.some(c=>c.name.toLowerCase()===name.toLowerCase()))return fail('A contractor with this name is already registered.');
+  const btn=$('#g-btn');btn.disabled=true;
+  let res;
+  try{res=await API.post('/api/applications',{at:TODAY_ISO,dept,name,spec,lclass:$('#a-lclass').value,lno,lexp,iexp,tax,est,staff,
+    certs:g('a-certs').split(',').map(x=>x.trim()).filter(Boolean),phone,email,refs,pass});}
+  catch(e){btn.disabled=false;return fail(e.message);}
+  btn.disabled=false;
+  const id=res.id;
+  buildSignup();setGcMode('login');
+  err.hidden=true;ok.textContent=`Application ${id} submitted. ${dept} will verify it. Keep this ID to check your status. You can log in once it is approved.`;ok.hidden=false;
+  $('#g-appid').value=id;
+  toast('Application '+id+' submitted for verification.');
+}
+$('#g-appchk').onclick=async()=>{
+  const id=$('#g-appid').value.trim().toUpperCase(),box=$('#g-appres');
+  if(!id){box.innerHTML='<div class="note bad">Enter your application ID.</div>';return;}
+  let a;
+  try{a=await API.get('/api/applications?id='+encodeURIComponent(id));}
+  catch(e){box.innerHTML=`<div class="note bad">${esc(e.message)}</div>`;return;}
+  if(a.status==='pending')box.innerHTML=`<div class="note info"><strong>${esc(a.name)}</strong>: waiting for verification by ${esc(a.dept)}${a.at?` (submitted ${fmt(D(a.at))})`:''}.</div>`;
+  else if(a.status==='approved')box.innerHTML=`<div class="note ok"><strong>${esc(a.name)}</strong>: approved${a.decidedAt?' on '+fmt(D(a.decidedAt)):''}. Choose your business name above and log in with your passcode.</div>`;
+  else box.innerHTML=`<div class="note bad"><strong>${esc(a.name)}</strong>: not approved by ${esc(a.by||a.dept)}. Reason: ${esc(a.reason||'')}. You can apply again with corrected details.</div>`;
+};
+$('#gTabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b)showGateTab(b.dataset.r);});
+async function gateLogin(){
+  const err=$('#g-err');
+  const fail=m=>{err.textContent=m;err.hidden=false;};
+  if(!BOOTED)return fail('Not connected to the WorkWatch server yet.');
+  let body;
+  if(gRole==='public'){
+    const em=$('#g-email').value.trim().toLowerCase();
+    if(!GMAIL.test(em)||em.split('@')[0].length<6)return fail('Enter a valid Gmail address ending in @gmail.com.');
+    body={role:'public',email:em};
+  }else if(gRole==='contractor'){
+    if(gcMode==='signup'){submitApplication();return;}
+    const c=cOf($('#g-con').value);
+    if(!c)return fail('Choose a contractor.');
+    body={role:'contractor',id:c.id,pass:$('#g-cpass').value};
+  }else{
+    const a=DEPT_ACCOUNTS.find(x=>x.dept===$('#g-dsel').value);
+    if(!a)return fail('Choose a department.');
+    body={role:'dept',id:a.dept,pass:$('#g-dpass').value};
+  }
+  const btn=$('#g-btn');btn.disabled=true;
+  try{
+    const r=await API.post('/api/login',body);
+    API.token=r.token;
+    err.hidden=true;$('#g-ok').hidden=true;
+    $('#g-cpass').value='';$('#g-dpass').value='';
+    await pullProjects(true);
+    startSession(r.role,r.id,r.token);
+  }catch(e){fail(e.message);}
+  finally{btn.disabled=false;}
+}
+$('#g-btn').onclick=gateLogin;
+['g-email','g-cpass','g-dpass'].forEach(id=>$('#'+id).addEventListener('keydown',e=>{if(e.key==='Enter')gateLogin();}));
+function startSession(role,id,token){
+  state.mapOpen=false;
+  state.role=role;state.user=null;state.cuser=null;state.pubEmail=null;
+  state.selected=null;state.area=null;state.conSel=null;state.editingQ=null;
+  state.dept={loc:null,window:3,result:null,merged:null,just:''};
+  let label='';
+  if(role==='public'){state.pubEmail=id;label=id;state.conTab='portfolio';}
+  else if(role==='contractor'){const c=cOf(id);state.cuser=c;state.cdTab='queries';state.conTab='dash';label=c.name;}
+  else{const a=DEPT_ACCOUNTS.find(x=>x.dept===id);state.user=a;state.dTab='dash';label=a.dept;resetPlanForm();}
+  try{sessionStorage.setItem(SESS,JSON.stringify({role:role,id:id,token:token||API.token}));}catch(e){}
+  $('#search').value='';
+  $('#gate').hidden=true;
+  $('#whoTxt').textContent=label;$('#whoBar').hidden=false;
+  $$('#modeSeg button').forEach(b=>{b.hidden=ROLE_MODES[role].indexOf(b.dataset.mode)<0;});
+  $('#modeSeg').hidden=ROLE_MODES[role].length<2;
+  $('#conTabs').hidden=role==='public';
+  setMode({public:'public',contractor:'contractors',dept:'dept'}[role]);
+  if(role==='contractor')fitProjects(myProjects());
+  else flyTo(HOME.cx,HOME.cy,HOME.w,450);
+  if(role==='dept')refreshApps().then(renderDeptBadge);
+  toast('Logged in as '+label+'.');
+}
+function endSession(){
+  if(API.token)API.post('/api/logout').catch(()=>{});
+  API.token=null;AC.apps=[];AC.others=0;AC.log=[];
+  try{sessionStorage.removeItem(SESS);}catch(e){}
+  state.role=null;state.user=null;state.cuser=null;state.pubEmail=null;
+  state.selected=null;state.area=null;state.conSel=null;
+  state.dept={loc:null,window:3,result:null,merged:null,just:''};
+  $('#whoBar').hidden=true;$('#hint').hidden=true;
+  ['g-email','g-cpass','g-dpass'].forEach(id=>$('#'+id).value='');
+  showGateTab('public');setGcMode('login');$('#g-ok').hidden=true;
+  $('#gate').hidden=false;
+  layer.innerHTML='';
+}
+$('#gateOut').onclick=endSession;
+async function restore(){
+  let s=null;try{s=JSON.parse(sessionStorage.getItem(SESS)||'null');}catch(e){}
+  if(s&&s.token){
+    API.token=s.token;
+    try{
+      const me=await API.get('/api/me');
+      const ok=me.role===s.role&&me.ref===s.id&&((s.role==='public'&&GMAIL.test(s.id||''))||(s.role==='contractor'&&cOf(s.id))||(s.role==='dept'&&DEPT_ACCOUNTS.some(a=>a.dept===s.id)));
+      if(ok){await pullProjects(true);startSession(s.role,s.id,s.token);return;}
+    }catch(e){}
+    API.token=null;try{sessionStorage.removeItem(SESS);}catch(e){}
+  }
+  showGateTab('public');
+}
+(async function boot(){
+  try{
+    const r=await API.get('/api/bootstrap');
+    adopt(r.projects,r.revs);
+    (r.contractors||[]).forEach(c=>{if(!cOf(c.id))CONTRACTORS.push(c);});
+    refreshConLists();BOOTED=true;
+  }catch(e){
+    showGateTab('public');
+    const err=$('#g-err');
+    err.textContent='Cannot reach the WorkWatch database server. Start it with "python3 server.py" and open http://localhost:8000 in your browser (the page must be opened from the server, not as a file).';
+    err.hidden=false;$('#g-btn').disabled=true;return;
+  }
+  restore();
+})();
+})();
+</script>
+</body>
+</html>

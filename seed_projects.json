@@ -1,0 +1,307 @@
+[
+ {
+  "code": "WW-26-001",
+  "title": "Storm Water Drain Extension – Academic Complex",
+  "purpose": "Extend the storm water drain to stop waterlogging in front of the Academic Complex during the monsoon.",
+  "dept": "Engineering Unit – Civil",
+  "cid": "C04",
+  "sanction": 45,
+  "start": "2026-08-20",
+  "end": "2026-11-30",
+  "status": "ongoing",
+  "stage": 1,
+  "updated": "2026-10-05",
+  "closure": {
+   "from": "2026-10-01",
+   "to": "2026-11-30"
+  },
+  "x": 282,
+  "y": 226,
+  "released": [
+   {
+    "d": "2026-08-25",
+    "amt": 15,
+    "note": "Mobilisation advance"
+   },
+   {
+    "d": "2026-09-30",
+    "amt": 10,
+    "note": "Excavation stage"
+   }
+  ],
+  "delayClaims": [
+   {
+    "id": "DC1",
+    "type": "Flood / heavy rain",
+    "days": 14,
+    "text": "Heavy rain: about 2 weeks of work lost.",
+    "status": "pending",
+    "at": "2026-10-03"
+   }
+  ],
+  "history": [
+   {
+    "d": "2026-08-12",
+    "t": "Work order issued to Aqua Infra Works.",
+    "by": "Engineering Unit – Civil",
+    "kind": "approval"
+   },
+   {
+    "d": "2026-09-02",
+    "t": "Survey completed.",
+    "by": "Aqua Infra Works"
+   },
+   {
+    "d": "2026-10-05",
+    "t": "Excavation about 60% done.",
+    "by": "Aqua Infra Works"
+   }
+  ],
+  "faq": [
+   {
+    "id": "Q1",
+    "topic": "Traffic & access",
+    "q": "Which route should vehicles take while Central Road is closed?",
+    "a": "Use Hostel Lane and South Road. Signboards are placed at both ends.",
+    "at": "2026-10-01",
+    "answeredAt": "2026-10-02",
+    "me2": 6
+   },
+   {
+    "id": "Q2",
+    "topic": "Noise & dust",
+    "q": "Why is there drilling at night near the Academic Complex?",
+    "a": null,
+    "at": "2026-10-07",
+    "me2": 3
+   }
+  ],
+  "feedback": []
+ },
+ {
+  "code": "WW-26-002",
+  "title": "Underground Power Cable – Academic Complex to Hostels",
+  "purpose": "Replace the overhead supply with an underground cable running to the hostel zone.",
+  "dept": "Engineering Unit – Electrical",
+  "cid": "C03",
+  "sanction": 80,
+  "start": "2027-01-11",
+  "end": "2027-02-20",
+  "status": "planned",
+  "stage": -1,
+  "x": 340,
+  "y": 256,
+  "released": [],
+  "delayClaims": [],
+  "history": [
+   {
+    "d": "2026-09-15",
+    "t": "Project planned and awarded to BrightWay Electricals.",
+    "by": "Engineering Unit – Electrical",
+    "kind": "approval"
+   }
+  ],
+  "faq": [],
+  "feedback": []
+ },
+ {
+  "code": "WW-26-003",
+  "title": "Central Road Resurfacing",
+  "purpose": "Resurface Central Road between Main Avenue and Hostel Lane.",
+  "dept": "Engineering Unit – Civil",
+  "cid": "C01",
+  "sanction": 90,
+  "start": "2026-05-01",
+  "end": "2026-07-20",
+  "status": "completed",
+  "stage": 4,
+  "updated": "2026-07-28",
+  "x": 248,
+  "y": 248,
+  "released": [
+   {
+    "d": "2026-05-10",
+    "amt": 30,
+    "note": "Mobilisation advance"
+   },
+   {
+    "d": "2026-06-25",
+    "amt": 30,
+    "note": "Mid-work payment"
+   },
+   {
+    "d": "2026-08-02",
+    "amt": 30,
+    "note": "Final payment after verification"
+   }
+  ],
+  "delayClaims": [],
+  "assessment": {
+   "actualEnd": "2026-07-28",
+   "cost": 90,
+   "adj": 0,
+   "insp": 86,
+   "safety": 90,
+   "transp": 88,
+   "note": "Core cutting and level checks passed.",
+   "approvedAt": "2026-08-02",
+   "by": "Engineering Unit – Civil"
+  },
+  "completion": {
+   "status": "approved",
+   "submittedAt": "2026-07-28"
+  },
+  "history": [
+   {
+    "d": "2026-04-20",
+    "t": "Work order issued to Sri Murugan Constructions.",
+    "by": "Engineering Unit – Civil",
+    "kind": "approval"
+   },
+   {
+    "d": "2026-06-20",
+    "t": "Base layer completed.",
+    "by": "Sri Murugan Constructions"
+   },
+   {
+    "d": "2026-07-28",
+    "t": "Contractor submitted work for verification.",
+    "by": "Sri Murugan Constructions"
+   },
+   {
+    "d": "2026-08-02",
+    "t": "Completion verified and approved. Inspection note: Core cutting and level checks passed.",
+    "by": "Engineering Unit – Civil",
+    "kind": "approval"
+   }
+  ],
+  "faq": [
+   {
+    "id": "Q3",
+    "topic": "Quality of work",
+    "q": "Who do we call about a pothole on the resurfaced stretch?",
+    "a": "Please call the Assistant Engineer listed on this page. Repairs within the defect liability period are done at the contractor’s cost.",
+    "at": "2026-09-10",
+    "answeredAt": "2026-09-11",
+    "me2": 4
+   }
+  ],
+  "feedback": [
+   {
+    "stars": 4,
+    "text": "Smooth road now, but it took a week longer than announced.",
+    "at": "2026-08-10"
+   },
+   {
+    "stars": 5,
+    "text": "Much better for cycling.",
+    "at": "2026-08-14"
+   }
+  ]
+ },
+ {
+  "code": "WW-26-004",
+  "title": "Fibre Backbone Extension – Hostel Lane",
+  "purpose": "Extend the campus fibre backbone to the hostels for faster, more reliable internet.",
+  "dept": "IT & Network Services",
+  "cid": "C05",
+  "sanction": 35,
+  "start": "2027-12-01",
+  "end": "2028-01-15",
+  "status": "planned",
+  "stage": -1,
+  "x": 330,
+  "y": 280,
+  "released": [],
+  "delayClaims": [],
+  "history": [
+   {
+    "d": "2026-09-20",
+    "t": "Project planned.",
+    "by": "IT & Network Services",
+    "kind": "approval"
+   }
+  ],
+  "faq": [],
+  "feedback": []
+ },
+ {
+  "code": "WW-26-005",
+  "title": "Mess Hall Extension",
+  "purpose": "Add a new dining wing to the Mess to reduce queues at peak meal times.",
+  "dept": "Hostel Office",
+  "cid": "C02",
+  "sanction": 260,
+  "start": "2026-09-01",
+  "end": "2027-01-15",
+  "status": "ongoing",
+  "stage": 2,
+  "updated": "2026-09-28",
+  "x": 405,
+  "y": 352,
+  "released": [
+   {
+    "d": "2026-09-08",
+    "amt": 60,
+    "note": "Mobilisation advance"
+   },
+   {
+    "d": "2026-10-01",
+    "amt": 40,
+    "note": "Foundation stage"
+   }
+  ],
+  "delayClaims": [],
+  "history": [
+   {
+    "d": "2026-08-25",
+    "t": "Work order issued to Kaveri Builders.",
+    "by": "Hostel Office",
+    "kind": "approval"
+   },
+   {
+    "d": "2026-09-28",
+    "t": "Foundation and plinth beam completed.",
+    "by": "Kaveri Builders"
+   }
+  ],
+  "faq": [
+   {
+    "id": "Q4",
+    "topic": "Timeline & delays",
+    "q": "When will the new dining wing open?",
+    "a": "Targeted for mid-January 2027, subject to final inspection.",
+    "at": "2026-09-30",
+    "answeredAt": "2026-10-01",
+    "me2": 9
+   }
+  ],
+  "feedback": []
+ },
+ {
+  "code": "WW-26-006",
+  "title": "Gate A Entrance Road Widening",
+  "purpose": "Widen the entrance road at Gate A to ease morning and evening traffic.",
+  "dept": "Engineering Unit – Civil",
+  "cid": "C01",
+  "sanction": 120,
+  "start": "2027-02-01",
+  "end": "2027-03-15",
+  "status": "planned",
+  "stage": -1,
+  "x": 180,
+  "y": 432,
+  "released": [],
+  "delayClaims": [],
+  "history": [
+   {
+    "d": "2026-09-25",
+    "t": "Project planned and awarded to Sri Murugan Constructions.",
+    "by": "Engineering Unit – Civil",
+    "kind": "approval"
+   }
+  ],
+  "faq": [],
+  "feedback": []
+ }
+]
