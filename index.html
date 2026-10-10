@@ -931,7 +931,7 @@ svg.addEventListener('click',e=>{
   if(state.mode==='dept'&&state.user&&state.dTab==='plan')setLoc(toMap(e));
 });
 function visibleProjects(){
-  if(state.mode==='public')return state.projects.filter(p=>(((p.status==='ongoing'||p.status==='planned'||p.status==='completed')&&state.filters[p.status])||p.code===state.selected)&&(!state.filters.dept||p.dept===state.filters.dept));
+  if(state.mode==='public')return state.projects.filter(p => p && (((p.status==='ongoing'||p.status==='planned'||p.status==='completed')&&state.filters[p.status])||p.code===state.selected)&&(!state.filters.dept||p.dept===state.filters.dept));
   if(state.mode==='dept'&&state.user){
     const dp=state.dept,ids=(state.dTab==='plan'&&dp.result)?new Set(dp.result.conflicts.map(c=>c.p.code)):new Set();
     return state.projects.filter(p=>p.dept===state.user.dept||ids.has(p.code));
