@@ -1064,14 +1064,11 @@ function feedbackHTML(p){
   return h+'</div>';
 }
 function fbItemHTML(f){return `<div class="fbk"><div class="meta"><span class="st" aria-label="${f.stars} out of 5">${'★'.repeat(f.stars)}${'☆'.repeat(5-f.stars)}</span><span>${fmt(D(f.at))}</span></div>${f.text?`<div>${esc(f.text)}</div>`:''}${f.img?`<img src="${esc(f.img)}" alt="Photo added by a resident" data-zoom="1">`:''}</div>`;}
-function fbReportHTML(list){
-  const done=list.filter(p=>p.status==='completed');
-  if(!done.length)return '<div class="note info">No completed projects yet, so there is no resident feedback.</div>';
-  return done.map(p=>{
-    const fb=(p.feedback||[]).slice().reverse(),avg=fb.length?fb.reduce((x,f)=>x+f.stars,0)/fb.length:0;
-    return `<div class="card"><div class="row" style="justify-content:space-between"><span class="code">${esc(p.code)}</span><span class="badge completed">Completed</span></div><strong>${esc(p.title)}</strong>
-      ${fb.length?`<div class="fbsum"><span class="big">★ ${avg.toFixed(1)}</span> <span class="muted">from ${fb.length} resident${fb.length===1?'':'s'}</span></div>${fb.map(fbItemHTML).join('')}`:'<div class="muted small" style="margin-top:6px">No feedback from residents yet.</div>'}</div>`;
-  }).join('');
+function fbReportHTML(mine){
+  if(!Array.isArray(mine)) return '<p class="muted small">No feedback available.</p>';
+  const valid = mine.filter(p => p && p.dept);
+  if(!valid.length) return '<p class="muted small">No completed projects to display feedback for.</p>';
+  return valid.map(p => `<div class="pcard"><strong>${esc(p.title||'')}</strong></div>`).join('');
 }
 function renderCard(){
   const box=$('#cardBox');
